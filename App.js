@@ -35,7 +35,25 @@ export default function App() {
                         navigation={navigation}
                     />
                     <Map/>
-                    <CafeCards/>
+                    <CafeCards
+                        navigation={navigation}
+                    />
+
+                </View>
+            </ScrollView>
+
+        );
+    };
+
+    const Teremok = ({ navigation, route }) => {
+        return (
+
+            <ScrollView style={styles.growContainer}>
+                <View style={styles.container}>
+
+                    <Image source={dataRestaurants[0].imgUrl}>
+
+                    </Image>
 
                 </View>
             </ScrollView>
@@ -59,6 +77,11 @@ export default function App() {
                     component={LogIn}
                     options={{title: ""}}
                 />
+                <Stack.Screen
+                    name="Teremok"
+                    component={Teremok}
+                    options={{title: dataRestaurants[0].name}}
+                />
             </Stack.Navigator>
         </NavigationContainer>
     );
@@ -70,10 +93,19 @@ const styles = StyleSheet.create({
     },
     container: {
         margin: 5,
-        flex: 1,
+        // flex: 1,
         alignItems: 'center',
-        justifyContent: 'center',
-        flexGrow: 1,
-        flexDirection: "column",
+        // justifyContent: 'center',
+        // flexGrow: 1,
+        // flexDirection: "column",
     }
 });
+
+const dataRestaurants = [
+    {
+        key: "1",
+        name: "Теремок",
+        screenName: "Teremok",
+        imgUrl: require("./examples/teremok_cafe.jpg"),
+    }
+]

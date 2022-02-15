@@ -10,21 +10,21 @@ export default function Header(navigation) {
 
 
     const Stack = createNativeStackNavigator();
-    const [text, onChangeText] = React.useState("");
+    const [searchText, onChangeSearchText] = React.useState("");
     console.log(navigation)
     return (
         <View style={styles.header}>
             <TextInput
                 style={[styles.input, styles.text]}
-                onChangeText={onChangeText}
-                value={text}
+                onChangeText={onChangeSearchText}
+                value={searchText}
                 placeholder={"Поиск"}
             />
             <View style={styles.login}>
                 <Pressable
                     style={styles.login_btn}
                     onPress={() =>
-                        navigation.navigation.navigate('LogIn', { name: 'Jane' })
+                        navigation.navigation.navigate('LogIn')
                     }
                 >
                     <Text style={styles.text}>
@@ -49,7 +49,8 @@ const styles = StyleSheet.create({
         alignContent: "space-between",
         justifyContent: 'center',
         marginBottom: 20,
-        marginTop: 20,
+        marginTop: 40,
+        margin: 5,
         // width: 330,
     },
     login: {
