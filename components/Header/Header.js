@@ -1,15 +1,13 @@
 import React from "react";
 import {Alert, Image, Pressable, StyleSheet, Text, TextInput, View} from "react-native";
 import LogIn from "../LogIn/LogIn";
-import {NavigationContainer} from '@react-navigation/native';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
+
 
 
 
 export default function Header(navigation) {
 
 
-    const Stack = createNativeStackNavigator();
     const [searchText, onChangeSearchText] = React.useState("");
     console.log(navigation)
     return (

@@ -19,49 +19,97 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 
+const Teremok = ({navigation, route}) => {
+    return (
 
+        <ScrollView style={styles.growContainer}>
+            <View style={styles.container}>
+                <Header navigation={navigation}/>
+
+                <Image source={dataRestaurants[0].imgUrl}>
+                </Image>
+
+
+            </View>
+        </ScrollView>
+
+    );
+};
+
+const Elochka = ({navigation, route}) => {
+    return (
+
+        <ScrollView style={styles.growContainer}>
+            <View style={styles.container}>
+
+                <Image source={dataRestaurants[1].imgUrl}>
+
+                </Image>
+
+            </View>
+        </ScrollView>
+
+    );
+};
+
+const dataRestaurants = [
+    {
+        key: "1",
+        name: "Теремок",
+        engName: "Teremok",
+        screenName: Teremok,
+        imgUrl: require("./examples/teremok_cafe.jpg"),
+    },
+    {
+        key: "2",
+        name: "Елочка",
+        engName: "Elochka",
+        screenName: Elochka,
+        imgUrl: require("./examples/christmas-tree.png"),
+    }
+]
+
+
+const HomeScreen = ({navigation}) => {
+    return (
+
+        <ScrollView style={styles.growContainer}>
+            <View style={styles.container}>
+
+                <Header
+                    navigation={navigation}
+                />
+                <Map
+                />
+                <CafeCards
+                    navigation={navigation}
+                />
+
+            </View>
+        </ScrollView>
+
+    );
+};
 
 export default function App() {
 
+
     const Stack = createNativeStackNavigator();
 
-    const HomeScreen = ({ navigation }) => {
-        return (
+    function cafeScreens(data) {
 
-            <ScrollView style={styles.growContainer}>
-                <View style={styles.container}>
+        return data.map(e => {
 
-                    <Header
-                        navigation={navigation}
-                    />
-                    <Map/>
-                    <CafeCards
-                        navigation={navigation}
-                    />
-
-                </View>
-            </ScrollView>
-
-        );
-    };
-
-    const Teremok = ({ navigation, route }) => {
-        return (
-
-            <ScrollView style={styles.growContainer}>
-                <View style={styles.container}>
-
-                    <Image source={dataRestaurants[0].imgUrl}>
-
-                    </Image>
-
-                </View>
-            </ScrollView>
-
-        );
-    };
-
-
+            return (
+                <Stack.Screen
+                    key={e.key}
+                    name={e.engName}
+                    component={e.screenName}
+                    options={{title: e.name}}
+                />
+            )
+        })
+    }
 
     return (
         <NavigationContainer>
@@ -77,14 +125,13 @@ export default function App() {
                     component={LogIn}
                     options={{title: ""}}
                 />
-                <Stack.Screen
-                    name="Teremok"
-                    component={Teremok}
-                    options={{title: dataRestaurants[0].name}}
-                />
+
+                {cafeScreens(dataRestaurants)}
+
             </Stack.Navigator>
         </NavigationContainer>
     );
+
 }
 
 const styles = StyleSheet.create({
@@ -100,12 +147,3 @@ const styles = StyleSheet.create({
         // flexDirection: "column",
     }
 });
-
-const dataRestaurants = [
-    {
-        key: "1",
-        name: "Теремок",
-        screenName: "Teremok",
-        imgUrl: require("./examples/teremok_cafe.jpg"),
-    }
-]

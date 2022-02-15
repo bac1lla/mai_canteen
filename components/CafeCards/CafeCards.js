@@ -1,6 +1,5 @@
 import {StyleSheet, TouchableOpacity, View, Image, Text} from "react-native";
 
-
 export default function CafeCards(navigation) {
 
     function showCards(data) {
@@ -11,7 +10,7 @@ export default function CafeCards(navigation) {
                     key={e.key}
                     style={styles.cafe_card}
                     onPress={() =>
-                        navigation.navigation.navigate('Teremok')
+                        navigation.navigation.navigate(e.engName)
                     }
                 >
                     <Image
@@ -97,6 +96,7 @@ const data = [
             borderRadius: 30,
         },
         name: "Теремок",
+        engName: "Teremok",
         description: "Пельмени с говном"
     },
     {
@@ -104,6 +104,7 @@ const data = [
         key: 1,
         imgUrl: require('./../../examples/christmas-tree.png'),
         name: "Елочка",
+        engName: "Elochka",
         description: "Пельмени с говном"
     },
     {
