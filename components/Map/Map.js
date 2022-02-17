@@ -9,16 +9,6 @@ import MapView  from "react-native-maps";
 import {Marker} from "react-native-maps";
 
 export default function Map() {
-    // return (
-    //     <TouchableOpacity style={styles.map}>
-    //         <Image
-    //             style={styles.map}
-    //             source={require('../../examples/map_example.png')}
-    //         />
-    //
-    //
-    //     </TouchableOpacity>
-    // );
 
 
     const [region, setRegion] = useState({
@@ -28,7 +18,7 @@ export default function Map() {
         longitudeDelta: 0.0035,
     });
     return (
-        <View style={styles.container}>
+        <View style={styles.map_container}>
             <MapView
                 style={styles.map}
                 initialRegion={{
@@ -45,7 +35,7 @@ export default function Map() {
                         latitude: 55.810630,
                         longitude: 37.500729,
                     }}
-                    image={require("./../../examples/fir_64.png")}
+                    image={require("./../../examples/fir_92.png")}
                 />
                 <Marker
                     coordinate={{
@@ -72,4 +62,7 @@ const styles = StyleSheet.create({
         marginBottom: 20,
         borderRadius: 30,
     },
+    map_container: {
+        borderRadius: 30,
+    }
 });

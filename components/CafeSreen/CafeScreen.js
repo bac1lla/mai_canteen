@@ -1,11 +1,11 @@
-import {View} from "react-native";
+import {View, SafeAreaView} from "react-native";
 
 export default function CafeScreen() {
 
     return (
-        <View>
+        <SafeAreaView>
 
 
-        </View>
+        </SafeAreaView>
     )
 }

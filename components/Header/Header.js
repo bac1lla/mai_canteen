@@ -9,8 +9,8 @@ export default function Header(navigation) {
 
 
     const [searchText, onChangeSearchText] = React.useState("");
-    console.log(navigation)
     return (
+
         <View style={styles.header}>
             <TextInput
                 style={[styles.input, styles.text]}
