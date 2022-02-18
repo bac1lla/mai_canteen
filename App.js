@@ -19,11 +19,37 @@ import LogIn from "./components/LogIn/LogIn";
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {useState} from "react";
+import HomeScreen from "./components/Home/Home";
 
+
+
+
+function eachCafeScreen() {
+
+    return data.map( e => {
+        return (<ScrollView style={styles.growContainer}>
+            <View style={styles.container}>
+                <View style={styles.container_img_cafe}>
+                    <Image
+                        style={styles.img_main_cafe}
+                        source={data.imgUrl}
+                        resizeMode="contain"
+                    >
+                    </Image></View>
+
+                <Text>{e.name}</Text>
+                <View style={styles.food_container}>
+                    {foodCards(dataFood)}
+                </View>
+            </View>
+        </ScrollView>
+        )
+    }
+    )
+
+}
 
 const Teremok = ({navigation, route}) => {
-
-
 
     return (
 
@@ -64,21 +90,59 @@ const Elochka = ({navigation, route}) => {
     );
 };
 
-const dataRestaurants = [
+
+
+const data = [
     {
-        key: "1",
+        id: 6,
+        key: 6,
+        imgUrl: require("./examples/teremok.jpg"),
+        style: {
+            width: 126,
+            height: 126,
+            borderRadius: 30,
+        },
         name: "Теремок",
         engName: "Teremok",
-        screenName: Teremok,
-        imgUrl: require("./examples/teremok_cafe.jpg"),
+        description: "Пельмени с говном"
     },
     {
-        key: "2",
+        id: 1,
+        key: 1,
+        imgUrl: require('./examples/christmas-tree.png'),
         name: "Елочка",
         engName: "Elochka",
-        screenName: Elochka,
-        imgUrl: require("./examples/christmas-tree.png"),
-    }
+        description: "Пельмени с говном"
+    },
+    {
+        id: 2,
+        key: 2,
+        // imgUrl: "https://sun9-24.userapi.com/impf/c846520/v846520864/1054c/zjPoFoWXIT4.jpg?size=640x640&quality=96&sign=9e1bbc52e63719fcf1a88ea01f12704e&type=album",
+        imgUrl: require("./examples/takeoff.png"),
+        name: "Взлёт",
+        description: "Пельмени с говном"
+    },
+    {
+        id: 3,
+        key: 3,
+        imgUrl: require("./examples/6_icon.png"),
+        name: "Буфет №6>",
+        description: "Пельмени с говном"
+    },
+    {
+        id: 4,
+        key: 4,
+        imgUrl: require("./examples/planet.png"),
+        name: "Космос",
+        description: "Пельмени с говном"
+    },
+    {
+        id: 5,
+        key: 5,
+        imgUrl: require("./examples/icebreaker.png"),
+        name: "Ледокол",
+        description: "Пельмени с говном"
+    },
 ]
 
 function foodCards(data) {
@@ -159,26 +223,7 @@ const dataFood = [
 
 ]
 
-const HomeScreen = ({navigation}) => {
-    return (
 
-        <ScrollView style={styles.growContainer}>
-            <View style={styles.container}>
-
-                <Header
-                    navigation={navigation}
-                />
-                <Map
-                />
-                <CafeCards
-                    navigation={navigation}
-                />
-
-            </View>
-        </ScrollView>
-
-    );
-};
 
 export default function App() {
 
@@ -195,7 +240,9 @@ export default function App() {
                     name={e.engName}
                     component={e.screenName}
                     options={{title: e.name}}
-                />
+                >
+
+                </Stack.Screen>
             )
         })
     }
@@ -215,7 +262,10 @@ export default function App() {
                     options={{title: ""}}
                 />
 
-                {cafeScreens(dataRestaurants)}
+                {/*<Stack.Screen*/}
+                {/*    name={data.id}*/}
+                {/*    component={data.id}*/}
+                {/*/>*/}
 
             </Stack.Navigator>
         </NavigationContainer>

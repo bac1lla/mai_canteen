@@ -1,16 +1,42 @@
-import {StyleSheet, TouchableOpacity, View, Image, Text} from "react-native";
+import {StyleSheet, TouchableOpacity, View, Image, Text, SafeAreaView} from "react-native";
+import {createNativeStackNavigator} from "@react-navigation/native-stack";
 
-export default function CafeCards(navigation) {
 
-    function showCards(data) {
-        return data.map(e => {
+export default function CafeCards({navigation, data}) {
 
-            return (
+
+    function CafeScreen(data) {
+
+        return (
+            <View>
+                <Text>mnnn</Text>
+
+            </View>
+        )
+    }
+
+    return (
+        <View style={styles.container_cards}>
+            {showCards(navigation,data, CafeScreen)}
+        </View>
+    );
+}
+
+
+
+function showCards(navigation, data, cafeScreen) {
+    const Stack = createNativeStackNavigator();
+
+    return data.map(e => {
+
+        return (
+            <>
+                {console.log(e.engName)}
                 <TouchableOpacity
-                    key={e.key}
+                    key={e.id}
                     style={styles.cafe_card}
-                    onPress={() =>
-                        navigation.navigation.navigate(e.engName)
+                    onPress={(e) =>
+                        navigation.navigate(e.engName)
                     }
                 >
                     <Image
@@ -23,16 +49,18 @@ export default function CafeCards(navigation) {
                     <View style={styles.transparentView}/>
                     <Text style={styles.textCard}>{e.name}</Text>
                 </TouchableOpacity>
-            )
-        })
-    }
-
-
-    return (
-        <View style={styles.container_cards}>
-            {showCards(data)}
-        </View>
-    );
+                <Stack.Screen name={e.engName}
+                              component={(e) => {
+                                  return (
+                                      <View>
+                                          {e.key}
+                                      </View>
+                                  )
+                              }}>
+                </Stack.Screen>
+            </>
+        )
+    })
 }
 
 const styles = StyleSheet.create({
@@ -85,55 +113,3 @@ const styles = StyleSheet.create({
     },
 });
 
-const data = [
-    {
-        id: 6,
-        key: 6,
-        imgUrl: require("./../../examples/teremok.jpg"),
-        style: {
-            width: 126,
-            height: 126,
-            borderRadius: 30,
-        },
-        name: "Теремок",
-        engName: "Teremok",
-        description: "Пельмени с говном"
-    },
-    {
-        id: 1,
-        key: 1,
-        imgUrl: require('./../../examples/christmas-tree.png'),
-        name: "Елочка",
-        engName: "Elochka",
-        description: "Пельмени с говном"
-    },
-    {
-        id: 2,
-        key: 2,
-        // imgUrl: "https://sun9-24.userapi.com/impf/c846520/v846520864/1054c/zjPoFoWXIT4.jpg?size=640x640&quality=96&sign=9e1bbc52e63719fcf1a88ea01f12704e&type=album",
-        imgUrl: require("./../../examples/takeoff.png"),
-        name: "Взлёт",
-        description: "Пельмени с говном"
-    },
-    {
-        id: 3,
-        key: 3,
-        imgUrl: require("./../../examples/6_icon.png"),
-        name: "Буфет №6>",
-        description: "Пельмени с говном"
-    },
-    {
-        id: 4,
-        key: 4,
-        imgUrl: require("./../../examples/planet.png"),
-        name: "Космос",
-        description: "Пельмени с говном"
-    },
-    {
-        id: 5,
-        key: 5,
-        imgUrl: require("./../../examples/icebreaker.png"),
-        name: "Ледокол",
-        description: "Пельмени с говном"
-    },
-]

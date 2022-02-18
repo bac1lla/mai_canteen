@@ -5,7 +5,7 @@ import LogIn from "../LogIn/LogIn";
 
 
 
-export default function Header(navigation) {
+export default function Header({navigation}) {
 
 
     const [searchText, onChangeSearchText] = React.useState("");
@@ -22,7 +22,7 @@ export default function Header(navigation) {
                 <Pressable
                     style={styles.login_btn}
                     onPress={() =>
-                        navigation.navigation.navigate('LogIn')
+                        navigation.navigate('LogIn')
                     }
                 >
                     <Text style={styles.text}>

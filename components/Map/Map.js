@@ -56,11 +56,13 @@ export default function Map() {
 }
 const styles = StyleSheet.create({
     map: {
-        height: 150,
+        height: 190,
         width: 370,
         backgroundColor: "rgba(38, 35, 205, 0.47)",
         marginBottom: 20,
         borderRadius: 30,
+        borderColor: "rgba(200, 200, 200, .4)",
+        borderWidth: 1,
     },
     map_container: {
         borderRadius: 30,
