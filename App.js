@@ -12,9 +12,6 @@ import {
     TouchableOpacity,
     Modal
 } from 'react-native';
-import Header from "./components/Header/Header";
-import Map from "./components/Map/Map";
-import CafeCards from "./components/CafeCards/CafeCards";
 import LogIn from "./components/LogIn/LogIn";
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
@@ -69,22 +66,6 @@ const Teremok = ({navigation, route}) => {
                 </View>
             </View>
 
-        </ScrollView>
-
-    );
-};
-
-const Elochka = ({navigation, route}) => {
-    return (
-
-        <ScrollView style={styles.growContainer}>
-            <View style={styles.container}>
-
-                <Image source={dataRestaurants[1].imgUrl}>
-
-                </Image>
-
-            </View>
         </ScrollView>
 
     );

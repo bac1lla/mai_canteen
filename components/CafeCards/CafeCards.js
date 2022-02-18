@@ -31,7 +31,6 @@ function showCards(navigation, data, cafeScreen) {
 
         return (
             <>
-                {console.log(e.engName)}
                 <TouchableOpacity
                     key={e.id}
                     style={styles.cafe_card}
