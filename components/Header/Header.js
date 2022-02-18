@@ -1,5 +1,5 @@
 import React from "react";
-import {Alert, Image, Pressable, StyleSheet, Text, TextInput, View} from "react-native";
+import {Image, Pressable, StyleSheet, Text, TextInput, View} from "react-native";
 import LogIn from "../LogIn/LogIn";
 
 
