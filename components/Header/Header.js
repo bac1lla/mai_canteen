@@ -3,8 +3,6 @@ import {Image, Pressable, StyleSheet, Text, TextInput, View} from "react-native"
 import LogIn from "../LogIn/LogIn";
 
 
-
-
 export default function Header({navigation}) {
 
 
@@ -25,14 +23,18 @@ export default function Header({navigation}) {
                         navigation.navigate('LogIn')
                     }
                 >
-                    <Text style={styles.text}>
-                        Вход/регистрация
-                    </Text>
+                    <Text style={styles.text}>Вход/регистрация</Text>
                 </Pressable>
-                <Image
-                    style={styles.tinyLogo}
-                    source={{uri: 'https://uprostim.com/wp-content/uploads/2021/04/62_krug-png_-2-tys-izobrazhenij-najdeno-v-YAndeks.Kartinkah.png'}}
-                />
+                <Pressable
+                    onPress={() =>
+                        navigation.navigate('Cart')
+                    }
+                >
+                    <Image
+                        style={styles.tinyLogo}
+                        source={{uri: 'https://uprostim.com/wp-content/uploads/2021/04/62_krug-png_-2-tys-izobrazhenij-najdeno-v-YAndeks.Kartinkah.png'}}
+                    />
+                </Pressable>
             </View>
         </View>
     );

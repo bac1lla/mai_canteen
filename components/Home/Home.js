@@ -51,7 +51,7 @@ const data = [
         name: "Ледокол",
         engName: "Ledokol",
         description: "Пельмени с говном"
-    },
+    }
 ]
 
 export default function HomeScreen ({navigation}) {
@@ -60,14 +60,9 @@ export default function HomeScreen ({navigation}) {
         <ScrollView style={styles.growContainer}>
             <View style={styles.container}>
 
-                <Header
-                    navigation={navigation}
-                />
+                <Header navigation={navigation} />
                 <Map/>
-                <CafeCards
-                    navigation={navigation}
-                    data={data}
-                />
+                <CafeCards navigation={navigation} data={data} />
 
             </View>
         </ScrollView>

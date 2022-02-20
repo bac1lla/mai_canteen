@@ -28,7 +28,7 @@ function showCards(navigation, data) {
                     resizeMode="contain"
                 />
                 <View style={styles.transparentView}/>
-                <Text style={styles.textCard}>{eachCafe.name}</Text>
+                <Text style={styles.textCard}>{eachCafe.name.toUpperCase()}</Text>
             </TouchableOpacity>
         )
     })

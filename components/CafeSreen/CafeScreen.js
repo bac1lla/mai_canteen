@@ -3,10 +3,10 @@ import {useState} from "react";
 
 
 
-export default function CafeScreen(props) {
+export default function CafeScreen({navigation, route}) {
 
-    const cafe = props.route.params;
-    const food = dataFood.teremok
+    const cafe = route.params;
+    const menu = dataFood.teremok
 
     return (
         <ScrollView style={styles.growContainer}>
@@ -20,48 +20,25 @@ export default function CafeScreen(props) {
                     </Image>
                 </View>
 
-                <Text>{cafe.name}</Text>
+                <Text>{cafe.name.toUpperCase()}</Text>
                 <View style={styles.food_container}>
-                    {foodCards(food)}
+                    {foodCards(menu, navigation)}
                 </View>
             </View>
         </ScrollView>
     )
 }
 
-function foodCards(data) {
+function foodCards(data, navigation) {
 
-    const [modalVisible, setModalVisible] = useState(false);
-
-    return data.map(e => {
+    return data.map(product => {
         return (
-            <TouchableOpacity style={styles.food_card} key={e.id} onPress={() => setModalVisible(!modalVisible)}>
-                <Text style={styles.text_food_card}>{e.name}</Text>
-                <Image source={e.img} style={styles.img_food_card} resizeMode="contain"/>
-                <TouchableOpacity>
-                    <Text>{e.price}</Text>
+            <TouchableOpacity style={styles.food_card} key={product.id} onPress={() => navigation.navigate("Product", product)}>
+                <Text style={styles.text_food_card}>{product.name.toUpperCase()}</Text>
+                <Image source={product.img} style={styles.img_food_card} resizeMode="contain"/>
+                <TouchableOpacity style={styles.price_btn}>
+                    <Text>{product.price}</Text>
                 </TouchableOpacity>
-                <Modal
-                    animationType="slide"
-                    transparent={true}
-                    visible={modalVisible}
-                    onRequestClose={() => {
-                        Alert.alert("Modal has been closed.");
-                        setModalVisible(!modalVisible);
-                    }}
-                >
-                    <View style={styles.centeredView}>
-                        <View style={styles.modalView}>
-                            <Pressable
-                                style={[styles.button, styles.buttonClose]}
-                                onPress={() => setModalVisible(!modalVisible)}
-                            >
-                                <Text style={styles.textStyle}>Hide Modal</Text>
-                            </Pressable>
-                            <Image source={e.img}/>
-                        </View>
-                    </View>
-                </Modal>
             </TouchableOpacity>
         )
     })
@@ -74,37 +51,48 @@ const dataFood = {
             id: 10,
             name: "БЛИН E-MAIL С ГРИБАМИ И СЫРОМ",
             price: 100,
-            img: require("./../../examples/planet.png")
+            img: require("./../../examples/planet.png"),
+            ingredients: "грибы, сыр, сливочный соус, говно",
         },
         {
             id: 11,
             name: "БЛИН с сыром",
             price: 200,
-            img: require("./../../examples/map_example.png")
+            img: require("./../../examples/map_example.png"),
+            ingredients: "грибы, сыр, сливочный соус, говно",
+
         },
         {
             id: 12,
             name: "БЛИН богатырь",
             price: 200,
-            img: require("./../../examples/planet.png")
+            img: require("./../../examples/planet.png"),
+            ingredients: "грибы, сыр, сливочный соус, говно",
+
         },
         {
             id: 13,
             name: "БЛИН",
             price: 200,
-            img: require("./../../examples/planet.png")
+            img: require("./../../examples/planet.png"),
+            ingredients: "грибы, сыр, сливочный соус, говно",
+
         },
         {
             id: 14,
             name: "крем-суп",
             price: 200,
-            img: require("./../../examples/planet.png")
+            img: require("./../../examples/planet.png"),
+            ingredients: "грибы, сыр, сливочный соус, говно",
+
         },
         {
             id: 15,
             name: "морс",
             price: 200,
-            img: require("./../../examples/fir_92.png")
+            img: require("./../../examples/fir_92.png"),
+            ingredients: "грибы, сыр, сливочный соус, говно",
+
         }
     ],
     "elochka": [
@@ -112,37 +100,49 @@ const dataFood = {
             id: 21,
             name: "Суп",
             price: 200,
-            img: require("./../../examples/planet.png")
+            img: require("./../../examples/planet.png"),
+            ingredients: "грибы, сыр, сливочный соус, говно",
+
         },
         {
             id: 22,
             name: "Пирожок",
             price: 200,
-            img: require("./../../examples/map_example.png")
+            img: require("./../../examples/map_example.png"),
+            ingredients: "грибы, сыр, сливочный соус, говно",
+
         },
         {
             id: 23,
             name: "Желе",
             price: 200,
-            img: require("./../../examples/planet.png")
+            img: require("./../../examples/planet.png"),
+            ingredients: "грибы, сыр, сливочный соус, говно",
+
         },
         {
             id: 24,
             name: "Подлива",
             price: 200,
-            img: require("./../../examples/planet.png")
+            img: require("./../../examples/planet.png"),
+            ingredients: "грибы, сыр, сливочный соус, говно",
+
         },
         {
             id: 25,
             name: "Рис",
             price: 200,
-            img: require("./../../examples/planet.png")
+            img: require("./../../examples/planet.png"),
+            ingredients: "грибы, сыр, сливочный соус, говно",
+
         },
         {
             id: 26,
             name: "Котлета",
             price: 200,
-            img: require("./../../examples/fir_92.png")
+            img: require("./../../examples/fir_92.png"),
+            ingredients: "грибы, сыр, сливочный соус, говно",
+
         }
     ],
 
@@ -204,49 +204,8 @@ const styles = StyleSheet.create({
     text_food_card: {
         fontSize: 10,
     },
-    //----------------------------------------------------------------------
-    centeredView: {
-        flex: 1,
-        // justifyContent: "center",
-        alignItems: "center",
-        marginTop: 100,
-    },
-    modalView: {
-        margin: 20,
-        width: "100%",
-        height: "100%",
-        backgroundColor: "white",
-        borderRadius: 70,
-        padding: 35,
-        alignItems: "center",
-        shadowColor: "#000",
-        shadowOffset: {
-            width: 0,
-            height: 2
-        },
-        shadowOpacity: 0.25,
-        shadowRadius: 4,
-        elevation: 5
-    },
-    button: {
-        borderRadius: 20,
-        padding: 10,
-        elevation: 2
-    },
-    buttonOpen: {
-        backgroundColor: "#F194FF",
-    },
-    buttonClose: {
-        backgroundColor: "#2196F3",
-    },
-    textStyle: {
-        color: "white",
-        fontWeight: "bold",
-        textAlign: "center"
-    },
-    modalText: {
-        marginBottom: 15,
-        textAlign: "center"
-    },
-    //===============================================================
+    price_btn: {
+        backgroundColor: "rgba(0, 136, 235, 0.4)",
+
+    }
 });

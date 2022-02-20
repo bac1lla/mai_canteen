@@ -1,53 +1,40 @@
-import React from "react";
-import {StyleSheet, View, TextInput, Text, TouchableOpacity} from "react-native";
+import {StyleSheet, Text, TextInput, TouchableOpacity, View} from "react-native";
 
 
-export default function LogIn({navigation}) {
+export default function SignUp() {
 
-    const [username, onChangeUsername] = React.useState("");
-    const [password, onChangePassword] = React.useState("");
 
     return (
         <View style={styles.container}>
-            <Text style={styles.heading}>Авторизация</Text>
+            <Text style={styles.heading}>Регистрация</Text>
 
             <View style={styles.inputView}>
 
 
                 <TextInput
                     style={styles.input}
-                    onChangeText={onChangeUsername}
-                    value={username}
-                    placeholder={"Username"}
+                    // onChangeText={onChangeUsername}
+                    // value={username}
+                    placeholder={"Имя"}
                 />
                 <TextInput
                     style={styles.input}
-                    onChangeText={onChangePassword}
-                    value={password}
-                    placeholder={"Password"}
+                    // onChangeText={onChangePassword}
+                    // value={password}
+                    placeholder={"Фамилия"}
                 />
 
             </View>
 
             <View style={styles.buttonsView}>
-
-                <TouchableOpacity
-                    style={[styles.buttonLogIn, styles.button]}
-                >
-                    <Text style={[styles.text, styles.textWhite]}>Вход</Text>
-                </TouchableOpacity>
-                <TouchableOpacity
-                    style={[styles.buttonSignUp, styles.button]}
-                    onPress={() => navigation.navigate("SignUp")}
-                >
-                    <Text style={[styles.text, styles.textMain]}>Зарегистрироваться</Text>
+                <TouchableOpacity style={[styles.buttonLogIn, styles.button]} >
+                    <Text style={[styles.text, styles.textWhite]}>Зарегистрироваться</Text>
                 </TouchableOpacity>
             </View>
 
         </View>
     )
 }
-
 
 const styles = StyleSheet.create({
     container: {
