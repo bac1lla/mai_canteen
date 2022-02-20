@@ -6,7 +6,6 @@ import CafeCards from "../CafeCards/CafeCards";
 const data = [
     {
         id: 6,
-        key: 6,
         imgUrl: require("./../../examples/teremok.jpg"),
         style: {
             width: 126,
@@ -19,7 +18,6 @@ const data = [
     },
     {
         id: 1,
-        key: 1,
         imgUrl: require('./../../examples/christmas-tree.png'),
         name: "Елочка",
         engName: "Elochka",
@@ -27,7 +25,6 @@ const data = [
     },
     {
         id: 2,
-        key: 2,
         // imgUrl: "https://sun9-24.userapi.com/impf/c846520/v846520864/1054c/zjPoFoWXIT4.jpg?size=640x640&quality=96&sign=9e1bbc52e63719fcf1a88ea01f12704e&type=album",
         imgUrl: require("./../../examples/takeoff.png"),
         name: "Взлёт",
@@ -36,7 +33,6 @@ const data = [
     },
     {
         id: 3,
-        key: 3,
         imgUrl: require("./../../examples/6_icon.png"),
         name: "Буфет №6>",
         engName: "Bufet",
@@ -44,7 +40,6 @@ const data = [
     },
     {
         id: 4,
-        key: 4,
         imgUrl: require("./../../examples/planet.png"),
         name: "Космос",
         engName: "Kosmos",
@@ -52,7 +47,6 @@ const data = [
     },
     {
         id: 5,
-        key: 5,
         imgUrl: require("./../../examples/icebreaker.png"),
         name: "Ледокол",
         engName: "Ledokol",

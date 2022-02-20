@@ -1,63 +1,35 @@
-import {StyleSheet, TouchableOpacity, View, Image, Text, SafeAreaView} from "react-native";
-import {createNativeStackNavigator} from "@react-navigation/native-stack";
+import {StyleSheet, TouchableOpacity, View, Image, Text} from "react-native";
 
 
 export default function CafeCards({navigation, data}) {
 
-
-    function CafeScreen(data) {
-
-        return (
-            <View>
-                <Text>mnnn</Text>
-
-            </View>
-        )
-    }
-
     return (
         <View style={styles.container_cards}>
-            {showCards(navigation,data, CafeScreen)}
+            {showCards(navigation, data)}
         </View>
     );
 }
 
+function showCards(navigation, data) {
 
-
-function showCards(navigation, data, cafeScreen) {
-    const Stack = createNativeStackNavigator();
-
-    return data.map(e => {
+    return data.map(eachCafe => {
 
         return (
-            <>
-                <TouchableOpacity
-                    key={e.id}
-                    style={styles.cafe_card}
-                    onPress={(e) =>
-                        navigation.navigate(e.engName)
-                    }
-                >
-                    <Image
-                        source={e.imgUrl}
-                        // source={{uri: "https://teremok.ru/images/logo/desktop-red.svg"}}
-                        style={[styles.cafe_img, e.style]}
-                        resizeMode="contain"
-
-                    />
-                    <View style={styles.transparentView}/>
-                    <Text style={styles.textCard}>{e.name}</Text>
-                </TouchableOpacity>
-                <Stack.Screen name={e.engName}
-                              component={(e) => {
-                                  return (
-                                      <View>
-                                          {e.key}
-                                      </View>
-                                  )
-                              }}>
-                </Stack.Screen>
-            </>
+            <TouchableOpacity
+                key={eachCafe.id}
+                style={styles.cafe_card}
+                onPress={() =>
+                    navigation.navigate("CafeScreen", eachCafe)
+                }
+            >
+                <Image
+                    source={eachCafe.imgUrl}
+                    style={[styles.cafe_img, eachCafe.style]}
+                    resizeMode="contain"
+                />
+                <View style={styles.transparentView}/>
+                <Text style={styles.textCard}>{eachCafe.name}</Text>
+            </TouchableOpacity>
         )
     })
 }

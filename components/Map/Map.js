@@ -1,8 +1,6 @@
 import {
     StyleSheet,
-    TouchableOpacity,
-    Image,
-    View, Text
+    View,
 } from 'react-native';
 import {useState} from "react";
 import MapView  from "react-native-maps";
@@ -46,11 +44,11 @@ export default function Map() {
 
                 />
             </MapView>
-            Display user's current region:
-            <Text style={styles.text}>Current latitude: {region.latitude}</Text>
-            <Text style={styles.text}>Current longitude: {region.longitude}</Text>
-            <Text style={styles.text}>Current longitude: {region.latitudeDelta}</Text>
-            <Text style={styles.text}>Current longitude: {region.longitudeDelta}</Text>
+            {/*Display user's current region:*/}
+            {/*<Text style={styles.text}>Current latitude: {region.latitude}</Text>*/}
+            {/*<Text style={styles.text}>Current longitude: {region.longitude}</Text>*/}
+            {/*<Text style={styles.text}>Current longitude: {region.latitudeDelta}</Text>*/}
+            {/*<Text style={styles.text}>Current longitude: {region.longitudeDelta}</Text>*/}
         </View>
     );
 }
