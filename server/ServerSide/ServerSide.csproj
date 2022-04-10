@@ -84,6 +84,12 @@
       </PackageReference>
       <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="6.0.3" />
       <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="6.0.3" />
+      <PackageReference Include="StronglyTypedId" Version="0.2.1" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Migrations" />
+      <Folder Include="Static\Photos" />
     </ItemGroup>
 
 </Project>
