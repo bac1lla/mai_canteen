@@ -7,5 +7,6 @@ public static class Responses
         public record Get();
         public record GetAll(List<Get> Users);
         public record Create(string Id);
+        public record Update(string Id);
     }
 }

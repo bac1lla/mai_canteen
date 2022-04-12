@@ -7,8 +7,11 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 // builder.Services.AddControllersWithViews();
-builder.Services.AddDbContext<DataContext>(options => 
-    options.UseNpgsql(builder.Configuration.GetConnectionString("Default")));
+builder.Services.AddDbContext<DataContext>(options =>
+{
+    options.UseNpgsql(builder.Configuration.GetConnectionString("Local"));
+    options.UseNpgsql(builder.Configuration.GetConnectionString("Remote"));
+});
 builder.Services.AddMvc();
 // builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
@@ -39,9 +42,10 @@ app.UseRouting();
 
 // app.UseAuthorization();
 
-app.MapControllerRoute("GeneralApi", "{controller=GeneralApi}/general");
-app.MapControllerRoute("AdminApi", "{controller=AdminApi}/admin");
-app.MapControllerRoute("UserApi", "{controller=UserApi}/user");
+// TODO
+// app.MapControllerRoute("GeneralApi", "{controller=GeneralApi}/general");
+// app.MapControllerRoute("AdminApi", "{controller=AdminApi}/admin");
+// app.MapControllerRoute("UserApi", "{controller=UserApi}/user");
 
 app.MapRazorPages();
     

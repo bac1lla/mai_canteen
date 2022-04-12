@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace ServerSide.Models;
 
-public class Order
+public class Order : BaseEntity
 {
     public DateTime CreationDate { get; set; } = DateTime.Now;
     // с названия кринжанул чето

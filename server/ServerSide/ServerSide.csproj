@@ -89,7 +89,8 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Static\Photos" />
+      <Folder Include="Controllers" />
+      <Folder Include="Static" />
     </ItemGroup>
 
 </Project>
