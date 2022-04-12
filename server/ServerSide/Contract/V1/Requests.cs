@@ -1,5 +1,3 @@
-using ServerSide.Models;
-
 namespace ServerSide.Contract.V1;
 
 public static class Requests
@@ -7,9 +5,10 @@ public static class Requests
     public static class Users
     {
         public record Get(string Id);
-        public record GetAll;
+        // public record GetAll;
         public record Create(string Login, string Password, string? Name);
         public record Update(string Id, string? Name, string? Password);
+        public record GetOrders(string Id);
     }
 
     public static class Admins

@@ -7,6 +7,8 @@ public abstract class BaseEntity
 {
     [Key]
     public string Id { set; get; } = Guid.NewGuid().ToString();
+    [DataType(DataType.DateTime)]
+    public DateTime CreationDate { get; set; } = DateTime.Now;
 }
 
 [Index(propertyNames: nameof(Login), Name = "Logins", IsUnique = true)]
