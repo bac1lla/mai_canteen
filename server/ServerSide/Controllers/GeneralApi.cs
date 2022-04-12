@@ -3,7 +3,7 @@ using ServerSide.Data;
 
 namespace ServerSide.Controllers;
 
-[Route("general")]
+// [Route("general")]
 public class GeneralApi : Controller
 {
     private DataContext Db { set; get; }

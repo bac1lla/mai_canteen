@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.OpenApi.Models;
 using ServerSide.Data;
+using ServerSide.Properties;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,6 +11,9 @@ builder.Services.AddDbContext<DataContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("Default")));
 builder.Services.AddMvc();
 // builder.Services.AddDatabaseDeveloperPageExceptionFilter();
+
+builder.Services.AddSwaggerGen(
+    x => x.SwaggerDoc($"v0.0.1", new OpenApiInfo{ Title = "ShitAPI", Version = "0.0.1"}));
 
 var app = builder.Build();
 
@@ -24,6 +29,9 @@ else
     app.UseDeveloperExceptionPage();
 }
 
+var swaggerOptions = new SwaggerOptions();
+app.Configuration.GetSection(nameof(swaggerOptions)).Bind(swaggerOptions);
+
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
@@ -31,9 +39,10 @@ app.UseRouting();
 
 // app.UseAuthorization();
 
-app.MapControllerRoute(
-   name: "default",
-   pattern: "{controller=Api}/api/users/all");
-app.MapRazorPages();
+app.MapControllerRoute("GeneralApi", "{controller=GeneralApi}/general");
+app.MapControllerRoute("AdminApi", "{controller=AdminApi}/admin");
+app.MapControllerRoute("UserApi", "{controller=UserApi}/user");
 
+app.MapRazorPages();
+    
 app.Run();

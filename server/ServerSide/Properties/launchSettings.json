@@ -11,7 +11,7 @@
     "ServerSide": {
       "commandName": "Project",
       "dotnetRunMessages": true,
-      "launchBrowser": true,
+      "launchBrowser": false,
       "applicationUrl": "http://localhost:7210;https://localhost:5210;https://26.215.218.90:5210",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
@@ -19,7 +19,7 @@
     },
     "IIS Express": {
       "commandName": "IISExpress",
-      "launchBrowser": true,
+      "launchBrowser": false,
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }

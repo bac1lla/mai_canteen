@@ -1,14 +1,13 @@
+using System.ComponentModel.DataAnnotations.Schema;
+using ServerSide.Data;
+
 namespace ServerSide.Models;
 
-public class Admin
+[Table(DbRoutes.Admins)]
+public class Admin : BaseUser
 {
-    public string Id { get; set; } = Guid.NewGuid().ToString();
-    
     public string Name { set; get; }
-    public string Login { set; get; }
-    public string Password { set; get; }
-    public string Salt { get; set; }
     
     public Restaurant Restaurant { set; get; }
-    public ulong RestaurantId { get; set; }
+    public string RestaurantId { get; set; }
 }

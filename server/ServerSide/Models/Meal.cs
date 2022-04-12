@@ -4,10 +4,8 @@ namespace ServerSide.Models;
 
 public class Meal
 {
-    public string Id { get; set; } = Guid.NewGuid().ToString();
-    
     public string Name { get; set; }
-    public string Ingredients { get; set; }
+    public string? Ingredients { get; set; } = null;
     public string? PhotoLocation { get; set; } = null;
 
     // public int OrderCount { set; get; } = 0;

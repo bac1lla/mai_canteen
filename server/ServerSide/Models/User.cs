@@ -1,13 +1,12 @@
+using System.ComponentModel.DataAnnotations.Schema;
+using ServerSide.Data;
+
 namespace ServerSide.Models;
 
-public class User
+[Table(DbRoutes.Users)]
+public class User : BaseUser
 {
-    private static ulong _lastId = 0;
-    public ulong Id { set; get; } = ++_lastId;
-    
-    public string Name { set; get; }
-    public string Password { get; set; }
-    public string Salt { get; set; }
+    public string? Name { set; get; } = null;
     
     public List<Order> Orders { set; get; } = new();
 }
