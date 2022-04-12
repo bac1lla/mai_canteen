@@ -261,6 +261,8 @@ C:\Program Files\dotnet\packs\Microsoft.AspNetCore.App.Ref\6.0.3\ref\net6.0\Micr
 -r
 C:\Program Files\dotnet\packs\Microsoft.AspNetCore.App.Ref\6.0.3\ref\net6.0\Microsoft.Net.Http.Headers.dll
 -r
+C:\Users\aleksey.oshchepkov\.nuget\packages\microsoft.openapi\1.2.3\lib\netstandard2.0\Microsoft.OpenApi.dll
+-r
 C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.3\ref\net6.0\Microsoft.VisualBasic.Core.dll
 -r
 C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.3\ref\net6.0\Microsoft.VisualBasic.dll
@@ -278,6 +280,12 @@ C:\Users\aleksey.oshchepkov\.nuget\packages\npgsql\6.0.3\lib\net6.0\Npgsql.dll
 C:\Users\aleksey.oshchepkov\.nuget\packages\npgsql.entityframeworkcore.postgresql\6.0.3\lib\net6.0\Npgsql.EntityFrameworkCore.PostgreSQL.dll
 -r
 C:\Users\aleksey.oshchepkov\.nuget\packages\stronglytypedid.attributes\0.2.1\lib\netstandard2.0\StronglyTypedId.Attributes.dll
+-r
+C:\Users\aleksey.oshchepkov\.nuget\packages\swashbuckle.aspnetcore.swagger\6.3.0\lib\net6.0\Swashbuckle.AspNetCore.Swagger.dll
+-r
+C:\Users\aleksey.oshchepkov\.nuget\packages\swashbuckle.aspnetcore.swaggergen\6.3.0\lib\net6.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+-r
+C:\Users\aleksey.oshchepkov\.nuget\packages\swashbuckle.aspnetcore.swaggerui\6.3.0\lib\net6.0\Swashbuckle.AspNetCore.SwaggerUI.dll
 -r
 C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\6.0.3\ref\net6.0\System.AppContext.dll
 -r
@@ -598,6 +606,24 @@ NET
 NET6_0
 -d
 NETCOREAPP
+-d
+NET5_0_OR_GREATER
+-d
+NET6_0_OR_GREATER
+-d
+NETCOREAPP1_0_OR_GREATER
+-d
+NETCOREAPP1_1_OR_GREATER
+-d
+NETCOREAPP2_0_OR_GREATER
+-d
+NETCOREAPP2_1_OR_GREATER
+-d
+NETCOREAPP2_2_OR_GREATER
+-d
+NETCOREAPP3_0_OR_GREATER
+-d
+NETCOREAPP3_1_OR_GREATER
 --plugin
 C:\Users\aleksey.oshchepkov\.nuget\packages\stronglytypedid.generator\0.2.1\build\../tools/netcoreapp2.1/any/StronglyTypedId.Generator.dll
 --out
@@ -607,18 +633,24 @@ C:\Users\aleksey.oshchepkov\RiderProjects\mai_canteen\server\ServerSide
 --generatedFilesList
 obj\Debug\net6.0\ServerSide.csproj.dotnet-codegen.GeneratedFileList.txt
 --
+Contract\V1\ApiRoutes.cs
+Contract\V1\Requests.cs
+Contract\V1\Responses.cs
 Controllers\AdminApi.cs
 Controllers\GeneralApi.cs
 Controllers\UserApi.cs
 Data\DataContext.cs
-Migrations\20220410220727_Basic.cs
-Migrations\20220410220727_Basic.Designer.cs
-Migrations\DataContextModelSnapshot.cs
+Data\DbRoutes.cs
 Models\Admin.cs
+Models\Base.cs
 Models\Category.cs
 Models\Meal.cs
 Models\Order.cs
 Models\Restaurant.cs
+Models\SuperUsers.cs
 Models\User.cs
 Program.cs
+Properties\SwaggerOptions.cs
 obj\Debug\net6.0\ServerSide.GlobalUsings.g.cs
+obj\Debug\net6.0\.NETCoreApp,Version=v6.0.AssemblyAttributes.cs
+obj\Debug\net6.0\ServerSide.AssemblyInfo.cs

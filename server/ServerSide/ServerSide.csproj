@@ -89,7 +89,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="RequestContracts" />
       <Folder Include="Static\Photos" />
     </ItemGroup>
 

@@ -7,3 +7,5 @@
 // </auto-generated>
 // ------------------------------------------------------------------------------
 
+using System.ComponentModel.DataAnnotations.Schema;
+using ServerSide.Data;
