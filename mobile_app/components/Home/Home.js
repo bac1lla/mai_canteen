@@ -5,7 +5,7 @@ import CafeCards from "../CafeCards/CafeCards";
 
 const data = [
     {
-        id: 6,
+        id: 1,
         imgUrl: require("./../../examples/teremok.jpg"),
         style: {
             width: 126,
@@ -17,14 +17,14 @@ const data = [
         description: "Пельмени с говном"
     },
     {
-        id: 1,
+        id: 2,
         imgUrl: require('./../../examples/christmas-tree.png'),
         name: "Елочка",
         engName: "Elochka",
         description: "Пельмени с говном"
     },
     {
-        id: 2,
+        id: 3,
         // imgUrl: "https://sun9-24.userapi.com/impf/c846520/v846520864/1054c/zjPoFoWXIT4.jpg?size=640x640&quality=96&sign=9e1bbc52e63719fcf1a88ea01f12704e&type=album",
         imgUrl: require("./../../examples/takeoff.png"),
         name: "Взлёт",
@@ -32,21 +32,21 @@ const data = [
         description: "Пельмени с говном"
     },
     {
-        id: 3,
+        id: 4,
         imgUrl: require("./../../examples/6_icon.png"),
         name: "Буфет №6>",
         engName: "Bufet",
         description: "Пельмени с говном"
     },
     {
-        id: 4,
+        id: 5,
         imgUrl: require("./../../examples/planet.png"),
         name: "Космос",
         engName: "Kosmos",
         description: "Пельмени с говном"
     },
     {
-        id: 5,
+        id: 6,
         imgUrl: require("./../../examples/icebreaker.png"),
         name: "Ледокол",
         engName: "Ledokol",

@@ -6,7 +6,7 @@ import {useState} from "react";
 export default function CafeScreen({navigation, route}) {
 
     const cafe = route.params;
-    const menu = dataFood.teremok
+    // const menu = dataFood.teremok
 
     return (
         <ScrollView style={styles.growContainer}>
@@ -22,7 +22,7 @@ export default function CafeScreen({navigation, route}) {
 
                 <Text>{cafe.name.toUpperCase()}</Text>
                 <View style={styles.food_container}>
-                    {foodCards(menu, navigation)}
+                    {foodCards(dataFood[cafe.id], navigation)}
                 </View>
             </View>
         </ScrollView>
@@ -36,8 +36,12 @@ function foodCards(data, navigation) {
             <TouchableOpacity style={styles.food_card} key={product.id} onPress={() => navigation.navigate("Product", product)}>
                 <Text style={styles.text_food_card}>{product.name.toUpperCase()}</Text>
                 <Image source={product.img} style={styles.img_food_card} resizeMode="contain"/>
-                <TouchableOpacity style={styles.price_btn}>
-                    <Text>{product.price}</Text>
+                <TouchableOpacity style={styles.price_btn}
+                    onPress={() => {
+                        console.log(product.id)
+                    }}
+                >
+                        <Text>{product.price}</Text>
                 </TouchableOpacity>
             </TouchableOpacity>
         )
@@ -46,7 +50,7 @@ function foodCards(data, navigation) {
 
 const dataFood = {
 
-    "teremok": [
+    "1": [
         {
             id: 10,
             name: "БЛИН E-MAIL С ГРИБАМИ И СЫРОМ",
@@ -95,7 +99,7 @@ const dataFood = {
 
         }
     ],
-    "elochka": [
+    "2": [
         {
             id: 21,
             name: "Суп",
