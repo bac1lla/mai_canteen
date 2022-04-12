@@ -9,5 +9,5 @@ public class Admin : BaseUser
     public string Name { set; get; }
     
     public Restaurant Restaurant { set; get; }
-    public string RestaurantId { get; set; }
+    // public string RestaurantId { get; set; }
 }
