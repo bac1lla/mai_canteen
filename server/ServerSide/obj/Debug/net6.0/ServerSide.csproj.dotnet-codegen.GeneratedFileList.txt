@@ -16,6 +16,8 @@ obj\Debug\net6.0\SuperUsers.Zo3c1Q+x.generated.cs
 obj\Debug\net6.0\User.mZYyIitN.generated.cs
 obj\Debug\net6.0\Program.FZXpolD-.generated.cs
 obj\Debug\net6.0\SwaggerOptions.MfASwhi2.generated.cs
+obj\Debug\net6.0\StaticContext.HKZyoPFm.generated.cs
+obj\Debug\net6.0\ContractToJson.sg+1iqT2.generated.cs
 obj\Debug\net6.0\ServerSide.GlobalUsings.g.-VlKZSkG.generated.cs
 obj\Debug\net6.0\.NETCoreApp,Version=v6.0.AssemblyAttributes.8hmh+j2W.generated.cs
 obj\Debug\net6.0\ServerSide.AssemblyInfo.DxShrrkC.generated.cs

@@ -651,6 +651,8 @@ Models\SuperUsers.cs
 Models\User.cs
 Program.cs
 Properties\SwaggerOptions.cs
+Static\StaticContext.cs
+Tmp\ContractToJson.cs
 obj\Debug\net6.0\ServerSide.GlobalUsings.g.cs
 obj\Debug\net6.0\.NETCoreApp,Version=v6.0.AssemblyAttributes.cs
 obj\Debug\net6.0\ServerSide.AssemblyInfo.cs
