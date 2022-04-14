@@ -1,6 +1,6 @@
 import {View, Text, Image, ScrollView, StyleSheet, TouchableOpacity, Modal, Alert, Pressable} from "react-native";
 import {useState} from "react";
-
+import {Touchable} from "react-native-web";
 
 
 export default function CafeScreen({navigation, route}) {
@@ -31,18 +31,112 @@ export default function CafeScreen({navigation, route}) {
 
 function foodCards(data, navigation) {
 
-    return data.map(product => {
+    const [order, onChangeOrder] = useState([])
+
+    ////////////////
+    function show(order) {
+        console.log(order)
+    }
+
+    function trash(order, meal) {
+        let temp = order.filter(e => e.id === meal.id)
+        if (temp.length > 0) {
+            show(temp[0].count)
+            return temp[0].count
+        }
+        return 0
+    }
+
+
+    ////////////
+    return data.map(meal => {
+
+        meal.count = 1
+
         return (
-            <TouchableOpacity style={styles.food_card} key={product.id} onPress={() => navigation.navigate("Product", product)}>
-                <Text style={styles.text_food_card}>{product.name.toUpperCase()}</Text>
-                <Image source={product.img} style={styles.img_food_card} resizeMode="contain"/>
+            <TouchableOpacity style={styles.food_card} key={meal.id}
+                              onPress={() => navigation.navigate("Product", meal)}>
+                <Text style={styles.text_food_card}>{meal.name.toUpperCase()}</Text>
+                {/*<Image source={meal.img} style={styles.img_food_card} resizeMode="contain"/>*/}
                 <TouchableOpacity style={styles.price_btn}
-                    onPress={() => {
-                        console.log(product.id)
-                    }}
+                                  onPress={() => {
+
+                                      console.log(order.filter(el => {
+                                          if (el.id === meal.id) {
+                                              if (el.count === 1) {
+                                                  return false
+                                              } else el.count -= 1
+                                          }
+                                          return true
+                                      }))
+
+                                      // onChangeOrder(order.filter(el => {
+                                      //     if (el.id === meal.id) {
+                                      //         if (el.count === 1) {
+                                      //             return false
+                                      //         } else el.count -= 1
+                                      //     }
+                                      //     return true
+                                      // }))
+
+                                  }}
+
                 >
-                        <Text>{product.price}</Text>
+                    <Text>------</Text>
                 </TouchableOpacity>
+                <TouchableOpacity style={styles.price_btn}
+                                  onPress={() => {
+                                      // onChangeOrder([...order, meal])
+                                  }}
+                >
+                    <Text>{meal.price}</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.price_btn}
+
+
+                                  onPress={() => {
+                                      onChangeOrder([])
+                                      console.log(".")
+                                      console.log(".")
+                                      console.log(".")
+                                      console.log(".")
+                                      console.log(".")
+                                      console.log(".")
+                                      console.log(".")
+                                      console.log(".")
+                                      console.log(".")
+                                  }}
+                >
+                    <Text>DELETE</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.price_btn}
+                                  onPress={() => {
+                                      // let tempOrder = order
+                                      // let index = order.indexOf(meal)
+                                      //
+                                      // if (index !== -1) {
+                                      //     tempOrder[index].count += 1
+                                      //     onChangeOrder(tempOrder)
+                                      // } else {
+                                      //     onChangeOrder([...order, meal])
+                                      // }
+
+                                      if (order.includes(meal)) {
+                                          onChangeOrder(order.map( el => {
+                                              if (el.id === meal.id) {
+                                                  el.count += 1
+                                              }
+                                              return el
+                                          }))
+                                      } else {
+                                          onChangeOrder([...order, meal])
+                                      }
+                                  }}
+                >
+                    <Text>++++++</Text>
+                </TouchableOpacity>
+                <Text>{trash(order, meal)}</Text>
+                <Text>{order.includes(meal).toString()}</Text>
             </TouchableOpacity>
         )
     })
