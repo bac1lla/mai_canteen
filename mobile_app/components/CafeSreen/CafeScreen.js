@@ -1,5 +1,5 @@
 import {View, Text, Image, ScrollView, StyleSheet, TouchableOpacity, Modal, Alert, Pressable} from "react-native";
-import {useState} from "react";
+import {useState, useEffect} from "react";
 import {Touchable} from "react-native-web";
 
 
@@ -33,6 +33,10 @@ function foodCards(data, navigation) {
 
     const [order, onChangeOrder] = useState([])
 
+    // useEffect(() => {
+    //     onChangeOrder(order)
+    // })
+
     ////////////////
     function show(order) {
         console.log(order)
@@ -41,11 +45,12 @@ function foodCards(data, navigation) {
     function trash(order, meal) {
         let temp = order.filter(e => e.id === meal.id)
         if (temp.length > 0) {
-            show(temp[0].count)
+            // show(temp[0].count)
             return temp[0].count
         }
         return 0
     }
+
 
 
     ////////////
@@ -65,7 +70,9 @@ function foodCards(data, navigation) {
                                           if (el.id === meal.id) {
                                               if (el.count === 1) {
                                                   return false
-                                              } else el.count -= 1
+                                              } else {
+                                                  el.count -= 1
+                                              }
                                           }
                                           return true
                                       }))
@@ -87,6 +94,7 @@ function foodCards(data, navigation) {
                 <TouchableOpacity style={styles.price_btn}
                                   onPress={() => {
                                       // onChangeOrder([...order, meal])
+                                      console.log("говно")
                                   }}
                 >
                     <Text>{meal.price}</Text>
@@ -121,22 +129,31 @@ function foodCards(data, navigation) {
                                       //     onChangeOrder([...order, meal])
                                       // }
 
-                                      if (order.includes(meal)) {
+                                      if (order.some(el => el.id === meal.id)) {
+                                          "meal совпал"
+
                                           onChangeOrder(order.map( el => {
                                               if (el.id === meal.id) {
-                                                  el.count += 1
+                                                  el.count += 1;
+                                                  console.log(`...................${el.name} = ${el.count}`)
                                               }
                                               return el
                                           }))
                                       } else {
                                           onChangeOrder([...order, meal])
+                                          console.log("Добавил в первый раз")
+
+
                                       }
                                   }}
                 >
                     <Text>++++++</Text>
                 </TouchableOpacity>
                 <Text>{trash(order, meal)}</Text>
-                <Text>{order.includes(meal).toString()}</Text>
+                {/*<Text>{order.includes(meal).toString()}</Text>*/}
+                {/*{showCart(order)}*/}
+                {/*{console.log([] ? true : false)}*/}
+                {/*{console.log(order.some(el => el.id === meal.id))}*/}
             </TouchableOpacity>
         )
     })
