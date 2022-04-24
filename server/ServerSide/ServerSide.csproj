@@ -89,8 +89,41 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Controllers" />
       <Folder Include="Static" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Update="Domain\Admin.cs">
+        <Generator>MSBuild:GenerateCodeFromAttributes</Generator>
+        <DependentUpon>BaseUser.cs</DependentUpon>
+      </Compile>
+      <Compile Update="Domain\SuperUser.cs">
+        <Generator>MSBuild:GenerateCodeFromAttributes</Generator>
+        <DependentUpon>BaseUser.cs</DependentUpon>
+      </Compile>
+      <Compile Update="Domain\User.cs">
+        <Generator>MSBuild:GenerateCodeFromAttributes</Generator>
+        <DependentUpon>BaseUser.cs</DependentUpon>
+      </Compile>
+      <Compile Update="Domain\BaseUser.cs">
+        <DependentUpon>BaseEntity.cs</DependentUpon>
+      </Compile>
+      <Compile Update="Domain\Category.cs">
+        <Generator>MSBuild:GenerateCodeFromAttributes</Generator>
+        <DependentUpon>BaseEntity.cs</DependentUpon>
+      </Compile>
+      <Compile Update="Domain\Meal.cs">
+        <Generator>MSBuild:GenerateCodeFromAttributes</Generator>
+        <DependentUpon>BaseEntity.cs</DependentUpon>
+      </Compile>
+      <Compile Update="Domain\Order.cs">
+        <Generator>MSBuild:GenerateCodeFromAttributes</Generator>
+        <DependentUpon>BaseEntity.cs</DependentUpon>
+      </Compile>
+      <Compile Update="Domain\Restaurant.cs">
+        <Generator>MSBuild:GenerateCodeFromAttributes</Generator>
+        <DependentUpon>BaseEntity.cs</DependentUpon>
+      </Compile>
     </ItemGroup>
 
 </Project>

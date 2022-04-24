@@ -1,14 +1,15 @@
 using Microsoft.EntityFrameworkCore;
-using ServerSide.Models;
+using ServerSide.Domain;
 
 namespace ServerSide.Data;
 
 public class DataContext : DbContext
 {
     public DataContext(DbContextOptions<DataContext> options) : base(options) { }
-    
-    public DbSet<User> Users { set; get; }
+
+    public DbSet<SuperUser> SuperUsers { get; set; }
     public DbSet<Admin> Admins { get; set; }
+    public DbSet<User> Users { set; get; }
 
     public DbSet<Restaurant> Restaurants { get; set; }
     public DbSet<Category> Categories { get; set; }
@@ -16,8 +17,8 @@ public class DataContext : DbContext
     
     public DbSet<Order> Orders { get; set; }
     
-    // protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) => 
-    //     optionsBuilder
-    //         .UseNpgsql("Host=26.215.218.50:5432;Username=postgres;Password=1790;Database=postgres")
-    //         .UseNpgsql("");
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) => 
+        optionsBuilder
+            // .UseNpgsql(DbRoutes.Remote.ConnectionString);
+            .UseNpgsql(DbRoutes.Local.ConnectionString);
 }

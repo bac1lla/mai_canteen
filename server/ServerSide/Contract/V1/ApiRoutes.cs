@@ -2,88 +2,109 @@ namespace ServerSide.Contract.V1;
 
 public static class ApiRoutes
 {
-    public const string Root = "";
+    public const string Root = "Api";
     public const string Version = "V1";
     public const string Base = Root + "/" + Version;
     
-    public static class Users
+    public static class User
     {
-        public const string SubRoute = "users";
+        public const string SubRoute = "User";
         public const string FullBase = Base + "/" + SubRoute;
         
-        public const string Get = FullBase + "/{Id}";
-        public const string Create = FullBase + "/create";
-        public const string Update = FullBase + "/update";
-        public const string GetOrders = FullBase + "/orders/{Id}";
+        public const string Get = FullBase + "/{UserId}";
+        public const string GetAll = FullBase + "/All";
+        
+        public const string Create = FullBase + "/Create";
+        public const string Update = FullBase + "/Update/{UserId}";
+        public const string Delete = FullBase + "/Delete/{UserId}";
+        
+        public const string GetOrders = FullBase + "/GetOrders/{UserId}";
     }
 
-    public static class Admins
+    public static class Admin
     {
-        public const string SubRoute = "admins";
+        public const string SubRoute = "Admin";
         public const string FullBase = Base + "/" + SubRoute;
         
-        public const string Get = FullBase + "/{Id}";
-        public const string Create = FullBase + "/create";
-        public const string Update = FullBase + "/update";
+        public const string Get = FullBase + "/{AdminId}";
+        public const string GetByRestaurant = FullBase + "/GetByRestaurant/{RestaurantId}";
+        
+        public const string Create = FullBase + "/Create";
+        public const string Update = FullBase + "/Update/{AdminId}";
+        public const string Delete = FullBase + "/Delete/{AdminId}";
     }
 
-    public static class SuperUsers
+    public static class SuperUser
     {
-        public const string SubRoute = "super";
+        public const string SubRoute = "Super";
         public const string FullBase = Base + "/" + SubRoute;
     }
     
-    public static class Categories
+    public static class Category
     {
-        public const string SubRoute = "categories";
+        public const string SubRoute = "Category";
         public const string FullBase = Base + "/" + SubRoute;
         
-        public const string Get = FullBase + "/{Id}";
-        public const string GetByName = FullBase + "/byName/{Name}";
-        public const string Create = FullBase + "/create";
-        public const string Update = FullBase + "/update";
-        public const string GetMeals = FullBase + "/meals/{Id}";
-        public const string GetRestaurants = FullBase + "/restaurants/{Id}";
+        public const string Get = FullBase + "/{CategoryId}";
+        public const string GetByName = FullBase + "/GetByName/{Name}";
+        
+        public const string Create = FullBase + "/Create";
+        public const string Update = FullBase + "/Update/{CategoryId}";
+        public const string Delete = FullBase + "/Delete/{CategoryId}";
+        
+        public const string GetMeals = FullBase + "/GetMeals/{CategoryId}";
+        public const string GetRestaurants = FullBase + "/Restaurants/{CategoryId}";
     }
     
-    public static class Restaurants
+    public static class Restaurant
     {
-        public const string SubRoute = "restaurants";
+        public const string SubRoute = "Restaurant";
         public const string FullBase = Base + "/" + SubRoute;
         
-        public const string Get = FullBase + "/{Id}";
-        public const string GetByName = FullBase + "/byName/{Name}";
-        public const string Create = FullBase + "/create";
-        public const string Update = FullBase + "/update";
-        public const string GetAdmins = FullBase + "/admins/{Id}";
-        public const string GetMeals = FullBase + "/meals/{Id}";
-        public const string GetOrders = FullBase + "/orders/{Id}";
+        public const string Get = FullBase + "/{RestaurantId}";
+        public const string GetByName = FullBase + "/GetByName/{Name}";
+        
+        public const string Create = FullBase + "/Create";
+        public const string Update = FullBase + "/Update/{RestaurantId}";
+        public const string Delete = FullBase + "/Delete/{RestaurantId}";
+        
+        public const string GetAdmins = FullBase + "/GetAdmins/{RestaurantId}";
+        public const string GetMeals = FullBase + "/GetMeals/{RestaurantId}";
+        public const string GetOrders = FullBase + "/GetOrders/{RestaurantId}";
     }
     
-    public static class Meals
+    public static class Meal
     {
-        public const string SubRoute = "meals";
+        public const string SubRoute = "Meal";
         public const string FullBase = Base + "/" + SubRoute;
         
-        public const string Get = FullBase + "/{Id}";
-        public const string GetByName = FullBase + "/byName/{Name}";
-        public const string GetLikeName = FullBase + "/likeName/{Name}";
-        public const string Create = FullBase + "/create";
-        public const string Update = FullBase + "/update";
-        public const string GetCategory = FullBase + "/category/{Id}";
-        public const string GetRestaurant = FullBase + "/restaurant/{Id}";
+        public const string Get = FullBase + "/{MealId}";
+        public const string GetByName = FullBase + "/GetByName/{Name}";
+        public const string GetLikeName = FullBase + "/SearchByName/{Name}";
+        
+        public const string Create = FullBase + "/Create";
+        public const string Update = FullBase + "/Update/{MealId}";
+        public const string Delete = FullBase + "/Delete/{MealId}";
+        
+        public const string GetCategory = FullBase + "/GetCategories/{MealId}";
+        public const string GetRestaurant = FullBase + "/GetRestaurant/{MealId}";
     }
     
-    public static class Orders
+    public static class Order
     {
-        public const string SubRoute = "orders";
+        public const string SubRoute = "Order";
         public const string FullBase = Base + "/" + SubRoute;
         
-        public const string Get = FullBase + "/{Id}";
-        public const string GetByDateTime = FullBase + "/byDateTime/{Name}";
-        public const string Create = FullBase + "/create";
-        public const string Update = FullBase + "/update";
-        public const string GetMeals = FullBase + "/meals/{Id}";
-        public const string GetRestaurant = FullBase + "/restaurant/{Id}";
+        public const string Get = FullBase + "/{OrderId}";
+        public const string GetByDateTime = FullBase + "/GetByDateTime/{DateTime}";
+        public const string GetByUser = FullBase + "/GetByUser/{UserId}";
+        
+        public const string Create = FullBase + "/Create";
+        public const string Update = FullBase + "/Update/{OrderId}";
+        public const string Delete = FullBase + "/Delete/{OrderId}";
+        
+        public const string GetMeals = FullBase + "/GetMeals/{OrderId}";
+        public const string GetRestaurant = FullBase + "/GetRestaurant/{OrderId}";
+        public const string GetUser = FullBase + "/GetUser/{OrderId}";
     }
 }

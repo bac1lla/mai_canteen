@@ -8,4 +8,4 @@
 // ------------------------------------------------------------------------------
 
 using Microsoft.EntityFrameworkCore;
-using ServerSide.Models;
+using ServerSide.Domain;

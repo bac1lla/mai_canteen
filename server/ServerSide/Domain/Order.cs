@@ -1,15 +1,18 @@
-using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
+using ServerSide.Contract.V1;
 
-namespace ServerSide.Models;
+namespace ServerSide.Domain;
 
-public class Order : BaseEntity
+public record Order : BaseEntity
 {
     [ComplexType]
     public class Item
     {
         public Meal Meal { set; get; }
         public ushort Count { set; get; }
+
+        public Requests.Orders.Item.Get Get() => new(this);
     }
     
     // с названия кринжанул чето
@@ -18,8 +21,8 @@ public class Order : BaseEntity
     // [Range(0, 5)]
     // public decimal? Score { set; get; } = null;
     
-    public List<Item> Items { set; get; } = new();
+    public virtual IEnumerable<Item> Items { set; get; } = new List<Item>();
     
     public Restaurant Restaurant { get; set; }
-    public string RestaurantId { get; set; }
+    public User User { get; set; }
 }
