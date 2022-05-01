@@ -1,0 +1,391 @@
+const dataCafes = [
+    {
+        id: "1",
+        name: "Теремок",
+        img: "https://eda.yandex/images/3784951/4b6e99209a20e7342d482f7356d0ec5d-1100x825.jpg",
+    },
+    {
+        id: "2",
+        name: "Vibe",
+        img: "https://primemeat.ru/about/shayrma.jpg",
+    },
+    {
+        id: "3",
+        name: "Kebab",
+        img: "https://sun9-28.userapi.com/s/v1/if1/Ojx42V1fOupAyzLEIwqqkDzn7ZPd7ZU2EgRGimTJgU8wR3GFTR8U10EKbQZ83G1qbS7W4nrL.jpg?size=1280x1278&quality=96&type=album",
+    },
+    {
+        id: "4",
+        name: "Космос",
+        img: "https://i12.fotocdn.net/s115/0059f5dfafa4d52a/public_pin_l/2619612489.jpg",
+    },
+    {
+        id: "5",
+        name: "Буфет №6",
+        img: "http://andrey-eltsov.ru/wp-content/uploads/2018/08/Memi-R5tgdtRtdg_jdAAaa_3bdhFghA-довольный-мем2.jpg",
+    },
+    {
+        id: "6",
+        name: "Столовая",
+        img: "https://avatars.mds.yandex.net/i?id=75f629738067f7f14247bf10bc433798-5859245-images-thumbs&n=13",
+    },
+    {
+        id: "7",
+        name: "Ледокол",
+        img: "https://mota.ru/upload/resize/1600/1200/upload/wallpapers/source/2009/07/16/12/04/15967/towns_567-06c.jpg",
+    },
+]
+
+const dataMenu = {
+    "1": [
+        {
+            id: "1",
+            name: "Круассан",
+            ingredients: "Мука, вода, сахар",
+            img: "https://avatars.mds.yandex.net/get-zen_doc/162989/pub_5bdbf02a4d228700ac44b2c3_5bdbf5dba0961500ac224198/scale_1200",
+        },
+        {
+            id: "2",
+            name: "Автомобиль",
+            ingredients: "Яйцо, село, деревня",
+            img: "http://pictures.specsan.com/photo/aston-martin/aston-martin-virage-coupe-1-generation-6-0-v12-at-497-hp-basic-1.jpg",
+        },
+        {
+            id: "3",
+            name: "Якубович",
+            ingredients: "Какие-то продукты",
+            img: "https://droidnews.ru/img/2020/december/v-seti-poyavilsya-rolik-gde-leonid-yakubovich-stal-geroem-mario-na-avtorov-uzhe-grozyatsya-podat-v-sud_25-12-20-19-23-31.jpg",
+        },
+        {
+            id: "4",
+            name: "Лепеха",
+            ingredients: "Где это мы?",
+            img: "https://permv.ru/wp-content/uploads/2016/07/navoz-.jpg",
+        },
+        {
+            id: "5",
+            name: "Суп",
+            ingredients: "Очередная еда",
+            img: "https://cs.pikabu.ru/post_img/big/2013/05/27/7/1369649424_1725709471.jpg",
+        },
+        {
+            id: "6",
+            name: "Морс",
+            ingredients: "Кто это сказал?",
+            img: "https://about-tea.ru/wp-content/uploads/5/9/7/5972b2d47bd0de8b41ed1ce1624f1453.jpeg",
+        },
+        {
+            id: "7",
+            name: "Зеркало",
+            ingredients: "Кстати, 2 + 2 = 4, а 4 + 3 = 7",
+            img: "https://krd.romatti.ru/upload/iblock/ffa/72i30tqg7yrlhk7igranw804e6h9md1u.jpg",
+        },
+        {
+            id: "8",
+            name: "Тигор",
+            ingredients: "ыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыы",
+            img: "https://cs7.pikabu.ru/post_img/2019/04/28/1/og_og_155640453623640938.jpg",
+        },
+    ],
+    "2": [
+        {
+            id: "1",
+            name: "Отстой",
+            ingredients: "Мука, вода, сахар",
+            img: "https://avatars.mds.yandex.net/get-zen_doc/162989/pub_5bdbf02a4d228700ac44b2c3_5bdbf5dba0961500ac224198/scale_1200",
+        },
+        {
+            id: "2",
+            name: "Жижа",
+            ingredients: "Яйцо, село, деревня",
+            img: "http://pictures.specsan.com/photo/aston-martin/aston-martin-virage-coupe-1-generation-6-0-v12-at-497-hp-basic-1.jpg",
+        },
+        {
+            id: "3",
+            name: "Якубович",
+            ingredients: "Какие-то продукты",
+            img: "https://droidnews.ru/img/2020/december/v-seti-poyavilsya-rolik-gde-leonid-yakubovich-stal-geroem-mario-na-avtorov-uzhe-grozyatsya-podat-v-sud_25-12-20-19-23-31.jpg",
+        },
+        {
+            id: "4",
+            name: "Лепеха",
+            ingredients: "Где это мы?",
+            img: "https://permv.ru/wp-content/uploads/2016/07/navoz-.jpg",
+        },
+        {
+            id: "5",
+            name: "Суп",
+            ingredients: "Очередная еда",
+            img: "https://cs.pikabu.ru/post_img/big/2013/05/27/7/1369649424_1725709471.jpg",
+        },
+        {
+            id: "6",
+            name: "Морс",
+            ingredients: "Кто это сказал?",
+            img: "https://about-tea.ru/wp-content/uploads/5/9/7/5972b2d47bd0de8b41ed1ce1624f1453.jpeg",
+        },
+        {
+            id: "7",
+            name: "Зеркало",
+            ingredients: "Кстати, 2 + 2 = 4, а 4 + 3 = 7",
+            img: "https://krd.romatti.ru/upload/iblock/ffa/72i30tqg7yrlhk7igranw804e6h9md1u.jpg",
+        },
+        {
+            id: "8",
+            name: "Тигор",
+            ingredients: "ыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыы",
+            img: "https://cs7.pikabu.ru/post_img/2019/04/28/1/og_og_155640453623640938.jpg",
+        },
+    ],
+    "3": [        {
+            id: "1",
+            name: "Круассан",
+            ingredients: "Мука, вода, сахар",
+            img: "https://avatars.mds.yandex.net/get-zen_doc/162989/pub_5bdbf02a4d228700ac44b2c3_5bdbf5dba0961500ac224198/scale_1200",
+        },
+        {
+            id: "2",
+            name: "Автомобиль",
+            ingredients: "Яйцо, село, деревня",
+            img: "http://pictures.specsan.com/photo/aston-martin/aston-martin-virage-coupe-1-generation-6-0-v12-at-497-hp-basic-1.jpg",
+        },
+        {
+            id: "3",
+            name: "Якубович",
+            ingredients: "Какие-то продукты",
+            img: "https://droidnews.ru/img/2020/december/v-seti-poyavilsya-rolik-gde-leonid-yakubovich-stal-geroem-mario-na-avtorov-uzhe-grozyatsya-podat-v-sud_25-12-20-19-23-31.jpg",
+        },
+        {
+            id: "4",
+            name: "Лепеха",
+            ingredients: "Где это мы?",
+            img: "https://permv.ru/wp-content/uploads/2016/07/navoz-.jpg",
+        },
+        {
+            id: "5",
+            name: "Суп",
+            ingredients: "Очередная еда",
+            img: "https://cs.pikabu.ru/post_img/big/2013/05/27/7/1369649424_1725709471.jpg",
+        },
+        {
+            id: "6",
+            name: "Морс",
+            ingredients: "Кто это сказал?",
+            img: "https://about-tea.ru/wp-content/uploads/5/9/7/5972b2d47bd0de8b41ed1ce1624f1453.jpeg",
+        },
+        {
+            id: "7",
+            name: "Зеркало",
+            ingredients: "Кстати, 2 + 2 = 4, а 4 + 3 = 7",
+            img: "https://krd.romatti.ru/upload/iblock/ffa/72i30tqg7yrlhk7igranw804e6h9md1u.jpg",
+        },
+        {
+            id: "8",
+            name: "Тигор",
+            ingredients: "ыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыы",
+            img: "https://cs7.pikabu.ru/post_img/2019/04/28/1/og_og_155640453623640938.jpg",
+        },],
+    "4": [        {
+            id: "1",
+            name: "Круассан",
+            ingredients: "Мука, вода, сахар",
+            img: "https://avatars.mds.yandex.net/get-zen_doc/162989/pub_5bdbf02a4d228700ac44b2c3_5bdbf5dba0961500ac224198/scale_1200",
+        },
+        {
+            id: "2",
+            name: "Автомобиль",
+            ingredients: "Яйцо, село, деревня",
+            img: "http://pictures.specsan.com/photo/aston-martin/aston-martin-virage-coupe-1-generation-6-0-v12-at-497-hp-basic-1.jpg",
+        },
+        {
+            id: "3",
+            name: "Якубович",
+            ingredients: "Какие-то продукты",
+            img: "https://droidnews.ru/img/2020/december/v-seti-poyavilsya-rolik-gde-leonid-yakubovich-stal-geroem-mario-na-avtorov-uzhe-grozyatsya-podat-v-sud_25-12-20-19-23-31.jpg",
+        },
+        {
+            id: "4",
+            name: "Лепеха",
+            ingredients: "Где это мы?",
+            img: "https://permv.ru/wp-content/uploads/2016/07/navoz-.jpg",
+        },
+        {
+            id: "5",
+            name: "Суп",
+            ingredients: "Очередная еда",
+            img: "https://cs.pikabu.ru/post_img/big/2013/05/27/7/1369649424_1725709471.jpg",
+        },
+        {
+            id: "6",
+            name: "Морс",
+            ingredients: "Кто это сказал?",
+            img: "https://about-tea.ru/wp-content/uploads/5/9/7/5972b2d47bd0de8b41ed1ce1624f1453.jpeg",
+        },
+        {
+            id: "7",
+            name: "Зеркало",
+            ingredients: "Кстати, 2 + 2 = 4, а 4 + 3 = 7",
+            img: "https://krd.romatti.ru/upload/iblock/ffa/72i30tqg7yrlhk7igranw804e6h9md1u.jpg",
+        },
+        {
+            id: "8",
+            name: "Тигор",
+            ingredients: "ыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыы",
+            img: "https://cs7.pikabu.ru/post_img/2019/04/28/1/og_og_155640453623640938.jpg",
+        },],
+    "5": [        {
+            id: "1",
+            name: "Круассан",
+            ingredients: "Мука, вода, сахар",
+            img: "https://avatars.mds.yandex.net/get-zen_doc/162989/pub_5bdbf02a4d228700ac44b2c3_5bdbf5dba0961500ac224198/scale_1200",
+        },
+        {
+            id: "2",
+            name: "Автомобиль",
+            ingredients: "Яйцо, село, деревня",
+            img: "http://pictures.specsan.com/photo/aston-martin/aston-martin-virage-coupe-1-generation-6-0-v12-at-497-hp-basic-1.jpg",
+        },
+        {
+            id: "3",
+            name: "Якубович",
+            ingredients: "Какие-то продукты",
+            img: "https://droidnews.ru/img/2020/december/v-seti-poyavilsya-rolik-gde-leonid-yakubovich-stal-geroem-mario-na-avtorov-uzhe-grozyatsya-podat-v-sud_25-12-20-19-23-31.jpg",
+        },
+        {
+            id: "4",
+            name: "Лепеха",
+            ingredients: "Где это мы?",
+            img: "https://permv.ru/wp-content/uploads/2016/07/navoz-.jpg",
+        },
+        {
+            id: "5",
+            name: "Суп",
+            ingredients: "Очередная еда",
+            img: "https://cs.pikabu.ru/post_img/big/2013/05/27/7/1369649424_1725709471.jpg",
+        },
+        {
+            id: "6",
+            name: "Морс",
+            ingredients: "Кто это сказал?",
+            img: "https://about-tea.ru/wp-content/uploads/5/9/7/5972b2d47bd0de8b41ed1ce1624f1453.jpeg",
+        },
+        {
+            id: "7",
+            name: "Зеркало",
+            ingredients: "Кстати, 2 + 2 = 4, а 4 + 3 = 7",
+            img: "https://krd.romatti.ru/upload/iblock/ffa/72i30tqg7yrlhk7igranw804e6h9md1u.jpg",
+        },
+        {
+            id: "8",
+            name: "Тигор",
+            ingredients: "ыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыы",
+            img: "https://cs7.pikabu.ru/post_img/2019/04/28/1/og_og_155640453623640938.jpg",
+        },],
+    "6": [        {
+            id: "1",
+            name: "Круассан",
+            ingredients: "Мука, вода, сахар",
+            img: "https://avatars.mds.yandex.net/get-zen_doc/162989/pub_5bdbf02a4d228700ac44b2c3_5bdbf5dba0961500ac224198/scale_1200",
+        },
+        {
+            id: "2",
+            name: "Автомобиль",
+            ingredients: "Яйцо, село, деревня",
+            img: "http://pictures.specsan.com/photo/aston-martin/aston-martin-virage-coupe-1-generation-6-0-v12-at-497-hp-basic-1.jpg",
+        },
+        {
+            id: "3",
+            name: "Якубович",
+            ingredients: "Какие-то продукты",
+            img: "https://droidnews.ru/img/2020/december/v-seti-poyavilsya-rolik-gde-leonid-yakubovich-stal-geroem-mario-na-avtorov-uzhe-grozyatsya-podat-v-sud_25-12-20-19-23-31.jpg",
+        },
+        {
+            id: "4",
+            name: "Лепеха",
+            ingredients: "Где это мы?",
+            img: "https://permv.ru/wp-content/uploads/2016/07/navoz-.jpg",
+        },
+        {
+            id: "5",
+            name: "Суп",
+            ingredients: "Очередная еда",
+            img: "https://cs.pikabu.ru/post_img/big/2013/05/27/7/1369649424_1725709471.jpg",
+        },
+        {
+            id: "6",
+            name: "Морс",
+            ingredients: "Кто это сказал?",
+            img: "https://about-tea.ru/wp-content/uploads/5/9/7/5972b2d47bd0de8b41ed1ce1624f1453.jpeg",
+        },
+        {
+            id: "7",
+            name: "Зеркало",
+            ingredients: "Кстати, 2 + 2 = 4, а 4 + 3 = 7",
+            img: "https://krd.romatti.ru/upload/iblock/ffa/72i30tqg7yrlhk7igranw804e6h9md1u.jpg",
+        },
+        {
+            id: "8",
+            name: "Тигор",
+            ingredients: "ыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыы",
+            img: "https://cs7.pikabu.ru/post_img/2019/04/28/1/og_og_155640453623640938.jpg",
+        },],
+    "7": [        {
+            id: "1",
+            name: "Круассан",
+            ingredients: "Мука, вода, сахар",
+            img: "https://avatars.mds.yandex.net/get-zen_doc/162989/pub_5bdbf02a4d228700ac44b2c3_5bdbf5dba0961500ac224198/scale_1200",
+        },
+        {
+            id: "2",
+            name: "Автомобиль",
+            ingredients: "Яйцо, село, деревня",
+            img: "http://pictures.specsan.com/photo/aston-martin/aston-martin-virage-coupe-1-generation-6-0-v12-at-497-hp-basic-1.jpg",
+        },
+        {
+            id: "3",
+            name: "Якубович",
+            ingredients: "Какие-то продукты",
+            img: "https://droidnews.ru/img/2020/december/v-seti-poyavilsya-rolik-gde-leonid-yakubovich-stal-geroem-mario-na-avtorov-uzhe-grozyatsya-podat-v-sud_25-12-20-19-23-31.jpg",
+        },
+        {
+            id: "4",
+            name: "Лепеха",
+            ingredients: "Где это мы?",
+            img: "https://permv.ru/wp-content/uploads/2016/07/navoz-.jpg",
+        },
+        {
+            id: "5",
+            name: "Суп",
+            ingredients: "Очередная еда",
+            img: "https://cs.pikabu.ru/post_img/big/2013/05/27/7/1369649424_1725709471.jpg",
+        },
+        {
+            id: "6",
+            name: "Морс",
+            ingredients: "Кто это сказал?",
+            img: "https://about-tea.ru/wp-content/uploads/5/9/7/5972b2d47bd0de8b41ed1ce1624f1453.jpeg",
+        },
+        {
+            id: "7",
+            name: "Зеркало",
+            ingredients: "Кстати, 2 + 2 = 4, а 4 + 3 = 7",
+            img: "https://krd.romatti.ru/upload/iblock/ffa/72i30tqg7yrlhk7igranw804e6h9md1u.jpg",
+        },
+        {
+            id: "8",
+            name: "Тигор",
+            ingredients: "ыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыы",
+            img: "https://cs7.pikabu.ru/post_img/2019/04/28/1/og_og_155640453623640938.jpg",
+        },
+    ],
+}
+
+const users = [
+    {
+        id: "1",
+        login: "qwerty",
+        password: "qwerty",
+    }
+]
+
+export {dataMenu, dataCafes, users}

@@ -1,43 +1,37 @@
 import {Link, useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
+import {dataCafes, dataMenu} from "../../api/getData";
+import {logDOM} from "@testing-library/react";
 
+
+function showMenu(dataMenu) {
+    return dataMenu.map(meal => {
+        return (
+            <div key={meal.id} style={styles.mealCard}>
+                <div style={{...styles.mealImg, backgroundImage: `url(${meal.img})`}} />
+                <div style={styles.mealInfo}>
+                    <span style={styles.cafeTitle}>{meal.name}</span>
+                </div>
+            </div>
+        )
+    })
+}
 
 export default function Cafe() {
 
 
-    const dataCafes = [
-        {
-            id: 1,
-            name: "Теремок",
-            img: "https://eda.yandex/images/3784951/4b6e99209a20e7342d482f7356d0ec5d-1100x825.jpg",
-        },
-        {
-            id: 2,
-            name: "Vibe",
-            img: "https://primemeat.ru/about/shayrma.jpg",
-        },
-        {
-            id: 3,
-            name: "Kebab",
-            img: "https://sun9-28.userapi.com/s/v1/if1/Ojx42V1fOupAyzLEIwqqkDzn7ZPd7ZU2EgRGimTJgU8wR3GFTR8U10EKbQZ83G1qbS7W4nrL.jpg?size=1280x1278&quality=96&type=album",
-        },
-        {
-            id: 4,
-            name: "Космос",
-            img: "https://i12.fotocdn.net/s115/0059f5dfafa4d52a/public_pin_l/2619612489.jpg",
-        },
-    ]
-
     const {cafeId} = useParams()
-    const [cafe, setCafe] = useState(dataCafes.find(e => +cafeId === e.id))
+    const [cafe, setCafe] = useState(dataCafes.find(e => cafeId === e.id))
 
     useEffect(() => {
         updateCafe()
     }, [cafeId])
 
     const updateCafe = () => {
-        setCafe(dataCafes.find(e => +cafeId === e.id))
+        setCafe(dataCafes.find(e => cafeId === e.id))
     }
+
+
 
     return (
         <div style={styles.container}>
@@ -45,6 +39,9 @@ export default function Cafe() {
             <div style={styles.cafeDescription}>
                 <h2 style={styles.pageTitle}>{cafe.name}</h2>
                 <div style={{...styles.cafeImg, backgroundImage: `url(${cafe.img})`}}/>
+            </div>
+            <div style={styles.menuList}>
+                {showMenu(dataMenu[cafeId])}
             </div>
         </div>
     )
@@ -73,13 +70,13 @@ const styles = {
         fontWeight: 500,
         textAlign: "left",
     },
-    cafesList: {
+    menuList: {
         display: 'flex',
         flexWrap: 'wrap',
         alignItems: 'center',
         justifyContent: 'center',
     },
-    cafeCard: {
+    mealCard: {
         margin: 20,
         boxSizing: 'border-box',
         borderRadius: 16,
@@ -98,9 +95,17 @@ const styles = {
         backgroundSize: 'cover',
         backgroundRepeat: 'no-repeat',
         borderRadius: "16px 16px 0px 0px",
+    },
+    mealImg: {
+        height: 164,
+        // width: '100%',
+        backgroundPosition: 'center',
+        backgroundSize: 'cover',
+        backgroundRepeat: 'no-repeat',
+        borderRadius: "16px 16px 0px 0px",
 
     },
-    cardInfo: {
+    mealInfo: {
         display: "flex",
         alignContent: "left",
         margin: 40,
