@@ -1,10 +1,8 @@
 using System.ComponentModel.DataAnnotations;
-using Microsoft.EntityFrameworkCore;
-using ServerSide.Contract.V1;
 
-namespace ServerSide.Domain;
+namespace ServerSide.Model;
 
-public abstract record BaseEntity
+public abstract class BaseEntity
 {
     public static string NewId() => Guid.NewGuid().ToString();
 
@@ -12,10 +10,10 @@ public abstract record BaseEntity
         entities.Select(e => e.Id);
 
     [Key] 
-    public string Id { set; get; } = NewId();
+    public string Id { init; get; } = NewId();
     
     [DataType(DataType.DateTime)]
-    public DateTime CreationDate { set; get; } = DateTime.Now;
+    public DateTime CreationDate { init; get; } = DateTime.Now;
     
     public bool IsDeleted { set; get; } = false;
 }

@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.OpenApi.Models;
 using ServerSide.Contract.V1;
 using ServerSide.Data;
-using ServerSide.Domain;
+using ServerSide.Model;
 
 namespace ServerSide.Controllers;
 

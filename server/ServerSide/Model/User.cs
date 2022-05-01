@@ -2,11 +2,13 @@ using System.ComponentModel.DataAnnotations.Schema;
 using ServerSide.Contract.V1;
 using ServerSide.Data;
 
-namespace ServerSide.Domain;
+namespace ServerSide.Model;
 
 [Table(DbRoutes.Users)]
-public record User(BaseUser.UserRole Role = BaseUser.UserRole.User) : BaseUser
+public class User : BaseUser
 {
+    public override UserRole Role { init; get; } = UserRole.User;
+    
     public virtual IEnumerable<Order> Orders { set; get; } = new List<Order>();
 
     public Responses.User.Get Get() => new(this);

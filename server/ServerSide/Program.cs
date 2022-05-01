@@ -9,7 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 // builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<DataContext>(options =>
 {
-    options.UseNpgsql(builder.Configuration.GetConnectionString("Local"));
+    options.UseNpgsql(builder.Configuration.GetConnectionString("Remote"));
     // options.UseNpgsql(builder.Configuration.GetConnectionString("Remote"));
 });
 builder.Services.AddMvc();

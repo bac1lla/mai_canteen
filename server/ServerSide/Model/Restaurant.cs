@@ -1,15 +1,12 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using ServerSide.Data;
+using ServerSide.Model;
 
-namespace ServerSide.Domain;
+namespace ServerSide.Model;
 
 [Table(DbRoutes.Restaurants)]
-public record Restaurant : BaseEntity
+public class Restaurant : CanteenEntity
 {
-    public string Name { get; set; }
-    public string? Description { get; set; } = null;
-    public string? PhotoLocation { get; set; } = null;
-
     // public int OrderCount { set; get; } = 0;
     // [Range(0, 5)] 
     // public decimal? Score { set; get; } = null;
@@ -17,5 +14,5 @@ public record Restaurant : BaseEntity
     public virtual IEnumerable<Admin> Admins { get; set; } = new List<Admin>();
     // public List<Category> Categories { set; get; } = new();
     public virtual IEnumerable<Meal> Meals { get; set; } = new List<Meal>();
-    public virtual  IEnumerable<Order> Orders { set; get; } = new List<Order>();
+    public virtual IEnumerable<Order> Orders { set; get; } = new List<Order>();
 }

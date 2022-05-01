@@ -3,11 +3,15 @@ using Microsoft.EntityFrameworkCore;
 using ServerSide.Contract.V1;
 using ServerSide.Data;
 
-namespace ServerSide.Domain;
+namespace ServerSide.Model;
 
-[Table(DbRoutes.Admins),
+[Table(DbRoutes.Admins), 
  Index(nameof(Restaurant))]
-public record Admin(Restaurant Restaurant, BaseUser.UserRole Role = BaseUser.UserRole.Admin) : BaseUser
+public class Admin : BaseUser
 {
+    public override UserRole Role { get; init; } = UserRole.Admin;
+    
+    public Restaurant Restaurant { set; get; }
+
     public Responses.Admin.Get Get() => new(this);
 }

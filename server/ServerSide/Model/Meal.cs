@@ -4,17 +4,16 @@ using System.Text.Json.Serialization;
 using Microsoft.EntityFrameworkCore;
 using ServerSide.Contract.V1;
 using ServerSide.Data;
+using ServerSide.Model;
 
-namespace ServerSide.Domain;
+namespace ServerSide.Model;
 
 [Table(DbRoutes.Meals),
  Index(nameof(Name))]
-public record Meal : BaseEntity
+public class Meal : CanteenEntity
 {
-    public string Name { get; set; }
-    public string? Ingredients { get; set; } = null;
-    public string? PhotoLocation { get; set; } = null;
-
+    public string Ingredients { set; get; }
+    
     public bool IsInStopList { set; get; } = false;
 
     // public int OrderCount { set; get; } = 0;
@@ -24,7 +23,8 @@ public record Meal : BaseEntity
     // public int Version { set; get; } = 0;
     
     public Category Category { get; set; }
+    
     public Restaurant Restaurant { set; get; }
 
-    public Requests.Meal.Get Get() => new(this);
+    // public Requests.Meal.Get Get() => new(this);
 }
