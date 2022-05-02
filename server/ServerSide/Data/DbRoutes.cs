@@ -2,65 +2,72 @@ namespace ServerSide.Data;
 
 public static class DbRoutes
 {
-    public const string Database = "MaiCanteen";
-    public const string Schema = "MaiCanteen";
+    public const string Database = "mai_canteen";
+    public const string Schema = "mai_canteen";
 
     public static class Local
     {
-        public const string Host = "localhost:5432";
-        public const string User = "MaiCanteen";
-        public const string Password = "1234";
+        public const string Host = "localhost";
+        public const string User = "mai_canteen";
+        public const string Password = "12345";
         
-        public const string ConnectionString = $"Host={Host};User Id={User};Password={Password};Database={Database};";
+        public const string ConnectionString = 
+            $"Host={Host};Port=5432;User Id={User};Password={Password};Database={Database};";
     }
     
     public static class Remote
     {
-        public const string Host = "26.215.218.50:5432";
-        public const string User = "postgres";
-        public const string Password = "1790";
+        public const string Host = "26.215.218.50";
+        public const string User = "mai_canteen";
+        public const string Password = "12345";
         
-        public const string ConnectionString = $"Host={Host};User Id={User};Password={Password};Database={Database};";
+        public const string ConnectionString = 
+            $"Host={Host};Port=5432;User Id={User};Password={Password};Database={Database};";
     }
     
-    public const string AllUsers = Schema + ".AllUsers";
-    public const string Tokens = Schema + ".Tokens";
-    
-    public const string SuperUsers = Schema + ".SuperUsers";
-    public const string Admins = Schema + ".Admins";
-    public const string Users = Schema + ".Users";
+    public const string Logs = Schema + ".t_logs";
 
-    public const string Categories = Schema + ".Categories";
-    public const string Restaurants = Schema + ".Restaurants";
-    public const string Meals = Schema + ".Meals";
+    public const string Tokens = Schema + ".t_user_tokens";
     
-    public const string Orders = Schema + ".Orders";
-    public const string OrderItems = Schema + ".OrderItems";
+    public const string AllUsers = Schema + ".t_all_users";
+    public const string SuperUsers = Schema + ".v_super_users";
+    public const string Admins = Schema + ".v_admins";
+    public const string Users = Schema + ".v_users";
+
+    public const string Categories = Schema + ".t_categories";
+    public const string Restaurants = Schema + ".t_restaurants";
+    public const string Meals = Schema + ".t_meals";
+    
+    public const string Orders = Schema + ".t_oders";
+    public const string OrderItems = Schema + ".t_order_items";
 
     public static class Archive
     {
-        public const string Database = "MaiCanteenArchive";
-        public const string Schema = "MaiCanteenArchive";
+        public const string Database = "mai_canteen_archive";
+        public const string Schema = "mai_canteen_archive";
     
         public static class Local
         {
-            public const string Host = "localhost:5432";
-            public const string User = "MaiCanteenArchive";
+            public const string Host = "localhost";
+            public const string User = "mai_canteen_archive";
             public const string Password = "12345";
         
-            public const string ConnectionString = $"Host={Host};User Id={User};Password={Password};Database={Database};";
+            public const string ConnectionString = 
+                $"Host={Host};Port=5432;User Id={User};Password={Password};Database={Database};";
         }
     
         public static class Remote
         {
-            public const string Host = "26.215.218.50:5432";
-            public const string User = "postgres";
-            public const string Password = "1790";
+            public const string Host = "26.215.218.50";
+            public const string User = "mai_canteen_archive";
+            public const string Password = "12345";
         
-            public const string ConnectionString = $"Host={Host};User Id={User};Password={Password};Database={Database};";
+            public const string ConnectionString = 
+                $"Host={Host};Port=5432;User Id={User};Password={Password};Database={Database};";
         }
     
-        public const string Orders = Schema + ".Orders";
-        public const string OrderItems = Schema + ".OrderItems";
+        public const string Orders = Schema + ".t_orders";
+        
+        public const string Logs = Schema + ".t_logs";
     }
 }

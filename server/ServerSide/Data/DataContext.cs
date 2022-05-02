@@ -8,7 +8,6 @@ public class DataContext : DbContext
     public DataContext(DbContextOptions<DataContext> options) : base(options) { }
 
     public DbSet<BaseUser> AllUsers { set; get; }
-    public DbSet<Token> Tokens { set; get; }
 
     public DbSet<SuperUser> SuperUsers { get; set; }
     public DbSet<Admin> Admins { get; set; }
@@ -20,27 +19,32 @@ public class DataContext : DbContext
     
     public DbSet<Order> Orders { get; set; }
     
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) => 
-        optionsBuilder
-            .UseNpgsql("Server=localhost;Port=5432;User Id=mai_canteen;Password=1234;Database=mai_canteen;");
-            // .UseNpgsql("Server=26.215.218.50;Port=5432;User Id=postgres;Password=1790;Database=postgres;");
-
+    public DbSet<Log> Logs { get; set; }
+    
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<User>().HasBaseType<BaseUser>().ToTable(DbRoutes.AllUsers);
-        modelBuilder.Entity<Admin>().HasBaseType<BaseUser>().ToTable(DbRoutes.AllUsers);
-        modelBuilder.Entity<SuperUser>().HasBaseType<BaseUser>().ToTable(DbRoutes.AllUsers);
+        modelBuilder.Entity<BaseUser>()
+            .HasDiscriminator(u => u.Role)
+            .HasValue<SuperUser>(BaseUser.UserRole.Super)
+            .HasValue<Admin>(BaseUser.UserRole.Admin)
+            .HasValue<User>(BaseUser.UserRole.User)
+            .IsComplete();
 
         modelBuilder.Entity<Admin>()
             .HasOne<Restaurant>(a => a.Restaurant)
             .WithMany(r => r.Admins);
 
-        modelBuilder.Entity<BaseUser>()
-            .HasMany<Token>(u => u.Tokens)
-            .WithOne(t => t.User);
-
-        modelBuilder.Entity<BaseUser>()
-            .HasOne<Token>(u => u.LastToken)
-            .WithOne(t => t.User);
+        // modelBuilder.Entity<BaseUser>()
+        //     .HasMany<Token>(u => u.Tokens)
+        //     .WithOne(t => t.User);
+        
+        // modelBuilder.Entity<BaseUser>()
+        //     .HasOne<Token>(u => u.LastToken)
+        //     .WithOne(t => t.User);
     }
+
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) =>
+        optionsBuilder
+            // .UseNpgsql(DbRoutes.Local.ConnectionString);
+            .UseNpgsql(DbRoutes.Remote.ConnectionString);
 }

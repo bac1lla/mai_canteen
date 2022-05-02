@@ -16,4 +16,17 @@ public abstract class BaseEntity
     public DateTime CreationDate { init; get; } = DateTime.Now;
     
     public bool IsDeleted { set; get; } = false;
+
+    protected BaseEntity() { }
+
+    protected BaseEntity(string id, DateTime creationDate, bool isDeleted)
+    {
+        Id = id;
+        CreationDate = creationDate;
+        IsDeleted = isDeleted;
+    }
+    
+    protected BaseEntity(BaseEntity other) :
+        this(other.Id, other.CreationDate, other.IsDeleted)
+    { }
 }

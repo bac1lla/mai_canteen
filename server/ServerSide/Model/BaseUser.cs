@@ -18,39 +18,33 @@ public abstract class BaseUser : BaseEntity
         Super
     }
 
+    // private static string UserRoleString(UserRole role) => role.ToString();
+
     public string Login { init; get; }
     // public string Email { set; get; }
     public string? Name { set; get; } = null;
     
-    public string NameToShow  => Name ?? Login;
+    public string NameToShow => Name ?? Login;
     
-    [DataType(DataType.Password)]
+    // [DataType(DataType.Password)]
     public string Password { set; get; }
-    [DataType(DataType.Password)]
+    // [DataType(DataType.Password)]
     public string Salt { set; get; }
     
     public abstract UserRole Role { init; get; }
 
-    public virtual IEnumerable<Token> Tokens { set; get; } = new List<Token>();
-    public Token? LastToken => Tokens.FirstOrDefault(t => !t.IsExpired);
-    
-    public bool IsAuthorized
+    public Token Token { set; get; }
+
+    public bool IsAuthorized => Token.IsValid;
+
+    protected BaseUser(string login, string password, string salt, string? name)
     {
-        get
-        {
-            if (LastToken is null || LastToken.IsDeleted) return false;
-            if (LastToken.IsExpired)
-            {
-                LastToken.IsDeleted = true;
-                return false;
-            }
-            return true;
-        }
+        Login = login;
+        Name = name;
+
+        Password = password;
+        Salt = salt;
+        
+        Token = Token.NewToken(this);
     }
-
-    // TODO: remove dummy
-    private string NewTokenValue => Login + Id + Role;
-
-    public void NewToken() => LastToken = new Token { User = this, Value = NewTokenValue };
-
 }

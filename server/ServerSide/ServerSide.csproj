@@ -91,6 +91,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <Folder Include="Migrations" />
       <Folder Include="Static" />
     </ItemGroup>
 
@@ -163,6 +164,9 @@
       </Compile>
       <Compile Update="Model\BaseUser.cs">
         <Generator>MSBuild:GenerateCodeFromAttributes</Generator>
+        <DependentUpon>BaseEntity.cs</DependentUpon>
+      </Compile>
+      <Compile Update="Model\Log.cs">
         <DependentUpon>BaseEntity.cs</DependentUpon>
       </Compile>
       <Compile Update="Model\Token.cs">

@@ -1,40 +1,65 @@
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text;
 using Microsoft.EntityFrameworkCore;
 using ServerSide.Data;
 
 namespace ServerSide.Model.Archive;
 
 [Table(DbRoutes.Archive.Orders),
- Index(nameof(User)),
- Index(nameof(Restaurant)),
  Index(nameof(CreationDate)),
+ Index(nameof(UserId)),
+ Index(nameof(RestaurantId)),
  Index(nameof(EndDate))]
-public class Order : Model.Order
+public class Order : BaseEntity
 {
-    [Table(DbRoutes.Archive.OrderItems),
-     Index(nameof(User)),
-     Index(nameof(Meal))]
-    public new class Item : Model.Order.Item
+    [ComplexType]
+    public record IntermediateItem(string Id, string MealId, ushort Count)
     {
-        public Item(Model.Order.Item item)
-        {
-            Id = item.Id;
-            Meal = item.Meal;
-            Order = item.Order;
-            Count = item.Count;
-        }
+        // public override string ToString() => new StringBuilder()
+        //     .Append('{')
+        //     .Append("\"Id\":").Append(Id).Append(',')
+        //     .Append("\"MealId\":").Append(MealId).Append(',')
+        //     .Append("\"Count\":").Append(Count)
+        //     .Append('}')
+        //     .ToString();
     }
-    
-    public new virtual IEnumerable<Item> Items { init; get; }
 
-    public Order(Model.Order order)
+    public string ItemsString { init; get; }
+    public string UserId { init; get; }
+    public string RestaurantId { init; get; }
+    public DateTime EndDate { init; get; }
+    
+    private static string GetItemsString(IEnumerable<IntermediateItem> items) => new StringBuilder()
+            .Append('[').AppendJoin(',', items).Append(']')
+            .ToString();
+    
+    private Order
+    (
+        string id,
+        DateTime creationDate,
+        bool isDeleted,
+        string itemsString, 
+        string userId, 
+        string restaurantId, 
+        DateTime endDate
+    ) 
+        : base(id, creationDate, isDeleted)
     {
-        Id = order.Id;
-        User = order.User;
-        Restaurant = order.Restaurant;
-        IsDeleted = order.IsDeleted;
-        CreationDate = order.CreationDate;
-        EndDate = order.EndDate;
-        Items = order.Items.Select(i => new Item(i));
+        ItemsString = itemsString;
+        UserId = userId;
+        RestaurantId = restaurantId;
+        EndDate = endDate;
     }
+
+    public static Order FromNewOrder(Model.Order order) =>
+        new(
+            order.Id, 
+            order.CreationDate, 
+            order.IsDeleted, 
+            GetItemsString(order.Items.Select(i => new IntermediateItem(i.Id, i.Meal.Id, i.Count))), 
+            order.User.Id, 
+            order.Restaurant.Id, 
+            order.EndDate!.Value // only finished orders are archived
+        ); 
+    
 }
