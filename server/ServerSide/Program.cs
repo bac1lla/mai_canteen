@@ -2,21 +2,43 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using ServerSide.Data;
 using ServerSide.Properties;
+using ServerSide.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+
 // builder.Services.AddControllersWithViews();
+
 builder.Services.AddDbContext<DataContext>(options =>
 {
-    options.UseNpgsql(builder.Configuration.GetConnectionString("Remote"));
-    // options.UseNpgsql(builder.Configuration.GetConnectionString("Remote"));
+    options.UseNpgsql(DbRoutes.Local.ConnectionString);
+    options.UseNpgsql(DbRoutes.Remote.ConnectionString);
 });
+
+builder.Services.AddDbContext<ArchiveDataContext>(options =>
+{
+    options.UseNpgsql(DbRoutes.Archive.Local.ConnectionString);
+    options.UseNpgsql(DbRoutes.Archive.Remote.ConnectionString);
+});
+
+builder.Services.Add(new ServiceDescriptor(
+    typeof(ServerSide.Services.ILogger), 
+    typeof(Logger), 
+    ServiceLifetime.Scoped)
+);
+
+builder.Services.Add(new ServiceDescriptor(
+    typeof(ServerSide.Services.IAuthorizer), 
+    typeof(Authorizer), 
+    ServiceLifetime.Scoped)
+);
+
 builder.Services.AddMvc();
 // builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services.AddSwaggerGen(
-    x => x.SwaggerDoc($"v0.0.1", new OpenApiInfo{ Title = "ShitAPI", Version = "0.0.1"}));
+    x => x.SwaggerDoc($"V1", new OpenApiInfo{ Title = "MAICanteenAPI", Version = "1"}));
 
 var app = builder.Build();
 
