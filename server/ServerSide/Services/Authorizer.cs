@@ -37,8 +37,12 @@ public class Authorizer : IAuthorizer
     {
         var user = Db.AllUsers.Find(userId);
         if (user is null) return false;
+
+        var token = user.Token;
         
-        user.Token = Token.NewToken(user);
+        if (token.IsValid) token.Refresh();
+        else token = Token.NewToken(user);
+        
         return true;
     }
     public bool RefreshToken(string tokenValue)
@@ -46,7 +50,11 @@ public class Authorizer : IAuthorizer
         var user = Db.AllUsers.FirstOrDefault(u => u.Token.Value == tokenValue);
         if (user is null) return false;
         
-        user.Token = Token.NewToken(user);
+        var token = user.Token;
+        
+        if (token.IsValid) token.Refresh();
+        else token = Token.NewToken(user);
+        
         return true;
     }
 }

@@ -26,23 +26,27 @@ public class Logger : ILogger
     }
 
     
-    public void Log(Log.DomainObjectType domainObject, BaseUser user, Log.ActionType action) =>
-        Log(new Log(domainObject, user, action));
+    public void Log(Model.Log.DomainObjectType domainObject, BaseUser user, Model.Log.ActionType action) =>
+        Log(new Model.Log(domainObject, user, action));
 
-    public void Log(Log logMessage) => Db.Logs.Add(logMessage);
+    public void Log(Model.Log logMessage) => Db.Logs.Add(logMessage);
 
-    public void Log(IEnumerable<Log> logMessages) => Db.Logs.AddRange(logMessages);
+    public void Log(IEnumerable<Model.Log> logMessages) => Db.Logs.AddRange(logMessages);
 
 
     private ParallelQuery<Model.Log> GetAllNewLogs() => Db.Logs.AsParallel();
 
-    public async Task ArchiveLogs()
-    {
-        await ArchiveDb
-            .Logs
-            .AddRangeAsync(
-                GetAllNewLogs()
-                    .Select(Model.Archive.Log.FromNewLog)
-            );
-    }
+    public async Task ArchiveLogs() => 
+        await ArchiveDb.Logs.AddRangeAsync(GetAllNewLogs().Select(Model.Archive.Log.FromNewLog));
+
+    public async Task RemoveArchivedLogs() => 
+        await new Task(
+            _ => Db.Logs.RemoveRange(
+                ArchiveDb.Logs
+                    .Where(l => l.Batch == Model.Archive.Log.LastBatch - 1)
+                    // .Select(l => new Model.Log(l.DomainObject, l.UserId, l.UserLogin, l.Action))
+                    // .ToArray()
+            ),
+            null
+        );
 }
