@@ -1,27 +1,30 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
+using System.Text.Json;
 using Microsoft.EntityFrameworkCore;
 using ServerSide.Data;
 
 namespace ServerSide.Model.Archive;
 
-[Table(DbRoutes.Archive.Orders),
- Index(nameof(CreationDate)),
- Index(nameof(UserId)),
- Index(nameof(RestaurantId)),
- Index(nameof(EndDate))]
+[Table(DbRoutes.Archive.Orders, Schema = DbRoutes.Archive.Schema),
+ Index(nameof(CreationDate), IsUnique = false),
+ Index(nameof(UserId), IsUnique = false),
+ Index(nameof(RestaurantId), IsUnique = false),
+ Index(nameof(EndDate), IsUnique = false)]
 public class Order : BaseEntity
 {
     [ComplexType]
     public record IntermediateItem(string Id, string MealId, ushort Count)
     {
+        public override string ToString() => JsonSerializer.Serialize(this);
+
         // public override string ToString() => new StringBuilder()
         //     .Append('{')
         //     .Append("\"Id\":").Append(Id).Append(',')
         //     .Append("\"MealId\":").Append(MealId).Append(',')
         //     .Append("\"Count\":").Append(Count)
         //     .Append('}')
-        //     .ToString();
+        //     .ToString();д
     }
 
     public string ItemsString { init; get; }
@@ -56,7 +59,10 @@ public class Order : BaseEntity
             order.Id, 
             order.CreationDate, 
             order.IsDeleted, 
-            GetItemsString(order.Items.Select(i => new IntermediateItem(i.Id, i.Meal.Id, i.Count))), 
+            GetItemsString(
+                order.Items
+                .Select(i => new IntermediateItem(i.Meal.Id, i.Order.Id, i.Count))
+            ), 
             order.User.Id, 
             order.Restaurant.Id, 
             order.EndDate!.Value // only finished orders are archived

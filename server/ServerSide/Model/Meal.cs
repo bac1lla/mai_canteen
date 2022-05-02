@@ -1,16 +1,15 @@
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Runtime.InteropServices;
-using System.Text.Json.Serialization;
 using Microsoft.EntityFrameworkCore;
 using ServerSide.Contract.V1;
 using ServerSide.Data;
-using ServerSide.Model;
 
 namespace ServerSide.Model;
 
-[Table(DbRoutes.Meals),
- Index(nameof(Name))]
-public class Meal : CanteenEntity
+[Table(DbRoutes.Meals, Schema = DbRoutes.Schema),
+ Index(nameof(Name), IsUnique = false),
+ Index(nameof(Category), IsUnique = false),
+ Index(nameof(Restaurant), IsUnique = false)]
+public class Meal : CanteenEntity, IEntity<Responses.Meal.Get, Responses.Meal.PartialGet>
 {
     public string Ingredients { set; get; }
     
@@ -26,5 +25,6 @@ public class Meal : CanteenEntity
     
     public Restaurant Restaurant { set; get; }
 
-    // public Requests.Meal.Get Get() => new(this);
+    public Responses.Meal.Get Get() => new(this);
+    public Responses.Meal.PartialGet PartialGet() => new (this);
 }

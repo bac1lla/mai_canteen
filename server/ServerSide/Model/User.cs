@@ -4,8 +4,8 @@ using ServerSide.Data;
 
 namespace ServerSide.Model;
 
-[Table(DbRoutes.AllUsers)]
-public class User : BaseUser
+[Table(DbRoutes.AllUsers, Schema = DbRoutes.Schema)]
+public class User : BaseUser, IEntity<Responses.User.Get, Responses.User.PartialGet>
 {
     public override UserRole Role { get; init; } = UserRole.User;
 
@@ -30,4 +30,5 @@ public class User : BaseUser
     }
 
     public Responses.User.Get Get() => new(this);
+    public Responses.User.PartialGet PartialGet() => new(this);
 }

@@ -19,6 +19,8 @@ public abstract class BaseEntity
 
     protected BaseEntity() { }
 
+    protected BaseEntity(string id) : this() => Id = id;
+
     protected BaseEntity(string id, DateTime creationDate, bool isDeleted)
     {
         Id = id;

@@ -1,11 +1,12 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
+using ServerSide.Contract.V1;
 using ServerSide.Data;
 
 namespace ServerSide.Model;
 
-[Table(DbRoutes.AllUsers),
+[Table(DbRoutes.AllUsers, Schema = DbRoutes.Schema),
  Index(nameof(Login), IsUnique = true), 
  Index(nameof(Name), IsUnique = false),
  Index(nameof(Role), IsUnique = false)]
@@ -47,4 +48,7 @@ public abstract class BaseUser : BaseEntity
         
         Token = Token.NewToken(this);
     }
+
+    public Responses.Base.User.Get Get() => new(this);
+    public Responses.Base.User.PartialGet PartialGet() => new(this);
 }

@@ -25,21 +25,21 @@ public static class DbRoutes
             $"Host={Host};Port=5432;User Id={User};Password={Password};Database={Database};";
     }
     
-    public const string Logs = Schema + ".t_logs";
+    public const string Logs = "t_logs";
 
-    public const string Tokens = Schema + ".t_user_tokens";
+    public const string Tokens = "t_user_tokens";
     
-    public const string AllUsers = Schema + ".t_all_users";
-    public const string SuperUsers = Schema + ".v_super_users";
-    public const string Admins = Schema + ".v_admins";
-    public const string Users = Schema + ".v_users";
+    public const string AllUsers = "t_all_users";
+    public const string SuperUsers = "v_super_users";
+    public const string Admins = "v_admins";
+    public const string Users = "v_users";
 
-    public const string Categories = Schema + ".t_categories";
-    public const string Restaurants = Schema + ".t_restaurants";
-    public const string Meals = Schema + ".t_meals";
+    public const string Categories = "t_categories";
+    public const string Restaurants = "t_restaurants";
+    public const string Meals = "t_meals";
     
-    public const string Orders = Schema + ".t_oders";
-    public const string OrderItems = Schema + ".t_order_items";
+    public const string Orders = "t_oders";
+    public const string OrderItems = "t_order_items";
 
     public static class Archive
     {
@@ -66,8 +66,8 @@ public static class DbRoutes
                 $"Host={Host};Port=5432;User Id={User};Password={Password};Database={Database};";
         }
     
-        public const string Orders = Schema + ".t_orders";
+        public const string Orders = "t_orders";
         
-        public const string Logs = Schema + ".t_logs";
+        public const string Logs = "t_logs";
     }
 }

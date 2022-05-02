@@ -14,6 +14,6 @@ public class ArchiveDataContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) =>
         optionsBuilder
-            // .UseNpgsql(DbRoutes.Archive.Local.ConnectionString);
-            .UseNpgsql(DbRoutes.Archive.Remote.ConnectionString);
+            .UseNpgsql(DbRoutes.Archive.Local.ConnectionString);
+            // .UseNpgsql(DbRoutes.Archive.Remote.ConnectionString);
 }

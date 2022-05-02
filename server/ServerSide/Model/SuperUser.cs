@@ -3,7 +3,7 @@ using ServerSide.Data;
 
 namespace ServerSide.Model;
 
-[Table(DbRoutes.AllUsers)]
+[Table(DbRoutes.AllUsers, Schema = DbRoutes.Schema)]
 public class SuperUser : BaseUser
 {
     public override UserRole Role { get; init; } = UserRole.Super;
