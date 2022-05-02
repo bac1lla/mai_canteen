@@ -10,9 +10,11 @@ public static class ApiRoutes
     {
         public const string SubRoute = "User";
         public const string FullBase = Base + "/" + SubRoute;
+
+        public const string Authorize = FullBase + "Authorize/{UserId?}";
         
         public const string Get = FullBase + "/{UserId}";
-        public const string GetAll = FullBase + "/All";
+        // public const string GetAll = FullBase + "/All";
         
         public const string Create = FullBase + "/Create";
         public const string Update = FullBase + "/Update/{UserId}";
@@ -26,6 +28,8 @@ public static class ApiRoutes
         public const string SubRoute = "Admin";
         public const string FullBase = Base + "/" + SubRoute;
         
+        public const string Authorize = FullBase + "Authorize/{UserId?}";
+        
         public const string Get = FullBase + "/{AdminId}";
         public const string GetByRestaurant = FullBase + "/GetByRestaurant/{RestaurantId}";
         
@@ -38,6 +42,8 @@ public static class ApiRoutes
     {
         public const string SubRoute = "Super";
         public const string FullBase = Base + "/" + SubRoute;
+        
+        public const string Authorize = FullBase + "Authorize/{UserId?}";
     }
     
     public static class Category
@@ -53,7 +59,7 @@ public static class ApiRoutes
         public const string Delete = FullBase + "/Delete/{CategoryId}";
         
         public const string GetMeals = FullBase + "/GetMeals/{CategoryId}";
-        public const string GetRestaurants = FullBase + "/Restaurants/{CategoryId}";
+        // public const string GetRestaurants = FullBase + "/Restaurants/{CategoryId}";
     }
     
     public static class Restaurant

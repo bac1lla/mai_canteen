@@ -7,32 +7,43 @@ public static class Requests
 {
     public static class Base
     {
-        public record Create(DateTime? CreationDate)
+        public static class Entity
         {
-            /// Never should be called
-            public Create() : this((DateTime?) null) => throw new NotImplementedException();
+            public abstract record Get;
+            public abstract record Create;
+            public abstract record Update(DateTime? CreationDate = null);
+            public abstract record Delete;
         }
         
-        public record Update(DateTime? CreationDate)
+        public static class User
         {
-            /// Never should be called
-            public Update() : this((DateTime?) null) => throw new NotImplementedException();
+            public abstract record Create(string Login, string Password, string Salt, 
+                string? Name = null) : Entity.Create;
+            public abstract record Update(string? Login = null, string? Name = null, string? Salt = null, 
+                string? Password = null) : Entity.Update;
+
+            public abstract record Authorize(string? Token, DateTime TokenCreationDate);
+        }
+
+        public static class CanteenEntity
+        {
+            public abstract record Create(string Name, string? Description = null, 
+                string? PhotoLocation = null) : Entity.Create;
+            public abstract record Update(string? Name = null, string? Description = null, 
+                string? PhotoLocation = null) : Entity.Create;
         }
     }
     
-    public static class BaseUser
+    public static class SuperUser { }
+
+    public static class Admin
     {
-        public record Create(string Login, string? Name, string Password) : Base.Create
-        {
-            /// Never should be called
-            public Create() : this(string.Empty, null, string.Empty) => throw new NotImplementedException();
-        }
+        public record Get;
+        public record GetByRestaurant;
         
-        public record Update(string? Login, string? Name, string? Password) : Base.Create
-        {
-            /// Never should be called
-            public Update() : this(null, null, null) => throw new NotImplementedException();
-        }
+        public record Create : Base.Create;
+        public record Update(string? Login, string? Password, string? Name);
+        public record Delete;
     }
     
     public static class User
@@ -45,18 +56,6 @@ public static class Requests
 
         public record GetOrders;
     }
-
-    public static class Admin
-    {
-        public record Get;
-        public record GetByRestaurant;
-        
-        public record Create : Base.Create;
-        public record Update(string? Login, string? Password, string? Name);
-        public record Delete;
-    }
-
-    public static class SuperUser { }
 
     public static class Category
     {
