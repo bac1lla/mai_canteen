@@ -52,6 +52,7 @@ public static class ApiRoutes
         public const string FullBase = Base + "/" + SubRoute;
         
         public const string Get = FullBase + "/{CategoryId}";
+        public const string GetAll = FullBase + "/All";
         public const string GetByName = FullBase + "/GetByName/{Name}";
         
         public const string Create = FullBase + "/Create";
@@ -68,6 +69,7 @@ public static class ApiRoutes
         public const string FullBase = Base + "/" + SubRoute;
         
         public const string Get = FullBase + "/{RestaurantId}";
+        public const string GetAll = FullBase + "/All";
         public const string GetByName = FullBase + "/GetByName/{Name}";
         
         public const string Create = FullBase + "/Create";
@@ -85,6 +87,7 @@ public static class ApiRoutes
         public const string FullBase = Base + "/" + SubRoute;
         
         public const string Get = FullBase + "/{MealId}";
+        public const string GetAll = FullBase + "/All";
         public const string GetByName = FullBase + "/GetByName/{Name}";
         public const string GetLikeName = FullBase + "/SearchByName/{Name}";
         

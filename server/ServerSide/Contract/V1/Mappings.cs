@@ -25,7 +25,7 @@ public static class Mappings
         
         public static readonly Mapping GetByRestaurant = new(
             ApiRoutes.Admin.GetByRestaurant, 
-            typeof(Requests.Admin.GetByRestaurant),
+            typeof(Requests.Base.Entity.Get),
             typeof(Responses.Admin.GetByRestaurant),
             AuthorizationLevel.Admin
         );
@@ -87,7 +87,7 @@ public static class Mappings
         
         public static readonly Mapping Update = new(
             ApiRoutes.User.Update, 
-            typeof(Requests.User.Update),
+            typeof(Requests.Base.User.Update),
             typeof(Responses.Base.Entity.Update)
         );
         
@@ -99,7 +99,7 @@ public static class Mappings
 
         public static readonly Mapping GetOrders = new(
             ApiRoutes.User.GetOrders,
-            typeof(Requests.Base.User.Get),
+            typeof(Requests.Base.Entity.Get),
             typeof(Responses.User.GetOrders)
         );
 
@@ -119,13 +119,13 @@ public static class Mappings
         
         public static readonly Mapping GetAll = new(
             ApiRoutes.Category.GetAll, 
-            typeof(Requests.Base.Entity.GetAll),
+            typeof(Requests.Base.Entity.Get),
             typeof(Responses.Category.GetAll)
         );
         
         public static readonly Mapping GetByName = new(
             ApiRoutes.Category.GetByName, 
-            typeof(Requests.Category.GetByName),
+            typeof(Requests.Base.Entity.Get),
             typeof(Responses.Category.GetByName)
         );
         
@@ -169,20 +169,20 @@ public static class Mappings
         
         public static readonly Mapping GetAll = new(
             ApiRoutes.Meal.GetAll, 
-            typeof(Requests.Base.Entity.GetAll),
+            typeof(Requests.Base.Entity.Get),
             typeof(Responses.Meal.GetAll)
         );
         
         public static readonly Mapping GetByName = new(
             ApiRoutes.Meal.GetByName, 
-            typeof(Requests.Meal.GetByName),
-            typeof(Responses.Meal.GetByName)
+            typeof(Requests.Base.Entity.Get),
+            typeof(Responses.Meal.GetAll)
         );
         
         public static readonly Mapping GetLikeName = new(
             ApiRoutes.Meal.GetLikeName, 
-            typeof(Requests.Meal.GetByName),
-            typeof(Responses.Meal.GetByName)
+            typeof(Requests.Base.Entity.Get),
+            typeof(Responses.Meal.GetAll)
         );
         
         public static readonly Mapping Create = new(
@@ -234,13 +234,13 @@ public static class Mappings
         
         public static readonly Mapping GetAll = new(
             ApiRoutes.Restaurant.GetAll, 
-            typeof(Requests.Base.Entity.GetAll),
+            typeof(Requests.Base.Entity.Get),
             typeof(Responses.Restaurant.GetAll)
         );
         
         public static readonly Mapping GetByName = new(
             ApiRoutes.Restaurant.GetByName, 
-            typeof(Requests.Restaurant.GetByName),
+            typeof(Requests.Base.Entity.Get),
             typeof(Responses.Restaurant.GetByName)
         );
         
@@ -303,25 +303,18 @@ public static class Mappings
             typeof(Requests.Base.Entity.Get),
             typeof(Responses.Order.Get)
         );
-        
-        public static readonly Mapping GetAll = new(
-            ApiRoutes.Order.GetAll, 
-            typeof(Requests.Base.Entity.GetAll),
-            typeof(Responses.Order.GetAll), 
-            AuthorizationLevel.SuperUser
-        );
-        
+
         public static readonly Mapping GetByUser = new(
             ApiRoutes.Order.GetByUser, 
-            typeof(Requests.Order.GetByUser),
+            typeof(Requests.Base.Entity.Get),
             typeof(Responses.Order.GetByUser),
             AuthorizationLevel.Admin
         );
         
         public static readonly Mapping GetByDateTime = new(
             ApiRoutes.Order.GetByDateTime, 
-            typeof(Requests.Order.GetByDateTime),
-            typeof(Responses.Order.GetByDateTime),
+            typeof(Requests.Base.Entity.Get),
+            typeof(Responses.Order.GetByUser),
             AuthorizationLevel.SuperUser
         );
         
@@ -365,7 +358,7 @@ public static class Mappings
 
         public static IEnumerable<Mapping> Mappings { get; } = new[]
         {
-            Get, GetAll, GetByUser, GetByDateTime, Create, Update, Delete, GetMeals, GetUser, GetRestaurant
+            Get, GetByUser, GetByDateTime, Create, Update, Delete, GetMeals, GetUser, GetRestaurant
         };
     }
 }

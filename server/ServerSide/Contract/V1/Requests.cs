@@ -9,28 +9,40 @@ public static class Requests
     {
         public static class Entity
         {
-            public abstract record Get;
-            public abstract record Create;
-            public abstract record Update(DateTime? CreationDate = null);
-            public abstract record Delete;
+            public abstract record Get(string Token)
+            {
+                protected Get() : this(string.Empty) { }
+            }
+            public abstract record Create : Get;
+            public abstract record Update(DateTime? CreationDate = null) : Get;
+            public abstract record Delete : Get;
         }
         
         public static class User
         {
-            public abstract record Create(string Login, string Password, string Salt, 
-                string? Name = null) : Entity.Create;
+            public abstract record Create(string Login, string Password, string Salt,
+                string? Name = null) : Entity.Create
+            {
+                protected Create() : 
+                    this(string.Empty, string.Empty, string.Empty, null)
+                { }
+            }
             public abstract record Update(string? Login = null, string? Name = null, string? Salt = null, 
                 string? Password = null) : Entity.Update;
-
-            public abstract record Authorize(string? Token, DateTime TokenCreationDate);
+            public abstract record Authorize : Entity.Get;
         }
 
         public static class CanteenEntity
         {
-            public abstract record Create(string Name, string? Description = null, 
-                string? PhotoLocation = null) : Entity.Create;
+            public abstract record Create(string Name, string? Description = null,
+                string? PhotoLocation = null) : Entity.Create
+            {
+                protected Create() :
+                    this(string.Empty, null, null)
+                { }
+            }
             public abstract record Update(string? Name = null, string? Description = null, 
-                string? PhotoLocation = null) : Entity.Create;
+                string? PhotoLocation = null) : Entity.Update;
         }
     }
     
@@ -38,92 +50,41 @@ public static class Requests
 
     public static class Admin
     {
-        public record Get;
-        public record GetByRestaurant;
-        
-        public record Create : Base.Create;
-        public record Update(string? Login, string? Password, string? Name);
-        public record Delete;
+        public record Create(string RestaurantId) : Base.User.Create;
+        public record Update(string? RestaurantId = null) : Base.User.Update;
     }
     
-    public static class User
-    {
-        public record Get;
-
-        public record Create : BaseUser.Create;
-        public record Update : BaseUser.Update;
-        public record Delete;
-
-        public record GetOrders;
-    }
+    public static class User { }
 
     public static class Category
     {
-        public record Get;
-        public record GetByName;
-        
-        public record Create(string Name, string? Description, string? PhotoLocation, 
-            IEnumerable<string> MealIds) : Base.Create;
-        public record Update(string? Name, string? Description, string? PhotoLocation, 
-            IEnumerable<string> MealIds);
-        public record Delete;
-        
-        public record GetMeals;
-        public record GetRestaurants;
+        public record Create(IEnumerable<string> MealIds) : Base.CanteenEntity.Create;
+        public record Update(IEnumerable<string>? MealIds = null) : Base.CanteenEntity.Update;
     }
     
     public static class Restaurant
     {
-        public record Get;
-        public record GetByName;
-        
         // TODO: PhotoLocation => Photo
-        public record Create(string Name, string? Description, string? PhotoLocation, 
-            IEnumerable<string> AdminIds, IEnumerable<string> MealIds) : Base.Create;
+        public record Create(IEnumerable<string> AdminIds, IEnumerable<string> MealIds) : Base.CanteenEntity.Create;
         // TODO: PhotoLocation => Photo
-        public record Update(string? Name, string? Description, string? PhotoLocation, 
-            IEnumerable<string> AdminIds, IEnumerable<string> MealIds);
-        public record Delete;
-        
-        public record GetAdmins;
-        public record GetMeals;
-        public record GetOrders;
+        public record Update(IEnumerable<string>? AdminIds = null, IEnumerable<string>? MealIds = null) : 
+            Base.CanteenEntity.Update;
     }
 
     public static class Meal
     {
-        public record Get;
-        public record GetByName;
-        public record GetLikeName;
-        
         // TODO: PhotoLocation => Photo
-        public record Create(string Name, string? Ingredients, string? PhotoLocation, 
-            string CategoryId, string RestaurantId) : Base.Create;
+        public record Create(string? Ingredients, string CategoryId, string RestaurantId) : Base.CanteenEntity.Create;
         // TODO: PhotoLocation => Photo
-        public record Update(string? Name, string? Ingredients, string? PhotoLocation, 
-            string? CategoryId, string? RestaurantId);
-        public record Delete;
-        
-        // TODO: do we need this?
-        public record GetCategory;
-        // TODO: do we need this?
-        public record GetRestaurant;
+        public record Update(string? Ingredients = null, string? CategoryId = null, string? RestaurantId = null) :
+                Base.CanteenEntity.Update;
     }
 
-    public static class Orders
+    public static class Order
     {
-        public record struct OrderItem(string MealId, ushort Count);
-        
-        public record Get;
-        public record GetByDateTime;
-        public record GetByUser;
-        
-        public record Create(IEnumerable<OrderItem> OrderItems, string RestaurantId, string UserId) : Base.Create;
-        public record Update(IEnumerable<OrderItem>? OrderItems, string? RestaurantId, 
-            DateTime? FulfillmentDate);
-        
-        public record GetMeals;
-        public record GetRestaurant;
-        public record GetUser;
+        public record struct Item(string MealId, string UserId, ushort Count);
+        public record Create(IEnumerable<Item> OrderItems, string RestaurantId, string UserId) : Base.Entity.Create;
+        public record Update(IEnumerable<Item>? OrderItems = null, string? RestaurantId = null, 
+            DateTime? FulfillmentDate = null) : Base.Entity.Update;
     }
 } 

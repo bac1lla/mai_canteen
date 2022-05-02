@@ -63,6 +63,7 @@ app.UseStaticFiles();
 app.UseRouting();
 
 // app.UseAuthorization();
+// app.UseAuthorization();
 
 // TODO
 // app.MapControllerRoute("GeneralApi", "{controller=GeneralApi}/general");

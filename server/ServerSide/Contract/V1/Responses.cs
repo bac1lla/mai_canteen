@@ -176,7 +176,7 @@ public static class Responses
         }
         
         // TODO: decide what info to expose about admins
-        public class PartialGet : Base.User.Get
+        public class PartialGet : Base.User.PartialGet
         {
             public string RestaurantId { init; get; }
             public PartialGet(Model.Admin admin) : base(admin) => RestaurantId = admin.Restaurant.Id;
@@ -207,6 +207,13 @@ public static class Responses
             public IEnumerable<string> MealIds { init; get; }
             public PartialGet(Model.Category category) : base(category) => 
                 MealIds = Model.BaseEntity.IdsOnly(category.Meals);
+        }
+        
+        public record GetAll(IEnumerable<PartialGet> Categories)
+        {
+            public GetAll(IEnumerable<Model.Category> categories) :
+                this(categories.Select(c => c.PartialGet()))
+            { }
         }
         // TODO: PhotoLocation => Photo
         public record GetByName(IEnumerable<PartialGet> Categories)
@@ -240,7 +247,7 @@ public static class Responses
             }
         }
         // TODO: PhotoLocation => Photo
-        public class PartialGet : Responses.Base.CanteenEntity.Get
+        public class PartialGet : Responses.Base.CanteenEntity.PartialGet
         {
             public IEnumerable<string> AdminIds { init; get; }
             public IEnumerable<string> MealIds { init; get; }
@@ -251,7 +258,13 @@ public static class Responses
                 MealIds = Model.BaseEntity.IdsOnly(restaurant.Meals);
             }
         }
-        
+
+        public record GetAll(IEnumerable<PartialGet> Restaurants)
+        {
+            public GetAll(IEnumerable<Model.Restaurant> restaurants) :
+                this(restaurants.Select(r => r.PartialGet()))
+            { }
+        }
         // TODO: PhotoLocation => Photo
         public record GetByName(IEnumerable<Get> Restaurants)
         {
@@ -259,15 +272,25 @@ public static class Responses
                 : this(restaurants.Select(r => r.Get()))
             { }
         }
-        
-        // public class GetAdmins(IEnumerable<Admin.Get> Admins);
+
+        public record GetAdmins(IEnumerable<Admin.Get> Admins)
+        {
+            public GetAdmins(IEnumerable<Model.Admin> admins) :
+                this(admins.Select(a => a.Get()))
+            { }
+        }
         public record GetMeals(IEnumerable<Meal.Get> Meals)
         {
             public GetMeals(IEnumerable<Model.Meal> meals) :
                 this(meals.Select(m => m.Get()))
             { }
         }
-        // public class GetOrders(IEnumerable<Order.Get> Orders);
+        public record GetOrders(IEnumerable<Order.Get> Orders)
+        {
+            public GetOrders(IEnumerable<Model.Order> orders) :
+                this(orders.Select(o => o.Get()))
+            { }
+        }
     }
 
     public static class Meal
@@ -287,7 +310,7 @@ public static class Responses
             }
         }
         // TODO: PhotoLocation => Photo
-        public class PartialGet : Base.CanteenEntity.Get
+        public class PartialGet : Base.CanteenEntity.PartialGet
         {
             public string Ingredients { init; get; }
             public string CategoryId { init; get; }
@@ -300,14 +323,26 @@ public static class Responses
                 RestaurantId = meal.Restaurant.Id;
             }
         }
-        
-        // TODO: PhotoLocation => Photo
-        // public class GetByName(IEnumerable<Get> Meals);
-        // // TODO: PhotoLocation => Photo
-        // public class GetLikeName(IEnumerable<Get> Meals);
-        
-        // public class GetCategory(Category.Get Category);
-        // public class GetRestaurant(Restaurant.Get Restaurants);
+
+        public record GetAll(IEnumerable<Get> Meals)
+        {
+            public GetAll(IEnumerable<Model.Meal> meals) :
+                this(meals.Select(m => m.Get()))
+            { }
+        }
+
+        public record GetCategory(Category.Get Category)
+        {
+            public GetCategory(Model.Category category) :
+                this(category.Get())
+            { }
+        }
+        public record GetRestaurant(Restaurant.Get Restaurants)
+        {
+            public GetRestaurant(Model.Restaurant restaurant) :
+                this(restaurant.Get())
+            { }
+        }
     }
 
     public static class Order
@@ -334,7 +369,6 @@ public static class Responses
                 EndDate = order.EndDate;
             }
         }
-        
         public class PartialGet : Base.Entity.Get
         {
             public IEnumerable<Item> Items { init; get; }
@@ -350,10 +384,32 @@ public static class Responses
                 EndDate = order.EndDate;
             }
         }
+
+        public record GetByUser(IEnumerable<PartialGet> Orders)
+        {
+            public GetByUser(IEnumerable<Model.Order> orders) :
+                this(orders.Select(o => o.PartialGet()))
+            { }
+        }
         
-        // public class GetByDateTime(IEnumerable<Get> Orders);
-        //
-        // public class GetMeals(IEnumerable<Meal.Get> Meals);
-        // public class GetRestaurant(Restaurant.Get Restaurant);
+        public record GetMeals(IEnumerable<Meal.Get> Meals)
+        {
+            public GetMeals(IEnumerable<Model.Meal> meals) :
+                this(meals.Select(m => m.Get()))
+            { }
+        }
+        
+        public record GetUser(User.Get User)
+        {
+            public GetUser(Model.User user) : 
+                this(user.Get())
+            { }
+        }
+        public record GetRestaurant(Restaurant.Get Restaurant)
+        {
+            public GetRestaurant(Model.Restaurant restaurant) : 
+                this(restaurant.Get())
+            { }
+        }
     }
 }
