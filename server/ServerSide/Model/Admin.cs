@@ -31,6 +31,6 @@ public class Admin : BaseUser, IEntity<Responses.Admin.Get, Responses.Admin.Part
     //     return this;
     // }
     
-    public Responses.Admin.Get Get() => new(this);
-    public Responses.Admin.PartialGet PartialGet() => new(this);
+    public new Responses.Admin.Get Get() => new(this);
+    public new Responses.Admin.PartialGet PartialGet() => new(this);
 }

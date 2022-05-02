@@ -38,6 +38,10 @@ public abstract class BaseUser : BaseEntity
 
     public bool IsAuthorized => Token.IsValid;
 
+    protected BaseUser() :
+        this(string.Empty, string.Empty, string.Empty, null)
+    { }
+    
     protected BaseUser(string login, string password, string salt, string? name)
     {
         Login = login;
