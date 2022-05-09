@@ -1,18 +1,23 @@
 import {Link, useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
 import {dataCafes, dataMenu} from "../../api/getData";
-import {logDOM} from "@testing-library/react";
+import Modal from "../Modal/Modal";
 
 
-function showMenu(dataMenu) {
+
+
+
+function showMenu(dataMenu, setModal) {
+
     return dataMenu.map(meal => {
         return (
-            <div key={meal.id} style={styles.mealCard}>
+            <button key={meal.id} style={styles.mealCard} onClick={() => setModal({visible: true, data: meal})}>
                 <div style={{...styles.mealImg, backgroundImage: `url(${meal.img})`}} />
                 <div style={styles.mealInfo}>
                     <span style={styles.cafeTitle}>{meal.name}</span>
+                    <strong style={styles.mealPrice}>{meal.price}&#8381;</strong>
                 </div>
-            </div>
+            </button>
         )
     })
 }
@@ -33,16 +38,29 @@ export default function Cafe() {
 
 
 
+    const [isModal, setModal] = useState({visible: false, data: null})
+    const onClose = () => setModal({visible: false, data: isModal.data})
+
+
+
     return (
         <div style={styles.container}>
-            <Link to={"/"}>Все рестораны</Link>
+            <Link to={"/"} style={styles.goBack}>
+                <img src={require("./../../img/left.png")} alt="go back" style={styles.icon}/>
+                Все рестораны
+            </Link>
             <div style={styles.cafeDescription}>
                 <h2 style={styles.pageTitle}>{cafe.name}</h2>
                 <div style={{...styles.cafeImg, backgroundImage: `url(${cafe.img})`}}/>
             </div>
             <div style={styles.menuList}>
-                {showMenu(dataMenu[cafeId])}
+                {showMenu(dataMenu[cafeId], setModal)}
             </div>
+            <Modal
+                visible={isModal.visible}
+                data={isModal.data}
+                onClose={onClose}
+            />
         </div>
     )
 }
@@ -50,16 +68,16 @@ export default function Cafe() {
 const styles = {
     container: {
         margin: "0 50px 0 50px",
-        // display: 'flex',
-        // position: 'relative',
-        // width: '100%',
-        marginTop: 0,
-        height: 72,
         background: '#fff',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        padding: '12px 16px',
         boxSizing: 'border-box',
+    },
+    goBack: {
+        marginTop: 20,
+        textAlign: "left",
+        display: "flex",
+        textDecoration: "none",
+        color: "#000"
+        // border: "1px solid black"
     },
     pageTitle: {
         fontSize: 46,
@@ -77,6 +95,8 @@ const styles = {
         justifyContent: 'center',
     },
     mealCard: {
+        border: "none",
+        background: "#fff",
         margin: 20,
         boxSizing: 'border-box',
         borderRadius: 16,
@@ -86,15 +106,15 @@ const styles = {
     cafeDescription: {
         display: "flex",
         justifyContent: "space-between",
+        alignItems: "center",
     },
     cafeImg: {
-        height: 164,
-        width: 164,
-        // width: '100%',
+        height: 100,
+        width: 100,
         backgroundPosition: 'center',
         backgroundSize: 'cover',
         backgroundRepeat: 'no-repeat',
-        borderRadius: "16px 16px 0px 0px",
+        borderRadius: 16,
     },
     mealImg: {
         height: 164,
@@ -108,6 +128,17 @@ const styles = {
     mealInfo: {
         display: "flex",
         alignContent: "left",
-        margin: 40,
-    }
+        justifyContent: "space-between",
+        margin: 20,
+    },
+    mealPrice: {
+        // fontWeight: 10000,
+        fontSize: 22,
+        fontWeight: 500,
+    },
+    icon: {
+        width: 24,
+        height: 24,
+        color: "#fff",
+    },
 }

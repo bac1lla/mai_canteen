@@ -30,16 +30,15 @@ export default function Home() {
 const styles = {
     container: {
         margin: "0 50px 0 50px",
-        // display: 'flex',
-        // position: 'relative',
-        // width: '100%',
+        background: '#fff',
+        boxSizing: 'border-box',
+    },
+    header: {
         marginTop: 0,
         height: 72,
-        background: '#fff',
         justifyContent: 'space-between',
         alignItems: 'center',
         padding: '12px 16px',
-        boxSizing: 'border-box',
     },
     pageTitle: {
         fontSize: 46,
