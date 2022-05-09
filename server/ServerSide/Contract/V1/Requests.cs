@@ -1,70 +1,90 @@
 namespace ServerSide.Contract.V1;
 
+/// <summary>
+/// Values-classes in request body for each type in domain
+/// </summary>
 public static class Requests
 {
-    public static class Users
+    public static class Base
     {
-        public record Get(string Id);
-        // public record GetAll;
-        public record Create(string Login, string Password, string? Name);
-        public record Update(string Id, string? Name, string? Password);
-        public record GetOrders(string Id);
-    }
+        public static class Entity
+        {
+            public abstract record Get(string Token)
+            {
+                protected Get() : this(string.Empty) { }
+            }
+            public abstract record Create : Get;
+            public abstract record Update(DateTime? CreationDate = null) : Get;
+            public abstract record Delete : Get;
+        }
+        
+        public static class User
+        {
+            public abstract record Create(string Login, string Password, string Salt,
+                string? Name = null) : Entity.Create
+            {
+                protected Create() : 
+                    this(string.Empty, string.Empty, string.Empty, null)
+                { }
+            }
+            public abstract record Update(string? Login = null, string? Name = null, string? Salt = null, 
+                string? Password = null) : Entity.Update;
+            public abstract record Authorize : Entity.Get;
+        }
 
-    public static class Admins
-    {
-        public record Get(string Id);
-        public record Create(string Login, string Password, string Name);
-        public record Update(string Id, string? Password, string? Name);
-    }
-
-    public static class SuperUser { }
-
-    public static class Categories
-    {
-        public record Get(string Id);
-        public record GetByName(string Name);
-        public record Create(string Name, string? Description, string RestaurantId);
-        public record Update(string Id, string? Name, string? Description);
-        public record GetMeals(string Id);
-        public record GetRestaurants(string Id);
+        public static class CanteenEntity
+        {
+            public abstract record Create(string Name, string? Description = null,
+                string? PhotoLocation = null) : Entity.Create
+            {
+                protected Create() :
+                    this(string.Empty, null, null)
+                { }
+            }
+            public abstract record Update(string? Name = null, string? Description = null, 
+                string? PhotoLocation = null) : Entity.Update;
+        }
     }
     
-    public static class Restaurants
+    public static class SuperUser { }
+
+    public static class Admin
     {
-        public record Get(string Id);
-        public record GetByName(string Name);
+        public record Create(string RestaurantId) : Base.User.Create;
+        public record Update(string? RestaurantId = null) : Base.User.Update;
+    }
+    
+    public static class User { }
+
+    public static class Category
+    {
+        public record Create(IEnumerable<string> MealIds) : Base.CanteenEntity.Create;
+        public record Update(IEnumerable<string>? MealIds = null) : Base.CanteenEntity.Update;
+    }
+    
+    public static class Restaurant
+    {
         // TODO: PhotoLocation => Photo
-        public record Create(string Name, string? Description, string? PhotoLocation);
+        public record Create(IEnumerable<string> AdminIds, IEnumerable<string> MealIds) : Base.CanteenEntity.Create;
         // TODO: PhotoLocation => Photo
-        public record Update(string Id, string? Name, string? Description, string? PhotoLocation);
-        public record GetAdmins(string Id);
-        public record GetMeals(string Id);
-        public record GetOrders(string Id);
+        public record Update(IEnumerable<string>? AdminIds = null, IEnumerable<string>? MealIds = null) : 
+            Base.CanteenEntity.Update;
     }
 
-    public static class Meals
+    public static class Meal
     {
-        public record Get(string Id);
-        public record GetByName(string Name);
-        public record GetLikeName(string Name);
         // TODO: PhotoLocation => Photo
-        public record Create(string Name, string? Ingredients, string? PhotoLocation, 
-            string CategoryId, string RestaurantId);
+        public record Create(string? Ingredients, string CategoryId, string RestaurantId) : Base.CanteenEntity.Create;
         // TODO: PhotoLocation => Photo
-        public record Update(string Id, string? Name, string? Ingredients,
-            string? PhotoLocation, string CategoryId);
-        public record GetCategory(string Id);
-        public record GetRestaurant(string Id);
+        public record Update(string? Ingredients = null, string? CategoryId = null, string? RestaurantId = null) :
+                Base.CanteenEntity.Update;
     }
 
-    public static class Orders
+    public static class Order
     {
-        public record Get(string Id);
-        public record GetByDateTime(DateTime DateTime);
-        public record Create(DateTime? CreationDate, List<string> MealIds, string? RestaurantId);
-        public record Update(string Id, DateTime? CreationDate, List<string>? Meals, string? RestaurantId);
-        public record GetMeals(string Id);
-        public record GetRestaurant(string Id);
+        public record struct Item(string MealId, string UserId, ushort Count);
+        public record Create(IEnumerable<Item> OrderItems, string RestaurantId, string UserId) : Base.Entity.Create;
+        public record Update(IEnumerable<Item>? OrderItems = null, string? RestaurantId = null, 
+            DateTime? FulfillmentDate = null) : Base.Entity.Update;
     }
 } 
