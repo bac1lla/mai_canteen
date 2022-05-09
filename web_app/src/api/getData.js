@@ -43,12 +43,14 @@ const dataMenu = {
             name: "Круассан",
             ingredients: "Мука, вода, сахар",
             img: "https://avatars.mds.yandex.net/get-zen_doc/162989/pub_5bdbf02a4d228700ac44b2c3_5bdbf5dba0961500ac224198/scale_1200",
+            idCafe: 1,
         },
         {
             id: "2",
             name: "Автомобиль",
             ingredients: "Яйцо, село, деревня",
             price: 200,
+            idCafe: 1,
             img: "http://pictures.specsan.com/photo/aston-martin/aston-martin-virage-coupe-1-generation-6-0-v12-at-497-hp-basic-1.jpg",
         },
         {
@@ -57,6 +59,7 @@ const dataMenu = {
             ingredients: "Какие-то продукты",
             img: "https://droidnews.ru/img/2020/december/v-seti-poyavilsya-rolik-gde-leonid-yakubovich-stal-geroem-mario-na-avtorov-uzhe-grozyatsya-podat-v-sud_25-12-20-19-23-31.jpg",
             price: 200,
+            idCafe: 1,
         },
         {
             id: "4",
@@ -64,6 +67,7 @@ const dataMenu = {
             ingredients: "Где это мы?",
             img: "https://permv.ru/wp-content/uploads/2016/07/navoz-.jpg",
             price: 200,
+            idCafe: 1,
         },
         {
             id: "5",
@@ -71,6 +75,7 @@ const dataMenu = {
             ingredients: "Очередная еда",
             img: "https://cs.pikabu.ru/post_img/big/2013/05/27/7/1369649424_1725709471.jpg",
             price: 200,
+            idCafe: 1,
         },
         {
             id: "6",
@@ -78,6 +83,7 @@ const dataMenu = {
             ingredients: "Кто это сказал?",
             img: "https://about-tea.ru/wp-content/uploads/5/9/7/5972b2d47bd0de8b41ed1ce1624f1453.jpeg",
             price: 200,
+            idCafe: 1,
         },
         {
             id: "7",
@@ -85,6 +91,7 @@ const dataMenu = {
             ingredients: "Кстати, 2 + 2 = 4, а 4 + 3 = 7",
             img: "https://krd.romatti.ru/upload/iblock/ffa/72i30tqg7yrlhk7igranw804e6h9md1u.jpg",
             price: 200,
+            idCafe: 1,
         },
         {
             id: "8",
@@ -92,6 +99,7 @@ const dataMenu = {
             ingredients: "ыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыы",
             img: "https://cs7.pikabu.ru/post_img/2019/04/28/1/og_og_155640453623640938.jpg",
             price: 200,
+            idCafe: 1,
         },
     ],
     "2": [
@@ -101,20 +109,23 @@ const dataMenu = {
             ingredients: "Мука, вода, сахар",
             img: "https://avatars.mds.yandex.net/get-zen_doc/162989/pub_5bdbf02a4d228700ac44b2c3_5bdbf5dba0961500ac224198/scale_1200",
             price: 200,
+            idCafe: 2,
         },
         {
             id: "2",
-            name: "Жижа",
+            name: "Ibif",
             ingredients: "Яйцо, село, деревня",
             img: "http://pictures.specsan.com/photo/aston-martin/aston-martin-virage-coupe-1-generation-6-0-v12-at-497-hp-basic-1.jpg",
             price: 200,
+            idCafe: 2,
         },
         {
             id: "3",
-            name: "Якубович",
+            name: "Шиша",
             ingredients: "Какие-то продукты",
             img: "https://droidnews.ru/img/2020/december/v-seti-poyavilsya-rolik-gde-leonid-yakubovich-stal-geroem-mario-na-avtorov-uzhe-grozyatsya-podat-v-sud_25-12-20-19-23-31.jpg",
             price: 200,
+            idCafe: 2,
         },
         {
             id: "4",
@@ -122,6 +133,7 @@ const dataMenu = {
             ingredients: "Где это мы?",
             img: "https://permv.ru/wp-content/uploads/2016/07/navoz-.jpg",
             price: 200,
+            idCafe: 2,
         },
         {
             id: "5",
@@ -129,6 +141,7 @@ const dataMenu = {
             ingredients: "Очередная еда",
             img: "https://cs.pikabu.ru/post_img/big/2013/05/27/7/1369649424_1725709471.jpg",
             price: 200,
+            idCafe: 2,
         },
         {
             id: "6",
@@ -136,6 +149,7 @@ const dataMenu = {
             ingredients: "Кто это сказал?",
             img: "https://about-tea.ru/wp-content/uploads/5/9/7/5972b2d47bd0de8b41ed1ce1624f1453.jpeg",
             price: 200,
+            idCafe: 2,
         },
         {
             id: "7",
@@ -143,6 +157,7 @@ const dataMenu = {
             ingredients: "Кстати, 2 + 2 = 4, а 4 + 3 = 7",
             img: "https://krd.romatti.ru/upload/iblock/ffa/72i30tqg7yrlhk7igranw804e6h9md1u.jpg",
             price: 200,
+            idCafe: 2,
         },
         {
             id: "8",
@@ -150,6 +165,7 @@ const dataMenu = {
             ingredients: "ыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыы",
             img: "https://cs7.pikabu.ru/post_img/2019/04/28/1/og_og_155640453623640938.jpg",
             price: 200,
+            idCafe: 2,
         },
     ],
     "3": [        {
@@ -158,6 +174,7 @@ const dataMenu = {
             ingredients: "Мука, вода, сахар",
             img: "https://avatars.mds.yandex.net/get-zen_doc/162989/pub_5bdbf02a4d228700ac44b2c3_5bdbf5dba0961500ac224198/scale_1200",
         price: 200,
+        idCafe: 3,
         },
         {
             id: "2",
@@ -165,6 +182,7 @@ const dataMenu = {
             ingredients: "Яйцо, село, деревня",
             img: "http://pictures.specsan.com/photo/aston-martin/aston-martin-virage-coupe-1-generation-6-0-v12-at-497-hp-basic-1.jpg",
             price: 200,
+            idCafe: 3,
         },
         {
             id: "3",
@@ -172,6 +190,7 @@ const dataMenu = {
             ingredients: "Какие-то продукты",
             img: "https://droidnews.ru/img/2020/december/v-seti-poyavilsya-rolik-gde-leonid-yakubovich-stal-geroem-mario-na-avtorov-uzhe-grozyatsya-podat-v-sud_25-12-20-19-23-31.jpg",
             price: 200,
+            idCafe: 3,
         },
         {
             id: "4",
@@ -179,6 +198,7 @@ const dataMenu = {
             ingredients: "Где это мы?",
             img: "https://permv.ru/wp-content/uploads/2016/07/navoz-.jpg",
             price: 200,
+            idCafe: 3,
         },
         {
             id: "5",
@@ -186,6 +206,7 @@ const dataMenu = {
             ingredients: "Очередная еда",
             img: "https://cs.pikabu.ru/post_img/big/2013/05/27/7/1369649424_1725709471.jpg",
             price: 200,
+            idCafe: 3,
         },
         {
             id: "6",
@@ -193,6 +214,7 @@ const dataMenu = {
             ingredients: "Кто это сказал?",
             img: "https://about-tea.ru/wp-content/uploads/5/9/7/5972b2d47bd0de8b41ed1ce1624f1453.jpeg",
             price: 200,
+            idCafe: 3,
         },
         {
             id: "7",
@@ -200,6 +222,7 @@ const dataMenu = {
             ingredients: "Кстати, 2 + 2 = 4, а 4 + 3 = 7",
             img: "https://krd.romatti.ru/upload/iblock/ffa/72i30tqg7yrlhk7igranw804e6h9md1u.jpg",
             price: 200,
+            idCafe: 3,
         },
         {
             id: "8",
@@ -207,6 +230,7 @@ const dataMenu = {
             ingredients: "ыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыы",
             img: "https://cs7.pikabu.ru/post_img/2019/04/28/1/og_og_155640453623640938.jpg",
             price: 200,
+            idCafe: 3,
         },],
     "4": [        {
             id: "1",
@@ -214,6 +238,7 @@ const dataMenu = {
             ingredients: "Мука, вода, сахар",
             img: "https://avatars.mds.yandex.net/get-zen_doc/162989/pub_5bdbf02a4d228700ac44b2c3_5bdbf5dba0961500ac224198/scale_1200",
         price: 200,
+        idCafe: 4,
         },
         {
             id: "2",
@@ -221,6 +246,7 @@ const dataMenu = {
             ingredients: "Яйцо, село, деревня",
             img: "http://pictures.specsan.com/photo/aston-martin/aston-martin-virage-coupe-1-generation-6-0-v12-at-497-hp-basic-1.jpg",
             price: 200,
+            idCafe: 4,
         },
         {
             id: "3",
@@ -228,6 +254,7 @@ const dataMenu = {
             ingredients: "Какие-то продукты",
             img: "https://droidnews.ru/img/2020/december/v-seti-poyavilsya-rolik-gde-leonid-yakubovich-stal-geroem-mario-na-avtorov-uzhe-grozyatsya-podat-v-sud_25-12-20-19-23-31.jpg",
             price: 200,
+            idCafe: 4,
         },
         {
             id: "4",
@@ -235,6 +262,7 @@ const dataMenu = {
             ingredients: "Где это мы?",
             img: "https://permv.ru/wp-content/uploads/2016/07/navoz-.jpg",
             price: 200,
+            idCafe: 4,
         },
         {
             id: "5",
@@ -242,6 +270,7 @@ const dataMenu = {
             ingredients: "Очередная еда",
             img: "https://cs.pikabu.ru/post_img/big/2013/05/27/7/1369649424_1725709471.jpg",
             price: 200,
+            idCafe: 4,
         },
         {
             id: "6",
@@ -249,6 +278,7 @@ const dataMenu = {
             ingredients: "Кто это сказал?",
             img: "https://about-tea.ru/wp-content/uploads/5/9/7/5972b2d47bd0de8b41ed1ce1624f1453.jpeg",
             price: 200,
+            idCafe: 4,
         },
         {
             id: "7",
@@ -256,6 +286,7 @@ const dataMenu = {
             ingredients: "Кстати, 2 + 2 = 4, а 4 + 3 = 7",
             img: "https://krd.romatti.ru/upload/iblock/ffa/72i30tqg7yrlhk7igranw804e6h9md1u.jpg",
             price: 200,
+            idCafe: 4,
         },
         {
             id: "8",
@@ -263,6 +294,7 @@ const dataMenu = {
             ingredients: "ыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыы",
             img: "https://cs7.pikabu.ru/post_img/2019/04/28/1/og_og_155640453623640938.jpg",
             price: 200,
+            idCafe: 4,
         },],
     "5": [        {
             id: "1",
@@ -270,6 +302,7 @@ const dataMenu = {
             ingredients: "Мука, вода, сахар",
             img: "https://avatars.mds.yandex.net/get-zen_doc/162989/pub_5bdbf02a4d228700ac44b2c3_5bdbf5dba0961500ac224198/scale_1200",
         price: 200,
+        idCafe: 5,
         },
         {
             id: "2",
@@ -277,6 +310,7 @@ const dataMenu = {
             ingredients: "Яйцо, село, деревня",
             img: "http://pictures.specsan.com/photo/aston-martin/aston-martin-virage-coupe-1-generation-6-0-v12-at-497-hp-basic-1.jpg",
             price: 200,
+            idCafe: 5,
         },
         {
             id: "3",
@@ -284,6 +318,7 @@ const dataMenu = {
             ingredients: "Какие-то продукты",
             img: "https://droidnews.ru/img/2020/december/v-seti-poyavilsya-rolik-gde-leonid-yakubovich-stal-geroem-mario-na-avtorov-uzhe-grozyatsya-podat-v-sud_25-12-20-19-23-31.jpg",
             price: 200,
+            idCafe: 5,
         },
         {
             id: "4",
@@ -291,6 +326,7 @@ const dataMenu = {
             ingredients: "Где это мы?",
             img: "https://permv.ru/wp-content/uploads/2016/07/navoz-.jpg",
             price: 200,
+            idCafe: 5,
         },
         {
             id: "5",
@@ -298,6 +334,7 @@ const dataMenu = {
             ingredients: "Очередная еда",
             img: "https://cs.pikabu.ru/post_img/big/2013/05/27/7/1369649424_1725709471.jpg",
             price: 200,
+            idCafe: 5,
         },
         {
             id: "6",
@@ -305,6 +342,7 @@ const dataMenu = {
             ingredients: "Кто это сказал?",
             img: "https://about-tea.ru/wp-content/uploads/5/9/7/5972b2d47bd0de8b41ed1ce1624f1453.jpeg",
             price: 200,
+            idCafe: 5,
         },
         {
             id: "7",
@@ -312,6 +350,7 @@ const dataMenu = {
             ingredients: "Кстати, 2 + 2 = 4, а 4 + 3 = 7",
             img: "https://krd.romatti.ru/upload/iblock/ffa/72i30tqg7yrlhk7igranw804e6h9md1u.jpg",
             price: 200,
+            idCafe: 5,
         },
         {
             id: "8",
@@ -319,6 +358,7 @@ const dataMenu = {
             ingredients: "ыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыы",
             img: "https://cs7.pikabu.ru/post_img/2019/04/28/1/og_og_155640453623640938.jpg",
             price: 200,
+            idCafe: 5,
         },],
     "6": [        {
             id: "1",
@@ -326,6 +366,7 @@ const dataMenu = {
             ingredients: "Мука, вода, сахар",
             img: "https://avatars.mds.yandex.net/get-zen_doc/162989/pub_5bdbf02a4d228700ac44b2c3_5bdbf5dba0961500ac224198/scale_1200",
         price: 200,
+        idCafe: 6,
         },
         {
             id: "2",
@@ -333,6 +374,7 @@ const dataMenu = {
             ingredients: "Яйцо, село, деревня",
             img: "http://pictures.specsan.com/photo/aston-martin/aston-martin-virage-coupe-1-generation-6-0-v12-at-497-hp-basic-1.jpg",
             price: 200,
+            idCafe: 6,
         },
         {
             id: "3",
@@ -340,6 +382,7 @@ const dataMenu = {
             ingredients: "Какие-то продукты",
             img: "https://droidnews.ru/img/2020/december/v-seti-poyavilsya-rolik-gde-leonid-yakubovich-stal-geroem-mario-na-avtorov-uzhe-grozyatsya-podat-v-sud_25-12-20-19-23-31.jpg",
             price: 200,
+            idCafe: 6,
         },
         {
             id: "4",
@@ -347,6 +390,7 @@ const dataMenu = {
             ingredients: "Где это мы?",
             img: "https://permv.ru/wp-content/uploads/2016/07/navoz-.jpg",
             price: 200,
+            idCafe: 6,
         },
         {
             id: "5",
@@ -354,6 +398,7 @@ const dataMenu = {
             ingredients: "Очередная еда",
             img: "https://cs.pikabu.ru/post_img/big/2013/05/27/7/1369649424_1725709471.jpg",
             price: 200,
+            idCafe: 6,
         },
         {
             id: "6",
@@ -361,6 +406,7 @@ const dataMenu = {
             ingredients: "Кто это сказал?",
             img: "https://about-tea.ru/wp-content/uploads/5/9/7/5972b2d47bd0de8b41ed1ce1624f1453.jpeg",
             price: 200,
+            idCafe: 6,
         },
         {
             id: "7",
@@ -368,6 +414,7 @@ const dataMenu = {
             ingredients: "Кстати, 2 + 2 = 4, а 4 + 3 = 7",
             img: "https://krd.romatti.ru/upload/iblock/ffa/72i30tqg7yrlhk7igranw804e6h9md1u.jpg",
             price: 200,
+            idCafe: 6,
         },
         {
             id: "8",
@@ -375,6 +422,7 @@ const dataMenu = {
             ingredients: "ыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыы",
             img: "https://cs7.pikabu.ru/post_img/2019/04/28/1/og_og_155640453623640938.jpg",
             price: 200,
+            idCafe: 6,
         },],
     "7": [        {
             id: "1",
@@ -382,6 +430,7 @@ const dataMenu = {
             ingredients: "Мука, вода, сахар",
             img: "https://avatars.mds.yandex.net/get-zen_doc/162989/pub_5bdbf02a4d228700ac44b2c3_5bdbf5dba0961500ac224198/scale_1200",
         price: 200,
+        idCafe: 7,
         },
         {
             id: "2",
@@ -389,6 +438,7 @@ const dataMenu = {
             ingredients: "Яйцо, село, деревня",
             img: "http://pictures.specsan.com/photo/aston-martin/aston-martin-virage-coupe-1-generation-6-0-v12-at-497-hp-basic-1.jpg",
             price: 200,
+            idCafe: 7,
         },
         {
             id: "3",
@@ -396,6 +446,7 @@ const dataMenu = {
             ingredients: "Какие-то продукты",
             img: "https://droidnews.ru/img/2020/december/v-seti-poyavilsya-rolik-gde-leonid-yakubovich-stal-geroem-mario-na-avtorov-uzhe-grozyatsya-podat-v-sud_25-12-20-19-23-31.jpg",
             price: 200,
+            idCafe: 7,
         },
         {
             id: "4",
@@ -403,6 +454,7 @@ const dataMenu = {
             ingredients: "Где это мы?",
             img: "https://permv.ru/wp-content/uploads/2016/07/navoz-.jpg",
             price: 200,
+            idCafe: 7,
         },
         {
             id: "5",
@@ -410,6 +462,7 @@ const dataMenu = {
             ingredients: "Очередная еда",
             img: "https://cs.pikabu.ru/post_img/big/2013/05/27/7/1369649424_1725709471.jpg",
             price: 200,
+            idCafe: 7,
         },
         {
             id: "6",
@@ -417,6 +470,7 @@ const dataMenu = {
             ingredients: "Кто это сказал?",
             img: "https://about-tea.ru/wp-content/uploads/5/9/7/5972b2d47bd0de8b41ed1ce1624f1453.jpeg",
             price: 200,
+            idCafe: 7,
         },
         {
             id: "7",
@@ -424,6 +478,7 @@ const dataMenu = {
             ingredients: "Кстати, 2 + 2 = 4, а 4 + 3 = 7",
             img: "https://krd.romatti.ru/upload/iblock/ffa/72i30tqg7yrlhk7igranw804e6h9md1u.jpg",
             price: 200,
+            idCafe: 7,
         },
         {
             id: "8",
@@ -431,6 +486,7 @@ const dataMenu = {
             ingredients: "ыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыы",
             img: "https://cs7.pikabu.ru/post_img/2019/04/28/1/og_og_155640453623640938.jpg",
             price: 200,
+            idCafe: 7,
         },
     ],
 }

@@ -1,5 +1,31 @@
 import {useEffect, useState} from "react";
 
+function addNewToCart(product, cart, setCart) {
+    if (cart.find(e => e.id === product.id)) {
+        setCart(cart.map(e => {
+            if (e.id === product.id) {
+                e.count += 1
+            }
+            return e
+        }))
+    } else {
+        product.count = 1
+        setCart([...cart, product])
+    }
+}
+
+function deleteFromCart(product, cart, setCart) {
+    if (cart.find(e => e.id === product.id)) {
+        setCart(cart.map(e => {
+            if (e.id === product.id) {
+                if (e.count >= 1) {
+                    e.count -= 1
+                }
+            }
+            return e
+        }).filter(e => e.count > 0))
+    }
+}
 
 export default function Modal({
                                   visible = false,
@@ -25,42 +51,11 @@ export default function Modal({
     })
 
 
-    function addNewToCart(product, cart, setCart) {
-        if (cart.find(e => e.id === product.id)) {
-            setCart(cart.map(e => {
-                if (e.id === product.id) {
-                    e.count += 1
-                }
-                return e
-            }))
-        } else {
-            product.count = 1
-            setCart([...cart, product])
-        }
-        console.log(cart)
-    }
 
-    function deleteFromCart(product, cart, setCart) {
-        if (cart.find(e => e.id === product.id)) {
-            setCart(cart.map(e => {
-                if (e.id === product.id) {
-                    if (e.count > 1) {
-                        e.count -=1
-                    } else {
-                        return false
-                    }
-                }
-                return true
-            }))
-        }
-        console.log(cart)
-
-    }
 
 
     if (!visible) return null
 
-    data.count = 0
     return (
 
         <div style={styles.modal} onClick={onClose}>
@@ -75,8 +70,8 @@ export default function Modal({
                         <div style={styles.modal_column}>
                             <strong style={styles.modal_ingredients}>Состав: <br/>{data.ingredients}</strong>
                             <div style={styles.modal_mealInfo}>
-                                <span style={styles.modal_count}></span>
-                                <strong style={styles.modal_price}>{data.price} P</strong>
+                                <span style={styles.modal_count}>{cart.find(e => data.id === e.id) ? cart.find(e => data.id === e.id).count : 0}</span>
+                                <strong style={styles.modal_price}>{data.price} &#8381;</strong>
                             </div>
                             <div style={styles.modal_btns}>
                                 <button style={styles.btn_deleteFromCart} onClick={() => deleteFromCart(data, cart, setCart)}> &#8722; </button>

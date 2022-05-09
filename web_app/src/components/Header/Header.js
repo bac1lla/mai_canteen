@@ -1,15 +1,17 @@
+import {Link} from "react-router-dom";
+
 export default function Header() {
 
     return (
         <div style={styles.header}>
             <input style={styles.search} placeholder='Что ищем?'/>
             <div style={styles.buttons}>
-                <button style={styles.buttonSearch}>
-                    <img src={require("./../../img/search.png")} alt="search" style={styles.icon}/>
-                </button>
-                <button style={styles.buttonSearch}>
+                <Link to={"/cart"} style={styles.buttonSearch}>
+                    <img src={require("./../../img/cart.png")} alt="search" style={styles.icon}/>
+                </Link>
+                <Link to={"/"} style={styles.buttonSearch}>
                     <img src={require("./../../img/user.png")} alt="profile" style={styles.icon}/>
-                </button>
+                </Link>
             </div>
         </div>
     )
