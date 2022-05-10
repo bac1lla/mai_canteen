@@ -9,22 +9,30 @@ namespace ServerSide.Model;
  Index(nameof(Name), IsUnique = false),
  Index(nameof(Category), IsUnique = false),
  Index(nameof(Restaurant), IsUnique = false)]
-public class Meal : CanteenEntity, IEntity<Responses.Meal.Get, Responses.Meal.PartialGet>
+public class Meal : CanteenEntity
 {
-    public string Ingredients { set; get; }
-    
+    public string Ingredients { init; get; }
     public bool IsInStopList { set; get; } = false;
+    
+    public virtual Category Category { init; get; }
+    public virtual Restaurant Restaurant { init; get; }
+    
+    public virtual Price? CurrentPrice { set; get; }
+    public virtual IEnumerable<Price> Prices { set; get; } = new List<Price>();
 
-    // public int OrderCount { set; get; } = 0;
-    // [Range(0, 5)]
-    // public decimal? Score { set; get; } = null;
+    public Meal(string name, string? description, string? photoLocation, 
+        string ingredients, Category category, Restaurant restaurant, Price? currentPrice)
+        : base(name, description, photoLocation)
+    {
+        Ingredients = ingredients;
+        Category = category;
+        Restaurant = restaurant;
+        CurrentPrice = currentPrice;
+        if (currentPrice is not null)
+            Prices = new List<Price>() { currentPrice };
+    }
     
-    // public int Version { set; get; } = 0;
-    
-    public Category Category { get; set; }
-    
-    public Restaurant Restaurant { set; get; }
-
-    public Responses.Meal.Get Get() => new(this);
-    public Responses.Meal.PartialGet PartialGet() => new (this);
+    protected Meal(string name, string? description, string? photoLocation)
+        : base(name, description, photoLocation)
+    { }
 }

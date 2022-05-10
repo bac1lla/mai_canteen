@@ -6,9 +6,9 @@ namespace ServerSide.Model;
 [Table(DbRoutes.AllUsers, Schema = DbRoutes.Schema)]
 public class SuperUser : BaseUser
 {
-    public override UserRole Role { get; init; } = UserRole.Super;
+    public override UserRole Role { get; init; } = UserRole.SuperUser;
 
-    public SuperUser(string login, string password, string salt, string? name) : 
-        base(login, password, salt, name)
+    public SuperUser(string login, string? name, string password, string salt) 
+        : base(login, name, password, salt)
     { }
 }

@@ -26,20 +26,19 @@ public class Log : BaseEntity
         Delete
     }
     
-    public Log(DomainObjectType domainObject, BaseUser user, ActionType action) :
-        this(domainObject, user.Id, user.Login, action)
-    { }
+    public BaseUser User { init; get; }
+    // public string UserId { init; get; }\
+    public DomainObjectType DomainObject { init; get; }
+    public ActionType Action { init; get; }
     
-    public Log(DomainObjectType domainObject, string userId, string userLogin, ActionType action) 
+    public Log(DomainObjectType domainObject, BaseUser user, ActionType action) 
+        : base()
     {
+        User = user;
+        // UserId = user.Id;
         DomainObject = domainObject;
-        UserId = userId;
-        UserLogin = userLogin;
         Action = action;
     }
     
-    public DomainObjectType DomainObject { init; get; }
-    public string UserId { init; get; }
-    public string UserLogin { init; get; }
-    public ActionType Action { init; get; }
+    protected Log() { }
 }

@@ -7,6 +7,8 @@ public class ArchiveDataContext : DbContext
     public DbSet<Model.Archive.Order> Orders { set; get; }
     
     public DbSet<Model.Archive.Log> Logs { set; get; }
+
+    public DbSet<Model.Archive.Price> Prices { set; get; }
     
     public ArchiveDataContext(DbContextOptions<ArchiveDataContext> options) 
         : base(options)

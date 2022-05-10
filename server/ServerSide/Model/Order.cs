@@ -1,66 +1,54 @@
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Runtime.Intrinsics.Arm;
-using ServerSide.Contract.V1;
 using ServerSide.Data;
 
 namespace ServerSide.Model;
 
 // [Index(nameof(User))] // TODO: may be slow
 [Table(DbRoutes.Orders, Schema = DbRoutes.Schema)]
-public class Order : BaseEntity, IGetEntity<Responses.Order.Get>
+public class Order : BaseEntity
 {
     [Table(DbRoutes.OrderItems, Schema = DbRoutes.Schema)]
     public class Item
     {
-        public Order Order { init; get; }
-        public Meal Meal { init; get; }
-        public ushort Count { set; get; }
+        public virtual Order Order { init; get; }
+        public string OrderId { init; get; }
+        
+        public virtual Meal Meal { init; get; }
+        public string MealId { init; get; }
+        
+        public ushort Count { init; get; }
 
-        public Item(Order order, Meal meal, ushort count = 1)
+        public Item(Order order, Meal meal, ushort count)
         {
             Order = order;
+            OrderId = order.Id;
             Meal = meal;
+            MealId = meal.Id;
             Count = count;
         }
         
-        public Responses.Order.Item Get() => new(this);
+        protected Item() { }
     }
     
     public DateTime? EndDate { get; set; } = null;
-    
-    // [Range(0, 5)]
-    // public decimal? Score { set; get; } = null;
-    
-    public virtual IEnumerable<Item> Items { set; get; } = new List<Item>();
-    
-    public Restaurant Restaurant { get; set; }
-    
-    // public Admin? Admin { set; get; } = null;
-    
-    public User User { get; set; }
 
-    public Responses.Order.Get Get() => new(this);
-    public Responses.Order.PartialGet PartialGet() => new(this);
+    public bool IsAccepted { set; get; } = false;
+    public bool IsRejected { set; get; } = false;
+    public bool IsReady { set; get; } = false;
+    public bool IsCanceled { set; get; } = false;
 
-    // public void Add(Meal meal)
-    // {
-    //     var item = Items.FirstOrDefault(i => i.Meal == meal);
-    //     if (item is null)
-    //     {
-    //         var items = new List<Item>(Items);
-    //         items.Add(new Item(this, meal));
-    //         Items = items;
-    //     }
-    //     else item.Count += 1;
-    // }
-    //
-    // public void Remove(Meal meal) => 
-    //     Items = new List<Item>(Items.Where(i => i.Meal != meal));
-    //
-    // public void RemoveOne(Meal meal) 
-    // {
-    //     var item = Items.FirstOrDefault(i => i.Meal == meal);
-    //     if (item is not null)
-    //         item.Count -= 1;
-    // }
+    public virtual IEnumerable<Item> Items { set; get; }
+    
+    public virtual Restaurant Restaurant { get; init; }
+    public virtual User User { get; init; }
+
+    public Order(IEnumerable<Item> items, Restaurant restaurant, User user)
+        : base()
+    {
+        Items = items;
+        Restaurant = restaurant;
+        User = user;
+    }
+    
+    protected Order() : base() { }
 }

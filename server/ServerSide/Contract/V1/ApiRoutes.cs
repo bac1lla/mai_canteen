@@ -13,7 +13,8 @@ public static class ApiRoutes
 
         public const string Authorize = FullBase + "Authorize/{UserId?}";
         
-        public const string Get = FullBase + "/{UserId}";
+        public const string Get = FullBase + "/Get/{UserId}";
+        public const string PartialGet = FullBase + "/PartialGet/{UserId}";
         // public const string GetAll = FullBase + "/All";
         
         public const string Create = FullBase + "/Create";
@@ -30,7 +31,8 @@ public static class ApiRoutes
         
         public const string Authorize = FullBase + "Authorize/{UserId?}";
         
-        public const string Get = FullBase + "/{AdminId}";
+        public const string Get = FullBase + "/Get/{AdminId}";
+        public const string PartialGet = FullBase + "/PartialGet/{AdminId}";
         public const string GetByRestaurant = FullBase + "/GetByRestaurant/{RestaurantId}";
         
         public const string Create = FullBase + "/Create";
@@ -51,7 +53,8 @@ public static class ApiRoutes
         public const string SubRoute = "Category";
         public const string FullBase = Base + "/" + SubRoute;
         
-        public const string Get = FullBase + "/{CategoryId}";
+        public const string Get = FullBase + "/Get/{CategoryId}";
+        public const string PartialGet = FullBase + "/PartialGet/{CategoryId}";
         public const string GetAll = FullBase + "/All";
         public const string GetByName = FullBase + "/GetByName/{Name}";
         
@@ -68,7 +71,8 @@ public static class ApiRoutes
         public const string SubRoute = "Restaurant";
         public const string FullBase = Base + "/" + SubRoute;
         
-        public const string Get = FullBase + "/{RestaurantId}";
+        public const string Get = FullBase + "/Get/{RestaurantId}";
+        public const string PartialGet = FullBase + "/PartialGet/{RestaurantId}";
         public const string GetAll = FullBase + "/All";
         public const string GetByName = FullBase + "/GetByName/{Name}";
         
@@ -86,7 +90,8 @@ public static class ApiRoutes
         public const string SubRoute = "Meal";
         public const string FullBase = Base + "/" + SubRoute;
         
-        public const string Get = FullBase + "/{MealId}";
+        public const string Get = FullBase + "/Get/{MealId}";
+        public const string PartialGet = FullBase + "/PartialGet/{MealId}";
         public const string GetAll = FullBase + "/All";
         public const string GetByName = FullBase + "/GetByName/{Name}";
         public const string GetLikeName = FullBase + "/SearchByName/{Name}";
@@ -104,7 +109,8 @@ public static class ApiRoutes
         public const string SubRoute = "Order";
         public const string FullBase = Base + "/" + SubRoute;
         
-        public const string Get = FullBase + "/{OrderId}";
+        public const string Get = FullBase + "/Get/{OrderId}";
+        public const string PartialGet = FullBase + "/PartialGet/{OrderId}";
         public const string GetByDateTime = FullBase + "/GetByDateTime/{DateTime}";
         public const string GetByUser = FullBase + "/GetByUser/{UserId}";
         

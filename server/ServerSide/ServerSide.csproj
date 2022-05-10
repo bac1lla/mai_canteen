@@ -169,7 +169,7 @@
       <Compile Update="Model\Log.cs">
         <DependentUpon>BaseEntity.cs</DependentUpon>
       </Compile>
-      <Compile Update="Model\Token.cs">
+      <Compile Update="Model\Price.cs">
         <DependentUpon>BaseEntity.cs</DependentUpon>
       </Compile>
     </ItemGroup>

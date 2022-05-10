@@ -74,9 +74,10 @@ public static class Requests
     public static class Meal
     {
         // TODO: PhotoLocation => Photo
-        public record Create(string? Ingredients, string CategoryId, string RestaurantId) : Base.CanteenEntity.Create;
+        public record Create(string? Ingredients, string CategoryId, string RestaurantId, decimal PriceValue) : Base.CanteenEntity.Create;
         // TODO: PhotoLocation => Photo
-        public record Update(string? Ingredients = null, string? CategoryId = null, string? RestaurantId = null) :
+        public record Update(string? Ingredients = null, string? CategoryId = null, string? RestaurantId = null,
+            decimal? PriceValue = null) :
                 Base.CanteenEntity.Update;
     }
 

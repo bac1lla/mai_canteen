@@ -14,7 +14,7 @@ namespace ServerSide.Model.Archive;
 public class Order : BaseEntity
 {
     [ComplexType]
-    public record IntermediateItem(string Id, string MealId, ushort Count)
+    public record IntermediateItem(string OrderId, string MealId, ushort Count)
     {
         public override string ToString() => JsonSerializer.Serialize(this);
 
@@ -26,14 +26,24 @@ public class Order : BaseEntity
         //     .Append('}')
         //     .ToString();д
     }
-
-    public string ItemsString { init; get; }
-    public string UserId { init; get; }
-    public string RestaurantId { init; get; }
+    
     public DateTime EndDate { init; get; }
     
-    private static string GetItemsString(IEnumerable<IntermediateItem> items) => new StringBuilder()
-            .Append('[').AppendJoin(',', items).Append(']')
+    public bool IsAccepted { init; get; }
+    public bool IsRejected { init; get; } 
+    public bool IsReady { init; get; }
+    public bool IsCanceled { init; get; } 
+    
+    public string RestaurantId { init; get; }
+    public string UserId { init; get; }
+    
+    public string ItemsString { init; get; }
+
+    private static IEnumerable<IntermediateItem> TransformItems(IEnumerable<Model.Order.Item> items) =>
+        items.Select(i => new IntermediateItem(i.OrderId, i.MealId, i.Count));
+    
+    private static string GetItemsString(IEnumerable<Model.Order.Item> items) => new StringBuilder()
+            .Append('[').AppendJoin(',', TransformItems(items)).Append(']')
             .ToString();
     
     private Order
@@ -41,17 +51,25 @@ public class Order : BaseEntity
         string id,
         DateTime creationDate,
         bool isDeleted,
-        string itemsString, 
-        string userId, 
-        string restaurantId, 
-        DateTime endDate
+        DateTime endDate,
+        bool isAccepted,
+        bool isRejected,
+        bool isReady,
+        bool isCanceled,
+        string restaurantId,  
+        string userId,
+        string itemsString
     ) 
         : base(id, creationDate, isDeleted)
     {
-        ItemsString = itemsString;
-        UserId = userId;
-        RestaurantId = restaurantId;
         EndDate = endDate;
+        IsAccepted = isAccepted;
+        IsRejected = isRejected;
+        IsReady = isReady;
+        IsCanceled = isCanceled;
+        RestaurantId = restaurantId;
+        UserId = userId;
+        ItemsString = itemsString;
     }
 
     public static Order FromNewOrder(Model.Order order) =>
@@ -59,13 +77,14 @@ public class Order : BaseEntity
             order.Id, 
             order.CreationDate, 
             order.IsDeleted, 
-            GetItemsString(
-                order.Items
-                .Select(i => new IntermediateItem(i.Meal.Id, i.Order.Id, i.Count))
-            ), 
-            order.User.Id, 
-            order.Restaurant.Id, 
-            order.EndDate!.Value // only finished orders are archived
+            order.EndDate!.Value,
+            order.IsAccepted,
+            order.IsRejected,
+            order.IsReady,
+            order.IsCanceled,
+            order.Restaurant.Id,
+            order.User.Id,
+            GetItemsString(order.Items)
         ); 
     
 }

@@ -34,19 +34,18 @@ public class Logger : ILogger
     public void Log(IEnumerable<Model.Log> logMessages) => Db.Logs.AddRange(logMessages);
 
 
-    private ParallelQuery<Model.Log> GetAllNewLogs() => Db.Logs.AsParallel();
+    private IEnumerable<Model.Log> GetAllNewLogs() => Db.Logs;
 
-    public async Task ArchiveLogs() => 
-        await ArchiveDb.Logs.AddRangeAsync(GetAllNewLogs().Select(Model.Archive.Log.FromNewLog));
+    private async Task InsertNewLogs(IEnumerable<Model.Log> logs) =>
+        await Model.ModelExtensions.ArchiveModelExtensions.ArchiveLogs(logs, ArchiveDb);
 
-    public async Task RemoveArchivedLogs() => 
-        await new Task(
-            _ => Db.Logs.RemoveRange(
-                ArchiveDb.Logs
-                    .Where(l => l.Batch == Model.Archive.Log.LastBatch - 1)
-                    // .Select(l => new Model.Log(l.DomainObject, l.UserId, l.UserLogin, l.Action))
-                    // .ToArray()
-            ),
-            null
-        );
+    private async Task RemoveArchivedLogs() => 
+        await Db.Database.ExecuteSqlInterpolatedAsync($"truncate table {DbRoutes.Schema}.{DbRoutes.Logs}");
+
+    public async Task ArchiveLogs()
+    {
+        var newLogs = GetAllNewLogs();
+        await InsertNewLogs(newLogs);
+        await RemoveArchivedLogs();
+    }
 }

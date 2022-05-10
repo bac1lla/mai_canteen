@@ -1,5 +1,7 @@
 using System.Text.Json.Serialization;
 using ServerSide.Model;
+using ServerSide.Model.ModelExtensions;
+using Helpers = ServerSide.Model.ModelExtensions.ModelHelpersAndBasicExtensions;
 
 namespace ServerSide.Contract.V1;
 
@@ -38,11 +40,13 @@ public static class Responses
             {
                 public string Login { init; get; }
                 public string? Name { init; get; }
+                public bool IsBanned { init; get; }
                 
                 public Get(Model.BaseUser user) : base(user)
                 {
                     Login = user.Login;
                     Name = user.Name;
+                    IsBanned = user.IsBanned;
                 }
             }
             
@@ -50,11 +54,13 @@ public static class Responses
             {
                 public string Login { init; get; }
                 public string? Name { init; get; }
+                public bool IsBanned { init; get; }
                 
                 public PartialGet(Model.BaseUser user) : base(user)
                 {
                     Login = user.Login;
                     Name = user.Name;
+                    IsBanned = user.IsBanned;
                 }
             }
 
@@ -93,47 +99,6 @@ public static class Responses
         }
     }
 
-    public static class Token
-    {
-        public class Get : Base.Entity.Get
-        {
-            [JsonIgnore] 
-            private new string Id { init; get; } = string.Empty;
-            
-            public string Value { init; get; }
-            public Base.User.PartialGet User { init; get; }
-            public DateTime ExpirationDate { init; get; }
-            public bool IsValid { init; get; }
-            
-            public Get(Model.Token token) : base(token)
-            {
-                Value = token.Value;
-                User = token.User.PartialGet();
-                ExpirationDate = token.ExpirationDate;
-                IsValid = token.IsValid;
-            }
-        }
-        
-        public class PartialGet : Base.Entity.PartialGet
-        {
-            [JsonIgnore] 
-            private new string Id { init; get; } = string.Empty;
-            
-            public string Value { init; get; }
-            public string UserId { init; get; }
-            public DateTime ExpirationDate { init; get; }
-            public bool IsValid { init; get; }
-            
-            public PartialGet(Model.Token token) : base(token)
-            {
-                Value = token.Value;
-                UserId = token.User.Id;
-                ExpirationDate = token.ExpirationDate;
-                IsValid = token.IsValid;
-            }
-        }
-    }
-    
     public static class User
     {
         // TODO: decide what info to expose about users
@@ -149,7 +114,7 @@ public static class Responses
         {
             public IEnumerable<string> OrderIds { init; get; }
             public PartialGet(Model.User user) : base(user) => 
-                OrderIds = BaseEntity.IdsOnly(user.Orders);
+                OrderIds = Helpers.IdsOnly(user.Orders);
         }
 
         // public class GetAll
@@ -206,7 +171,7 @@ public static class Responses
         {
             public IEnumerable<string> MealIds { init; get; }
             public PartialGet(Model.Category category) : base(category) => 
-                MealIds = Model.BaseEntity.IdsOnly(category.Meals);
+                MealIds = Helpers.IdsOnly(category.Meals);
         }
         
         public record GetAll(IEnumerable<PartialGet> Categories)
@@ -254,8 +219,8 @@ public static class Responses
 
             public PartialGet(Model.Restaurant restaurant) : base(restaurant)
             {
-                AdminIds = Model.BaseEntity.IdsOnly(restaurant.Admins);
-                MealIds = Model.BaseEntity.IdsOnly(restaurant.Meals);
+                AdminIds = Helpers.IdsOnly(restaurant.Admins);
+                MealIds = Helpers.IdsOnly(restaurant.Meals);
             }
         }
 
@@ -293,6 +258,37 @@ public static class Responses
         }
     }
 
+    public static class Price
+    {
+        public class Get : Base.Entity.Get
+        {
+            public decimal Value { init; get; }
+            public DateTime? InvalidationDate { init; get; }
+            public Meal.PartialGet Meal { init; get; }
+
+            public Get(Model.Price price) : base(price)
+            {
+                Value = price.Value;
+                InvalidationDate = price.InvalidationTime;
+                Meal = price.Meal.PartialGet();
+            }
+        }
+        
+        public class PartialGet : Base.Entity.PartialGet
+        {
+            public decimal Value { init; get; }
+            public DateTime? InvalidationDate { init; get; }
+            public string MealId { init; get; }
+
+            public PartialGet(Model.Price price) : base(price)
+            {
+                Value = price.Value;
+                InvalidationDate = price.InvalidationTime;
+                MealId = price.Meal.Id;
+            }
+        }
+    }
+    
     public static class Meal
     {
         // TODO: PhotoLocation => Photo
@@ -301,12 +297,14 @@ public static class Responses
             public string Ingredients { init; get; }
             public Category.PartialGet Category { init; get; }
             public Restaurant.PartialGet Restaurant { init; get; }
+            public Price.PartialGet? CurrentPrice { init; get; }
 
             public Get(Model.Meal meal) : base(meal)
             {
                 Ingredients = meal.Ingredients;
                 Category = meal.Category.PartialGet();
                 Restaurant = meal.Restaurant.PartialGet();
+                CurrentPrice = meal.CurrentPrice?.PartialGet();
             }
         }
         // TODO: PhotoLocation => Photo
@@ -315,12 +313,14 @@ public static class Responses
             public string Ingredients { init; get; }
             public string CategoryId { init; get; }
             public string RestaurantId { init; get; }
+            public string? PriceId { init; get; }
 
             public PartialGet(Model.Meal meal) : base(meal)
             {
                 Ingredients = meal.Ingredients;
                 CategoryId = meal.Category.Id;
                 RestaurantId = meal.Restaurant.Id;
+                PriceId = meal.CurrentPrice?.Id;
             }
         }
 
@@ -356,32 +356,60 @@ public static class Responses
 
         public class Get : Base.Entity.Get
         {
-            public IEnumerable<Item> Items { init; get; }
-            public User.PartialGet User { init; get; }
-            public Restaurant.PartialGet Restaurant { init; get; }
             public DateTime? EndDate { init; get; }
+            
+            public bool IsAccepted { init; get; }
+            public bool IsRejected { init; get; } 
+            public bool IsReady { init; get; }
+            public bool IsCanceled { init; get; } 
+            
+            public Restaurant.PartialGet Restaurant { init; get; }
+            public User.PartialGet User { init; get; }
+            
+            public IEnumerable<Item> Items { init; get; }
 
             public Get(Model.Order order) : base(order)
             {
-                Items = order.Items.Select(i => i.Get());
+                EndDate = order.EndDate;
+
+                IsAccepted = order.IsAccepted;
+                IsRejected = order.IsRejected;
+                IsReady = order.IsReady;
+                IsCanceled = order.IsCanceled;
+                
                 User = order.User.PartialGet();
                 Restaurant = order.Restaurant.PartialGet();
-                EndDate = order.EndDate;
+
+                Items = order.Items.Select(i => i.Get());
             }
         }
         public class PartialGet : Base.Entity.Get
         {
-            public IEnumerable<Item> Items { init; get; }
-            public string UserId { init; get; }
-            public string RestaurantId { init; get; }
             public DateTime? EndDate { init; get; }
+            
+            public bool IsAccepted { init; get; }
+            public bool IsRejected { init; get; } 
+            public bool IsReady { init; get; }
+            public bool IsCanceled { init; get; } 
+            
+            public string RestaurantId { init; get; }
+            public string UserId { init; get; }
 
+            public IEnumerable<Item> Items { init; get; }
+            
             public PartialGet(Model.Order order) : base(order)
             {
-                Items = order.Items.Select(i => i.Get());
-                UserId = order.User.Id;
-                RestaurantId = order.Restaurant.Id;
                 EndDate = order.EndDate;
+                
+                IsAccepted = order.IsAccepted;
+                IsRejected = order.IsRejected;
+                IsReady = order.IsReady;
+                IsCanceled = order.IsCanceled;
+                
+                RestaurantId = order.Restaurant.Id;
+                UserId = order.User.Id;
+                
+                Items = order.Items.Select(i => i.Get());
             }
         }
 

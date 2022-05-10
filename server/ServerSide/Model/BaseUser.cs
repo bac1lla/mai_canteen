@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
 using ServerSide.Contract.V1;
 using ServerSide.Data;
+using Helpers = ServerSide.Model.ModelExtensions.ModelHelpersAndBasicExtensions;
 
 namespace ServerSide.Model;
 
@@ -16,43 +17,30 @@ public abstract class BaseUser : BaseEntity
     {
         User,
         Admin,
-        Super
+        SuperUser
     }
-
-    // private static string UserRoleString(UserRole role) => role.ToString();
-
+    
     public string Login { init; get; }
-    // public string Email { set; get; }
-    public string? Name { set; get; } = null;
+    public string? Name { set; get; }
     
-    public string NameToShow => Name ?? Login;
-    
-    // [DataType(DataType.Password)]
     public string Password { set; get; }
-    // [DataType(DataType.Password)]
     public string Salt { set; get; }
     
     public abstract UserRole Role { init; get; }
 
-    public Token Token { set; get; }
+    public string TokenValue { set; get; }
+    public DateTime TokenExpirationDate { set; get; }
 
-    public bool IsAuthorized => Token.IsValid;
-
-    protected BaseUser() :
-        this(string.Empty, string.Empty, string.Empty, null)
-    { }
+    public bool IsBanned { set; get; } = false;
     
-    protected BaseUser(string login, string password, string salt, string? name)
+    protected BaseUser(string login, string? name, string password, string salt)
     {
         Login = login;
         Name = name;
 
         Password = password;
         Salt = salt;
-        
-        Token = Token.NewToken(this);
-    }
 
-    public Responses.Base.User.Get Get() => new(this);
-    public Responses.Base.User.PartialGet PartialGet() => new(this);
+        Helpers.NewToken(this);
+    }
 }

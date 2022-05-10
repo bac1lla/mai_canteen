@@ -25,15 +25,15 @@ public static class DbRoutes
             $"Host={Host};Port=5432;User Id={User};Password={Password};Database={Database};";
     }
     
-    public const string Logs = "t_logs";
+    public const string Logs = "t_logs";    
 
-    public const string Tokens = "t_user_tokens";
-    
     public const string AllUsers = "t_all_users";
     public const string SuperUsers = "v_super_users";
     public const string Admins = "v_admins";
     public const string Users = "v_users";
 
+    public const string Prices = "t_prices";
+    
     public const string Categories = "t_categories";
     public const string Restaurants = "t_restaurants";
     public const string Meals = "t_meals";
@@ -69,5 +69,6 @@ public static class DbRoutes
         public const string Orders = "t_orders";
         
         public const string Logs = "t_logs";
+        public const string Prices = "t_prices";
     }
 }
