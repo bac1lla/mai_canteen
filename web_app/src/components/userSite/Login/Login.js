@@ -1,5 +1,6 @@
 import {useState} from 'react';
 import PropTypes from 'prop-types';
+import LoginForm from "../LoginForm/LoginForm";
 
 async function loginUser(credentials) {
     return fetch('http://localhost:8080/login', {
@@ -27,21 +28,8 @@ export default function Login({ setToken }) {
     }
 
     return(
-        <div style={styles.login_wrapper} >
-            <h1>Please Log In</h1>
-            <form onSubmit={handleSubmit}>
-                <label>
-                    <p>Username</p>
-                    <input type="text" onChange={e => setUserName(e.target.value)}/>
-                </label>
-                <label>
-                    <p>Password</p>
-                    <input type="password" onChange={e => setPassword(e.target.value)}/>
-                </label>
-                <div>
-                    <button type="submit">Submit</button>
-                </div>
-            </form>
+        <div style={styles.login_wrapper}>
+            <LoginForm handleSubmit={handleSubmit} />
         </div>
     )
 }
@@ -52,8 +40,18 @@ Login.propTypes = {
 
 const styles = {
     login_wrapper: {
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-    }
+        height: "100vh",
+        margin: "auto",
+        // marginTop: 50,
+        // Width: "70%",
+        // margin: "auto",
+        // flexDirection: "column",
+        // display: "flex",
+        // alignItems: "center",
+        // justifyContent: "center"
+        background: 'rgb(0 0 0 / 4%)',
+        marginTop: 0,
+        padding: "10% 0",
+    },
+
 }

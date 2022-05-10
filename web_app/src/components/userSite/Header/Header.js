@@ -1,18 +1,29 @@
 import {Link} from "react-router-dom";
+import My from "../My/My";
+import Modal from "../Modal/Modal";
+import Login from "../Login/Login";
+import {useState} from "react";
 
-export default function Header() {
+export default function HeaderUser({token, setToken}) {
+
+    const [isModal, setModal] = useState({visible: false, data: null})
+    const onClose = () => setModal({visible: false, data: isModal.data})
 
     return (
         <div style={styles.header}>
             <input style={styles.search} placeholder='Что ищем?'/>
             <div style={styles.buttons}>
-                <Link to={"/my"} style={styles.buttonSearch}>
-                    <img src={require("./../../img/user.png")} alt="profile" style={styles.icon}/>
-                </Link>
-                <Link to={"/cart"} style={styles.buttonSearch}>
-                    <img src={require("./../../img/cart.png")} alt="search" style={styles.icon}/>
+                <button onClick={() => {
+                    if (token) setModal({visible: true, data: null})
+                    else return true
+                }} style={styles.button_header}>
+                    <img src={require("../../../img/user.png")} alt="profile" style={styles.icon}/>
+                </button>
+                <Link to={"/cart"} style={styles.button_header}>
+                    <img src={require("../../../img/cart.png")} alt="search" style={styles.icon}/>
                 </Link>
             </div>
+            <Modal visible={isModal.visible} onClose={onClose} component={<Login setToken={setToken} />}/>
         </div>
     )
 }
@@ -45,7 +56,7 @@ const styles = {
         display: "flex",
         justifyContent: "space-around",
     },
-    buttonSearch: {
+    button_header: {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
@@ -55,6 +66,7 @@ const styles = {
         boxSizing: 'border-box',
         border: 'none',
         boxShadow: '0 8px 8px 0 rgb(0 0 0 / 4%), 0px -2px 8px 0px rgb(0 0 0 / 4%)',
+        background: "#fff",
     },
     icon: {
         width: 24,
