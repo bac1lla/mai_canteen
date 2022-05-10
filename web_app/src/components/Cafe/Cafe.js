@@ -22,7 +22,7 @@ function showMenu(dataMenu, setModal) {
     })
 }
 
-export default function Cafe() {
+export default function Cafe({cart, setCart}) {
 
 
     const {cafeId} = useParams()
@@ -60,6 +60,8 @@ export default function Cafe() {
                 visible={isModal.visible}
                 data={isModal.data}
                 onClose={onClose}
+                cart={cart}
+                setCart={setCart}
             />
         </div>
     )
@@ -67,9 +69,9 @@ export default function Cafe() {
 
 const styles = {
     container: {
-        margin: "0 50px 0 50px",
-        background: '#fff',
-        boxSizing: 'border-box',
+        // margin: "0 50px 0 50px",
+        // background: '#fff',
+        // boxSizing: 'border-box',
     },
     goBack: {
         marginTop: 20,
@@ -97,7 +99,7 @@ const styles = {
     mealCard: {
         border: "none",
         background: "#fff",
-        margin: 20,
+        margin: 10,
         boxSizing: 'border-box',
         borderRadius: 16,
         boxShadow: '0 8px 8px 0 rgb(0 0 0 / 4%), 0px -2px 8px 0px rgb(0 0 0 / 4%)',
@@ -109,8 +111,8 @@ const styles = {
         alignItems: "center",
     },
     cafeImg: {
-        height: 100,
-        width: 100,
+        height: 70,
+        width: 70,
         backgroundPosition: 'center',
         backgroundSize: 'cover',
         backgroundRepeat: 'no-repeat',

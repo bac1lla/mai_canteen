@@ -4,6 +4,10 @@
 }
 .App {
   text-align: center;
+  margin: 0 7% 0 7%;
+  background: #fff;
+  box-sizing: border-box;
+;
 
 }
 

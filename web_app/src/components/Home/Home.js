@@ -29,9 +29,9 @@ export default function Home() {
 
 const styles = {
     container: {
-        margin: "0 50px 0 50px",
-        background: '#fff',
-        boxSizing: 'border-box',
+        // margin: "0 50px 0 50px",
+        // background: '#fff',
+        // boxSizing: 'border-box',
     },
     header: {
         marginTop: 0,
@@ -77,6 +77,6 @@ const styles = {
     cardInfo: {
         display: "flex",
         alignContent: "left",
-        margin: 40,
+        margin: 20,
     }
 }

@@ -1,39 +1,17 @@
-import {useEffect, useState} from "react";
+import {useEffect} from "react";
+import {Link} from "react-router-dom";
+import {addNewToCart, deleteFromCart} from "../Cart/cartFunctions";
 
-function addNewToCart(product, cart, setCart) {
-    if (cart.find(e => e.id === product.id)) {
-        setCart(cart.map(e => {
-            if (e.id === product.id) {
-                e.count += 1
-            }
-            return e
-        }))
-    } else {
-        product.count = 1
-        setCart([...cart, product])
-    }
-}
-
-function deleteFromCart(product, cart, setCart) {
-    if (cart.find(e => e.id === product.id)) {
-        setCart(cart.map(e => {
-            if (e.id === product.id) {
-                if (e.count >= 1) {
-                    e.count -= 1
-                }
-            }
-            return e
-        }).filter(e => e.count > 0))
-    }
-}
 
 export default function Modal({
                                   visible = false,
                                   data = {},
                                   onClose,
+                                  cart,
+                                  setCart
+
                               }) {
 
-    const [cart, setCart] = useState([])
 
     const onKeydown = ({key}) => {
         switch (key) {
@@ -49,9 +27,6 @@ export default function Modal({
         document.addEventListener('keydown', onKeydown)
         return () => document.removeEventListener('keydown', onKeydown)
     })
-
-
-
 
 
     if (!visible) return null
@@ -70,14 +45,23 @@ export default function Modal({
                         <div style={styles.modal_column}>
                             <strong style={styles.modal_ingredients}>Состав: <br/>{data.ingredients}</strong>
                             <div style={styles.modal_mealInfo}>
-                                <span style={styles.modal_count}>{cart.find(e => data.id === e.id) ? cart.find(e => data.id === e.id).count : 0}</span>
+                                <span
+                                    style={styles.modal_count}>{cart.find(e => data.id === e.id && data.idCafe === e.idCafe) ? cart.find(e => data.id === e.id).count : 0}</span>
                                 <strong style={styles.modal_price}>{data.price} &#8381;</strong>
                             </div>
                             <div style={styles.modal_btns}>
-                                <button style={styles.btn_deleteFromCart} onClick={() => deleteFromCart(data, cart, setCart)}> &#8722; </button>
-                                <button style={styles.btn_addToCart} onClick={() => addNewToCart(data, cart, setCart)}> &#43; </button>
+                                <button style={styles.btn_deleteFromCart}
+                                        onClick={() => deleteFromCart(data, cart, setCart)}> &#8722; </button>
+                                <button style={styles.btn_addToCart}
+                                        onClick={() => addNewToCart(data, cart, setCart)}> &#43; </button>
                             </div>
                         </div>
+                    </div>
+                    <div style={styles.modal_toCart}>
+                        <Link to={"/cart"} style={styles.modal_toCart}>
+                            <img src={require("./../../img/left.png")} alt="go back" style={styles.icon}/>
+                            Перейти в корзину
+                        </Link>
                     </div>
                 </div>
             </div>
@@ -146,10 +130,11 @@ const styles = {
         padding: "1rem 0",
     },
     modal_img: {
+        margin: "auto",
         height: "max-content",
         width: "50%",
         // marginBottom: 10,
-        marginRight: 10,
+        // marginRight: 10,
         borderRadius: 12,
 
     },
@@ -210,5 +195,17 @@ const styles = {
     },
     modal_price: {
         fontSize: 24,
-    }
+    },
+    modal_toCart: {
+        marginBottom: 10,
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "left",
+    },
+    icon: {
+        width: 24,
+        height: 24,
+        color: "#fff",
+        transform: "rotate(180deg)",
+    },
 }

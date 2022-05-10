@@ -43,6 +43,7 @@ const dataMenu = {
             name: "Круассан",
             ingredients: "Мука, вода, сахар",
             img: "https://avatars.mds.yandex.net/get-zen_doc/162989/pub_5bdbf02a4d228700ac44b2c3_5bdbf5dba0961500ac224198/scale_1200",
+            price: 231,
             idCafe: 1,
         },
         {
@@ -96,7 +97,7 @@ const dataMenu = {
         {
             id: "8",
             name: "Тигор",
-            ingredients: "ыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыыы",
+            ingredients: "ыыыыыыыы ыыыыыыыыыыы ыыыыыыыыыы ыыыыыыыыыы ыыыыыыыыыы ыыыыы ыыыыыыы ыыыыыыыыыы ыыыыы ыыыыы ыыыы ыыыыыыы ыыы",
             img: "https://cs7.pikabu.ru/post_img/2019/04/28/1/og_og_155640453623640938.jpg",
             price: 200,
             idCafe: 1,
