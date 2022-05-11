@@ -24,10 +24,10 @@ public static class Responses
                 public PartialGet(Model.BaseEntity entity) => Id = entity.Id;
             }
 
-            public abstract class Create
+            public class Create
             {
                 public string Id { init; get; }
-                protected Create(Model.BaseEntity entity) => Id = entity.Id;
+                public Create(Model.BaseEntity entity) => Id = entity.Id;
             }
 
             public record Update;
@@ -41,12 +41,14 @@ public static class Responses
                 public string Login { init; get; }
                 public string? Name { init; get; }
                 public bool IsBanned { init; get; }
+                public string? TokenValue { init; get; }
                 
                 public Get(Model.BaseUser user) : base(user)
                 {
                     Login = user.Login;
                     Name = user.Name;
                     IsBanned = user.IsBanned;
+                    TokenValue = user.TokenValue;
                 }
             }
             
@@ -55,12 +57,14 @@ public static class Responses
                 public string Login { init; get; }
                 public string? Name { init; get; }
                 public bool IsBanned { init; get; }
+                public string? TokenValue { init; get; }
                 
                 public PartialGet(Model.BaseUser user) : base(user)
                 {
                     Login = user.Login;
                     Name = user.Name;
                     IsBanned = user.IsBanned;
+                    TokenValue = user.TokenValue;
                 }
             }
 

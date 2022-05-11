@@ -1,4 +1,5 @@
 using System.Text;
+using ServerSide.Contract.V1;
 
 namespace ServerSide.Model.ModelExtensions;
 
@@ -37,4 +38,6 @@ public static class ModelHelpersAndBasicExtensions
     public static decimal? MealPriceValue(this Meal meal) => meal.CurrentPrice?.Value;
 
     public static bool IsFinished(this Order order) => order.EndDate is not null;
+
+    public static Responses.Base.Entity.Create ToCreateResponse(this BaseEntity entity) => new(entity);
 }

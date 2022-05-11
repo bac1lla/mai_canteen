@@ -3,6 +3,7 @@ using ServerSide.Contract.V1;
 using ServerSide.Data;
 using ServerSide.Model;
 using ServerSide.Model.ModelExtensions;
+using ServerSide.Contract.V1;
 
 namespace ServerSide.Controllers;
 
@@ -43,7 +44,7 @@ public class UserController : BaseController
         var user = await Db.Users.AddAsync(body.Create());
         
         await Db.SaveChangesAsync();
-        return Ok(user.Entity.Id);
+        return Ok(user.Entity.ToCreateResponse());
     }
     
     [HttpPost(ApiRoutes.User.Update)]

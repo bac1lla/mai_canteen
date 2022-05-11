@@ -8,7 +8,7 @@ create role mai_canteen with
 	LOGIN
 	NOREPLICATION
 	NOBYPASSRLS
-	CONNECTION LIMIT 2
+	CONNECTION LIMIT 100
 	ENCRYPTED PASSWORD '12345';
 
 drop database mai_canteen;
@@ -46,7 +46,7 @@ create role mai_canteen_archive with
 	LOGIN
 	NOREPLICATION
 	NOBYPASSRLS
-	CONNECTION LIMIT 2
+	CONNECTION LIMIT 100
 	ENCRYPTED PASSWORD '12345';
 
 drop database mai_canteen_archive;
