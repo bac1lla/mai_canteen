@@ -4,7 +4,7 @@ export default function OrderHistory () {
 
         return (
             <div>
-                <Container className='mt-5' style={{"min-height": "100vh"}}>
+                <Container className='mt-5' style={{minHeight: "100vh"}}>
                     <h5 className="card-header bg-light text-center">ИСТОРИЯ ЗАКАЗОВ</h5>
                     <div className="d-flex form-control flex-wrap">
                     </div>

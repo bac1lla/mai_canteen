@@ -2,7 +2,8 @@ import {addNewToCart, deleteFromCart, deleteFromCartAtAll} from "../Cart/cartFun
 
 export default function CartItem ({meal, cart, setCart}) {
     return (
-        <div key={meal.id} style={styles.cart_list_item}>
+        //fix key id
+        <div key={meal.id + 1000} style={styles.cart_list_item}>
             <div style={styles.cart_list_item__header}>
                 <div style={styles.cart_list_item__image}>
                     <img style={styles.cart_mealImg} src={meal.img} alt="Телефон"/>

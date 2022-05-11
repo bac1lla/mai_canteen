@@ -4,7 +4,7 @@ import logo from './LOGO_MAI_CAFE.png'
 
 export default function HeaderAdmin () {
         return (
-            <Navbar sticky="top" collapseOnSelect expand="lg" bg="dark" variant="dark">
+            <Navbar sticky="top" collapseOnSelect expand="lg" bg="dark" variant="dark" style={{borderRadius: "0 0 18px 18px"}}>
                 <Container>
 
                     <Navbar.Brand href="/auth">

@@ -7,7 +7,6 @@ import My from "./My/My";
 
 export default function UserSite({site, setSite, cart, setCart, setToken, token}) {
     return (
-        <Router>
             <div className="App">
                 <HeaderUser token={token} setToken={setToken}/>
                 <Routes>
@@ -17,6 +16,5 @@ export default function UserSite({site, setSite, cart, setCart, setToken, token}
                     <Route path="my" element={<My setToken={setToken} setSite={setSite}/>}/>
                 </Routes>
             </div>
-        </Router>
     )
 }

@@ -1,7 +1,8 @@
 
 export default function MenuItem ({meal, setModal}) {
     return (
-        <button key={meal.id} style={styles.mealCard} onClick={() => setModal({visible: true, data: meal})}>
+        // fix key id
+        <button key={meal.id + 10000} style={styles.mealCard} onClick={() => setModal({visible: true, data: meal})}>
             <div style={{...styles.mealImg, backgroundImage: `url(${meal.img})`}}/>
             <div style={styles.mealInfo}>
                 <span style={styles.cafeTitle}>{meal.name}</span>

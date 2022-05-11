@@ -7,7 +7,7 @@ import OrderHistory from "./Pages/OrderHistory";
 
 export default function AdminSite({site, setSite}) {
     return (
-        <Router>
+
             <div className="App">
                 <HeaderAdmin/>
                 <Routes>
@@ -17,6 +17,5 @@ export default function AdminSite({site, setSite}) {
                     <Route path="/orderhistory" element={<OrderHistory />}/>
                 </Routes>
             </div>
-        </Router>
     )
 }

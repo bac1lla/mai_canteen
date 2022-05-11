@@ -1,9 +1,8 @@
-
 import {Link, useNavigate} from "react-router-dom";
-import My from "../My/My";
 import Modal from "../Modal/Modal";
 import Login from "../Login/Login";
 import {useState} from "react";
+
 
 export default function HeaderUser({token, setToken}) {
 
@@ -15,10 +14,7 @@ export default function HeaderUser({token, setToken}) {
         <div style={styles.header}>
             <input style={styles.search} placeholder='Что ищем?'/>
             <div style={styles.buttons}>
-                <button onClick={() => {
-                    if (!token) setModal({visible: true, data: null})
-                    else navigate("/my")
-                }} style={styles.button_header}>
+                <button onClick={() => !token ? setModal({visible: true, data: null}) : navigate("/my")} style={styles.button_header}>
                     <img src={require("../../../img/user.png")} alt="profile" style={styles.icon}/>
                 </button>
                 <Link to={"/cart"} style={styles.button_header}>

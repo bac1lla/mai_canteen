@@ -3,7 +3,8 @@ import {Link} from "react-router-dom";
 export default function CafeCard({cafe}) {
 
     return (
-        <Link to={`/cafe/${cafe.id}`} key={cafe.id} style={styles.cafeCard}>
+        //fix key id
+        <Link to={`/cafe/${cafe.id}`} key={cafe.id + 100} style={styles.cafeCard}>
             <div style={{...styles.cardImg, backgroundImage: `url(${cafe.img})`}} />
             <div style={styles.cardInfo}>
                 <span style={styles.cafeTitle}>{cafe.name}</span>

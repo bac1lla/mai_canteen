@@ -10,7 +10,7 @@ const dataOrders = [
             {
                 id: 1,
                 count: 1,
-                name: "Подлива",
+                name: "Круассан",
                 price: 1234,
             },
             {
@@ -36,7 +36,7 @@ const dataOrders = [
             {
                 id: 1,
                 count: 1,
-                name: "Жижа",
+                name: "Блин",
                 price: 1234,
             },
             {
@@ -56,7 +56,7 @@ const dataOrders = [
             {
                 id: 1,
                 count: 1,
-                name: "Жижа",
+                name: "Блин",
                 price: 1234,
             },
             {
@@ -68,19 +68,19 @@ const dataOrders = [
             {
                 id: 3,
                 count: 1,
-                name: "Жижа",
+                name: "Блин",
                 price: 1234,
             },
             {
                 id: 4,
                 count: 1,
-                name: "Жижа",
+                name: "Блин",
                 price: 1234,
             },
             {
                 id: 5,
                 count: 1,
-                name: "Жижа",
+                name: "Блин",
                 price: 1234,
             },
         ],
@@ -93,7 +93,7 @@ const dataOrders = [
             {
                 id: 1,
                 count: 1,
-                name: "Подлива",
+                name: "Круассан",
                 price: 1234,
             },
             {
@@ -119,7 +119,7 @@ const dataOrders = [
             {
                 id: 1,
                 count: 1,
-                name: "Подлива",
+                name: "Круассан",
                 price: 1234,
             },
             {
@@ -145,7 +145,7 @@ const dataOrders = [
             {
                 id: 1,
                 count: 1,
-                name: "Подлива",
+                name: "Круассан",
                 price: 1234,
             },
             {
@@ -171,7 +171,7 @@ const dataOrders = [
             {
                 id: 1,
                 count: 1,
-                name: "Подлива",
+                name: "Круассан",
                 price: 1234,
             },
             {
@@ -197,7 +197,7 @@ const dataOrders = [
             {
                 id: 1,
                 count: 1,
-                name: "Подлива",
+                name: "Круассан",
                 price: 1234,
             },
             {
@@ -244,7 +244,7 @@ function createOrder(ordersArr) {
 export default function Orders ({site, setSite}) {
         return (
             <Container className='mt-5' style={{minHeight: "100vh"}}>
-                {/*<button onClick={() => setSite(!site)} >МЕНЯЙ</button>*/}
+                <button onClick={() => setSite(!site)} >МЕНЯЙ</button>
                 <h5 className="card-header bg-light text-center">ЗАКАЗЫ</h5>
                 <div className="d-flex form-control flex-wrap" style={{justifyContent: "space-around"}}>
                     {createOrder(dataOrders)}
