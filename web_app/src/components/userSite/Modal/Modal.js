@@ -1,7 +1,4 @@
 import {useEffect} from "react";
-import {Link} from "react-router-dom";
-import {addNewToCart, deleteFromCart} from "../Cart/cartFunctions";
-
 
 export default function Modal({
                                   data = {},
@@ -9,7 +6,6 @@ export default function Modal({
                                   onClose,
                                   component,
                               }) {
-
 
     const onKeydown = ({key}) => {
         switch (key) {

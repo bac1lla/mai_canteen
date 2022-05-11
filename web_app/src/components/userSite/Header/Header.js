@@ -1,4 +1,5 @@
-import {Link} from "react-router-dom";
+
+import {Link, useNavigate} from "react-router-dom";
 import My from "../My/My";
 import Modal from "../Modal/Modal";
 import Login from "../Login/Login";
@@ -8,14 +9,15 @@ export default function HeaderUser({token, setToken}) {
 
     const [isModal, setModal] = useState({visible: false, data: null})
     const onClose = () => setModal({visible: false, data: isModal.data})
+    const navigate = useNavigate()
 
     return (
         <div style={styles.header}>
             <input style={styles.search} placeholder='Что ищем?'/>
             <div style={styles.buttons}>
                 <button onClick={() => {
-                    if (token) setModal({visible: true, data: null})
-                    else return true
+                    if (!token) setModal({visible: true, data: null})
+                    else navigate("/my")
                 }} style={styles.button_header}>
                     <img src={require("../../../img/user.png")} alt="profile" style={styles.icon}/>
                 </button>

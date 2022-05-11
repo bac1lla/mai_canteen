@@ -1,9 +1,11 @@
+import GoHomeBtn from "../GoHomeBtn/GoHomeBtn";
+
 export default function My ({setToken, setSite}) {
 
     return (
-        <button onClick={() => {
-            setToken('')
-            setSite(true)
-        }}>Выход здесь епта</button>
+        <div>
+            <GoHomeBtn />
+            <button onClick={() => setToken('')}>Выход здесь епта</button>
+        </div>
     )
 }

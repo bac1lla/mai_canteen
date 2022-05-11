@@ -244,7 +244,7 @@ function createOrder(ordersArr) {
 export default function Orders ({site, setSite}) {
         return (
             <Container className='mt-5' style={{minHeight: "100vh"}}>
-                <button onClick={() => setSite(!site)} >МЕНЯЙ</button>
+                {/*<button onClick={() => setSite(!site)} >МЕНЯЙ</button>*/}
                 <h5 className="card-header bg-light text-center">ЗАКАЗЫ</h5>
                 <div className="d-flex form-control flex-wrap" style={{justifyContent: "space-around"}}>
                     {createOrder(dataOrders)}

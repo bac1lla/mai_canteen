@@ -29,7 +29,7 @@ export default function Login({ setToken }) {
 
     return(
         <div style={styles.login_wrapper}>
-            <LoginForm handleSubmit={handleSubmit} />
+            <LoginForm handleSubmit={handleSubmit} setUserName={setUserName} setPassword={setPassword}/>
         </div>
     )
 }
