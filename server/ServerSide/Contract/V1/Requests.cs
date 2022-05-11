@@ -1,3 +1,5 @@
+using System.Text.Json.Serialization;
+
 namespace ServerSide.Contract.V1;
 
 /// <summary>
@@ -9,26 +11,29 @@ public static class Requests
     {
         public static class Entity
         {
-            public abstract record Get(string Token)
+            public record Get;
+            public record PartialGet;
+            
+            public abstract record Create : Get
             {
-                protected Get() : this(string.Empty) { }
+                protected Create() { }
             }
-            public abstract record Create : Get;
+            
             public abstract record Update(DateTime? CreationDate = null) : Get;
-            public abstract record Delete : Get;
+            public record Delete : Get;
         }
         
         public static class User
         {
-            public abstract record Create(string Login, string Password, string Salt,
-                string? Name = null) : Entity.Create
+            public record Create(string Login, string Password, string Salt, string? Name = null) : Entity.Create
             {
-                protected Create() : 
-                    this(string.Empty, string.Empty, string.Empty, null)
+                protected Create()
+                    : this(string.Empty, string.Empty, string.Empty)
                 { }
             }
-            public abstract record Update(string? Login = null, string? Name = null, string? Salt = null, 
-                string? Password = null) : Entity.Update;
+
+            public record Update(string? Login = null, string? Name = null, string? Salt = null, string? Password = null) : Entity.Update;
+            
             public abstract record Authorize : Entity.Get;
         }
 

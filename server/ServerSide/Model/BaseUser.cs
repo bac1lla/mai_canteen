@@ -20,6 +20,8 @@ public abstract class BaseUser : BaseEntity
         SuperUser
     }
     
+    // public record RoleHandler(BaseUser.UserRole Value); 
+    
     public string Login { init; get; }
     public string? Name { set; get; }
     
