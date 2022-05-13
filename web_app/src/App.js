@@ -7,22 +7,35 @@ import AdminSite from "./components/adminSite/AdminSite";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {BrowserRouter as Router} from "react-router-dom";
 
+function checkToken(token, setToken) {
+
+    if (!token) {
+        return <Login setToken={setToken}/>
+    }
+
+}
 
 function App() {
 
 
     const [cart, setCart] = useState([])
     const [site, setSite] = useState(true)
+    const [user, setUser] = useState({})
 
     const {token, setToken} = useToken();
 
     if (!token) {
-        return <Login setToken={setToken}/>
+        return (
+            <Router>
+                <Login setToken={setToken} setSite={setSite} user={user} setUser={setUser}/>
+            </Router>
+        )
     }
 
     return (
         <Router>
-            {site ? <UserSite site={site} setSite={setSite} cart={cart} setCart={setCart} setToken={setToken} token={token} /> : <AdminSite site={site} setSite={setSite}/>}
+            {!site ? <UserSite site={site} setSite={setSite} cart={cart} setCart={setCart} setToken={setToken}
+                               token={token} user={user} setUser={setUser}/> : <AdminSite site={site} setSite={setSite}/>}
         </Router>
     )
 }

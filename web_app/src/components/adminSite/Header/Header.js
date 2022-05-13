@@ -1,5 +1,6 @@
 import { Container, Nav, Navbar, FormControl, Form, Button} from 'react-bootstrap'
 import logo from './LOGO_MAI_CAFE.png'
+import {Link} from "react-router-dom";
 
 
 export default function HeaderAdmin () {
@@ -7,7 +8,7 @@ export default function HeaderAdmin () {
             <Navbar sticky="top" collapseOnSelect expand="lg" bg="dark" variant="dark" style={{borderRadius: "0 0 18px 18px"}}>
                 <Container>
 
-                    <Navbar.Brand href="/auth">
+                    <Link to="/auth">
                         <img
                             src={logo}
                             height="90"
@@ -17,15 +18,15 @@ export default function HeaderAdmin () {
                             />
                         <div className="navbar-header">
                         </div>
-                    </Navbar.Brand>
+                    </Link>
                     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                             
                     <Navbar.Collapse id="responsive-navbar-nav" >
                         <Nav className="me-auto">
-                            <Nav.Link href="/" > ЗАКАЗЫ </Nav.Link>
-                            <Nav.Link href="/menu" > ИЗМЕНИТЬ МЕНЮ </Nav.Link>
-                            <Nav.Link href="/stoplist" > СТОП-ЛИСТ </Nav.Link>
-                            <Nav.Link href="/orderhistory" > ИСТОРИЯ ЗАКАЗОВ </Nav.Link>
+                            <Link to="/" > ЗАКАЗЫ </Link>
+                            <Link to="/menu" > ИЗМЕНИТЬ МЕНЮ </Link>
+                            <Link to="/stoplist" > СТОП-ЛИСТ </Link>
+                            <Link to="/orderhistory" > ИСТОРИЯ ЗАКАЗОВ </Link>
                         </Nav>
                         <Form className="d-flex">
                             <FormControl

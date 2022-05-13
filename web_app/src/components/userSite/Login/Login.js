@@ -1,11 +1,11 @@
 import {useState} from 'react';
 import PropTypes from 'prop-types';
 import LoginForm from "../LoginForm/LoginForm";
+import {useNavigate} from "react-router-dom";
 
 
 async function userPartialGet(id) {
     let response = await fetch(`http://26.215.218.90:7210/Api/V1/User/PartialGet/${id}`, {
-        // mode: 'no-cors',
         method: 'GET',
         headers: {
             'accept': '*/*',
@@ -50,15 +50,26 @@ async function userCreate(login, password, salt, name) {
     }
 }
 
-export default function Login({setToken}) {
+export default function Login({setToken, setSite, user, setUser}) {
 
     const [username, setUserName] = useState();
     const [password, setPassword] = useState();
 
+    let navigate = useNavigate()
+
     const handleSubmit = async e => {
         e.preventDefault();
-        let token = await userCreate(username, password, "salt", username)
+        // let token = await userCreate(username, password, "salt", username)
+        let token = "123" // then server is off
         setToken(token)
+        let tempPassword = password
+        setSite(tempPassword === "1")
+        setUser({
+            login: username,
+            name: username,
+            hash: password,
+        })
+        navigate("/")
     }
 
     return (

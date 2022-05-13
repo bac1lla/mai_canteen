@@ -123,7 +123,7 @@ function foodCards(data, navigation) {
                                       // let index = order.indexOf(meal)
                                       //
                                       // if (index !== -1) {
-                                      //     tempOrder[index].count += 1
+                                      //     tempOrder[index].count +git = 1
                                       //     onChangeOrder(tempOrder)
                                       // } else {
                                       //     onChangeOrder([...order, meal])

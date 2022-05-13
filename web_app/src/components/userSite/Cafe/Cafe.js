@@ -21,8 +21,8 @@ export default function Cafe({cart, setCart}) {
     }
 
 
-    const [isModal, setModal] = useState({visible: false, data: null})
-    const onClose = () => setModal({visible: false, data: isModal.data})
+    const [isModalCafeCard, setModalCafeCard] = useState({visible: false, data: null})
+    const onClose = () => setModalCafeCard({visible: false, data: isModalCafeCard.data})
 
 
     return (
@@ -33,12 +33,12 @@ export default function Cafe({cart, setCart}) {
                 <div style={{...styles.cafeImg, backgroundImage: `url(${cafe.img})`}}/>
             </div>
             <div style={styles.menuList}>
-                {dataMenu[cafeId].map(meal => <MenuItem meal={meal} setModal={setModal}/>)}
+                {dataMenu[cafeId].map(meal => <MenuItem meal={meal} setModal={setModalCafeCard}/>)}
             </div>
             <Modal
-                visible={isModal.visible}
+                visible={isModalCafeCard.visible}
                 onClose={onClose}
-                component={<MealModalItem data={isModal.data}
+                component={<MealModalItem data={isModalCafeCard.data}
                                           onClose={onClose}
                                           cart={cart}
                                           setCart={setCart}/>}

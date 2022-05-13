@@ -5,7 +5,7 @@ import Cafe from "./Cafe/Cafe";
 import Cart from "./Cart/Cart";
 import My from "./My/My";
 
-export default function UserSite({site, setSite, cart, setCart, setToken, token}) {
+export default function UserSite({site, setSite, cart, setCart, setToken, token, user, setUser}) {
     return (
             <div className="App">
                 <HeaderUser token={token} setToken={setToken}/>
@@ -13,7 +13,7 @@ export default function UserSite({site, setSite, cart, setCart, setToken, token}
                     <Route path="/" element={<Home site={site} setSite={setSite}/>}/>
                     <Route path="/cafe/:cafeId" element={<Cafe cart={cart} setCart={setCart}/>}/>
                     <Route path="/cart" element={<Cart cart={cart} setCart={setCart}/>}/>
-                    <Route path="my" element={<My setToken={setToken} setSite={setSite}/>}/>
+                    <Route path="my" element={<My setToken={setToken} setSite={setSite} user={user} setUser={setUser}/>}/>
                 </Routes>
             </div>
     )
