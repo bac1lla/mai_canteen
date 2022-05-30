@@ -1,4 +1,4 @@
-import { Container, Nav, Navbar, FormControl, Form, Button} from 'react-bootstrap'
+import { Container, Nav,  Navbar, FormControl, Form, Button} from 'react-bootstrap'
 import logo from './LOGO_MAI_CAFE.png'
 import {Link} from "react-router-dom";
 
@@ -8,7 +8,7 @@ export default function HeaderAdmin () {
             <Navbar sticky="top" collapseOnSelect expand="lg" bg="dark" variant="dark" style={{borderRadius: "0 0 18px 18px"}}>
                 <Container>
 
-                    <Link to="/auth">
+                    <Nav.Link><Link to="/auth">
                         <img
                             src={logo}
                             height="90"
@@ -18,15 +18,15 @@ export default function HeaderAdmin () {
                             />
                         <div className="navbar-header">
                         </div>
-                    </Link>
+                    </Link></Nav.Link>
                     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                             
                     <Navbar.Collapse id="responsive-navbar-nav" >
                         <Nav className="me-auto">
-                            <Link to="/" > ЗАКАЗЫ </Link>
-                            <Link to="/menu" > ИЗМЕНИТЬ МЕНЮ </Link>
-                            <Link to="/stoplist" > СТОП-ЛИСТ </Link>
-                            <Link to="/orderhistory" > ИСТОРИЯ ЗАКАЗОВ </Link>
+                            <Nav.Link ><Link style={styles.navItem} to="/" > ЗАКАЗЫ </Link></Nav.Link>
+                            <Nav.Link ><Link style={styles.navItem} to="/menu" > ИЗМЕНИТЬ МЕНЮ </Link></Nav.Link>
+                            <Nav.Link ><Link style={styles.navItem} to="/stoplist" > СТОП-ЛИСТ </Link></Nav.Link>
+                            <Nav.Link ><Link style={styles.navItem} to="/orderhistory" > ИСТОРИЯ ЗАКАЗОВ </Link></Nav.Link>
                         </Nav>
                         <Form className="d-flex">
                             <FormControl
@@ -41,4 +41,11 @@ export default function HeaderAdmin () {
             </Navbar>
 
         )
+}
+
+const styles = {
+    navItem: {
+        textDecoration: "none",
+        color: "white",
+    }
 }

@@ -4,7 +4,7 @@ import CartEmpty from "../CartEmpty/CartEmpty";
 import GoHomeBtn from "../GoHomeBtn/GoHomeBtn";
 
 
-export default function Cart({cart, setCart}) {
+export default function Cart({cart, setCart, cartHistory, setCartHistory}) {
 
     if (cart.length === 0 ) return <CartEmpty />
 
@@ -12,10 +12,11 @@ export default function Cart({cart, setCart}) {
         <div>
             <GoHomeBtn />
             <div>
-                {cart.map(meal => <CartItem meal={meal} setCart={setCart} cart={cart} />)}
+                {cart.map(meal => <CartItem meal={meal} setCart={setCart} cart={cart} cartHistory={cartHistory} setCartHistory={setCartHistory}/>)}
             </div>
             <strong>Итоговая стоимость: {cart.reduce((acc, e) => acc + e.totalPrice, 0)}</strong>
-            <button style={styles.btn_createOrder} onClick={() => setCart([])}>Заказать</button>
+            <button style={styles.btn_createOrder} onClick={() => {
+                setCartHistory([...cartHistory, cart]);setCart([])}}>Заказать</button>
         </div>
     )
 }

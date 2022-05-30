@@ -6,7 +6,7 @@ export default function Home({site, setSite}) {
 
     return (
         <div style={styles.container}>
-            <button onClick={() => setSite(!site)} >МЕНЯЙ</button>
+            {/*<button onClick={() => setSite(!site)} >МЕНЯЙ</button>*/}
             <h2 style={styles.pageTitle}>Рестораны</h2>
             <div style={styles.cafesList}>
                 {dataCafes.map(cafe => <CafeCard cafe={cafe}/>)}

@@ -19,8 +19,9 @@ function App() {
 
 
     const [cart, setCart] = useState([])
-    const [site, setSite] = useState(true)
+    const [site, setSite] = useState(false)
     const [user, setUser] = useState({})
+    const [cartHistory, setCartHistory] = useState([])
 
     const {token, setToken} = useToken();
 
@@ -35,7 +36,7 @@ function App() {
     return (
         <Router>
             {!site ? <UserSite site={site} setSite={setSite} cart={cart} setCart={setCart} setToken={setToken}
-                               token={token} user={user} setUser={setUser}/> : <AdminSite site={site} setSite={setSite}/>}
+                               token={token} user={user} setUser={setUser} cartHistory={cartHistory} setCartHistory={setCartHistory}/> : <AdminSite site={site} setSite={setSite}/>}
         </Router>
     )
 }

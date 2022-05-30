@@ -41,7 +41,7 @@ export default function My({setToken, setSite, user, setUser}) {
                     {/*<button style={styles.changeName} onClick={() => setModalChangeEmail({visible: true, data: null})}>Изменить почту</button>*/}
                 </div>
 
-                <button style={styles.showHistory} onClick={() => navigate("/")}>История заказов</button>
+                <button style={styles.showHistory} onClick={() => navigate("/orderhistory")}>История заказов</button>
                 <button style={styles.showHistory} onClick={() => setModalChangePassword({visible: true, data: null})}>Изменить пароль</button>
 
 
